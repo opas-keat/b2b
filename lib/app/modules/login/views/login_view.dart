@@ -1,30 +1,64 @@
 import 'package:flutter/material.dart';
 
+import '../../../../background.dart';
+import '../../../../responsive.dart';
+import '../components/login_form.dart';
+import '../components/login_screen_top_image.dart';
+
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+    return Background(
+      child: SingleChildScrollView(
+        child: Responsive(
+          mobile: const MobileLoginScreen(),
+          desktop: Row(
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Image.asset('images/logo3.png', fit: BoxFit.cover),
+              const Expanded(
+                child: LoginScreenTopImage(),
               ),
-              Center(
-                child: Text(
-                  'LoginView is working',
-                  style: TextStyle(fontSize: 20),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    SizedBox(
+                      width: 450,
+                      child: LoginForm(),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class MobileLoginScreen extends StatelessWidget {
+  const MobileLoginScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        const LoginScreenTopImage(),
+        Row(
+          children: const [
+            Spacer(),
+            Expanded(
+              flex: 8,
+              child: LoginForm(),
+            ),
+            Spacer(),
+          ],
+        ),
+      ],
     );
   }
 }
