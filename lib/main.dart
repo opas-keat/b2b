@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Dart POS",
+      title: "PPSW",
       theme: ThemeData(
         useMaterial3: false,
         textTheme: GoogleFonts.kanitTextTheme(),
