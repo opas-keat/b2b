@@ -1,7 +1,10 @@
+import 'package:b2b/app/modules/dealer/views/dealer_view.dart';
+import 'package:b2b/app/modules/productAdmin/views/product_admin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants.dart';
 import '../../../data/menu.dart';
 import '../controllers/home_controller.dart';
 
@@ -21,7 +24,10 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: IndexedStack(
                   index: controller.navIndex.value,
-                  children: [],
+                  children: [
+                    ProductAdminView(),
+                    DealerView(),
+                  ],
                 ),
               ),
             ],
@@ -51,6 +57,15 @@ class SideMenu extends GetView<HomeController> {
               child: SvgPicture.asset("icons/home.svg", fit: BoxFit.contain),
             ),
           ),
+          Text(
+            "เมนูการทำงาน",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
           Expanded(
             child: ListView.builder(
               itemCount: menuItemsAdmin.length,
@@ -58,13 +73,11 @@ class SideMenu extends GetView<HomeController> {
                 return ListTile(
                   title: Text(
                     menuItemsAdmin[index].title,
-                    textAlign: (index == 0) ? TextAlign.center : TextAlign.left,
+                    textAlign: TextAlign.left,
                     style: TextStyle(
-                      fontWeight: (index == 0)
+                      fontWeight: (controller.navIndex.value == index)
                           ? FontWeight.w800
-                          : (controller.navIndex.value == index)
-                              ? FontWeight.w800
-                              : FontWeight.w300,
+                          : FontWeight.w300,
                     ),
                   ),
                   onTap: () {

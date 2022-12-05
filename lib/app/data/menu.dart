@@ -1,8 +1,5 @@
 List<MenuItem> menuItemsAdmin = [
   MenuItem(
-    title: "เมนูการทำงาน",
-  ),
-  MenuItem(
     title: "สินค้าคงคลัง",
   ),
   MenuItem(
