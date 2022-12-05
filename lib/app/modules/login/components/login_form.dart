@@ -1,5 +1,8 @@
+import 'package:b2b/app/modules/register/views/register_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../constants.dart';
+import '../../../../shared/widgets/custom_flat_button.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -8,7 +11,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return AutofillGroup(
       child: Column(
         children: [
           TextFormField(
@@ -17,11 +20,11 @@ class LoginForm extends StatelessWidget {
             cursorColor: kPrimaryColor,
             onSaved: (email) {},
             decoration: const InputDecoration(
-              hintText: "Your email",
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Icon(Icons.person),
-              ),
+              hintText: "Your user",
+              // prefixIcon: Padding(
+              //   padding: EdgeInsets.all(defaultPadding),
+              //   child: Icon(Icons.person),
+              // ),
             ),
           ),
           Padding(
@@ -32,21 +35,21 @@ class LoginForm extends StatelessWidget {
               cursorColor: kPrimaryColor,
               decoration: const InputDecoration(
                 hintText: "Your password",
-                prefixIcon: Padding(
-                  padding: EdgeInsets.all(defaultPadding),
-                  child: Icon(Icons.lock),
-                ),
+                // prefixIcon: Padding(
+                //   padding: EdgeInsets.all(defaultPadding),
+                //   child: Icon(Icons.lock),
+                // ),
               ),
             ),
           ),
-          const SizedBox(height: defaultPadding),
-          Hero(
-            tag: "login_btn",
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                "Login".toUpperCase(),
-              ),
+          // const SizedBox(height: defaultPadding),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 35),
+            child: CustomFlatButton(
+              label: "Login".toUpperCase(),
+              onPressed: () {
+                Get.off(const RegisterView());
+              },
             ),
           ),
           const SizedBox(height: defaultPadding),

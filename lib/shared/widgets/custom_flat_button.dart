@@ -11,7 +11,7 @@ class CustomFlatButton extends StatelessWidget {
       this.labelStyle,
       this.isWrapped = false,
       this.borderRadius = 6.0,
-      this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 10)})
+      this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 16)})
       : super(key: key);
   final VoidCallback? onPressed;
   final String label;
