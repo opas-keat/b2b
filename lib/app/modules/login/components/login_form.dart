@@ -1,10 +1,10 @@
-import 'package:b2b/app/modules/register/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../constants.dart';
 import '../../../../shared/widgets/custom_flat_button.dart';
+import '../controllers/login_controller.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends GetView<LoginController> {
   const LoginForm({
     Key? key,
   }) : super(key: key);
@@ -48,7 +48,8 @@ class LoginForm extends StatelessWidget {
             child: CustomFlatButton(
               label: "Login".toUpperCase(),
               onPressed: () {
-                Get.off(const RegisterView());
+                // Get.off(const RegisterView());
+                controller.login();
               },
             ),
           ),

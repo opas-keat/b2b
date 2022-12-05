@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../constants.dart';
+
 class LoginScreenTopImage extends StatelessWidget {
   const LoginScreenTopImage({
     Key? key,
@@ -19,13 +21,13 @@ class LoginScreenTopImage extends StatelessWidget {
           children: [
             const Spacer(),
             Expanded(
-              flex: 8,
+              flex: 6,
               child: SvgPicture.asset("icons/login.svg"),
             ),
             const Spacer(),
           ],
         ),
-        // const SizedBox(height: defaultPadding * 2),
+        const SizedBox(height: defaultPadding * 2),
       ],
     );
   }
