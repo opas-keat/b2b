@@ -1,66 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-import '../../../../background.dart';
-import '../../../../responsive.dart';
-import '../components/welcome_image.dart';
+import '../../../data/menu.dart';
+import '../controllers/home_controller.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Background(
-      child: SingleChildScrollView(
-        child: SafeArea(
-          child: Responsive(
-            desktop: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const Expanded(
-                  child: WelcomeImage(),
+    return GetX<HomeController>(
+      builder: (controller) {
+        return Scaffold(
+          body: Row(
+            children: [
+              // side menu
+              SideMenu(),
+
+              // body
+              Expanded(
+                child: IndexedStack(
+                  index: controller.navIndex.value,
+                  children: [],
                 ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      // SizedBox(
-                      //   width: 450,
-                      //   child: LoginAndSignupBtn(),
-                      // ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            mobile: const MobileWelcomeScreen(),
+              ),
+            ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
 
-class MobileWelcomeScreen extends StatelessWidget {
-  const MobileWelcomeScreen({
+class SideMenu extends GetView<HomeController> {
+  const SideMenu({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        const WelcomeImage(),
-        Row(
-          children: const [
-            Spacer(),
-            // Expanded(
-            //   flex: 8,
-            //   child: LoginAndSignupBtn(),
-            // ),
-            Spacer(),
-          ],
-        ),
-      ],
+    return Container(
+      color: Colors.grey.shade200,
+      width: 250,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              height: 150,
+              child: SvgPicture.asset("icons/home.svg", fit: BoxFit.contain),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: menuItemsAdmin.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(
+                    menuItemsAdmin[index].title,
+                    textAlign: (index == 0) ? TextAlign.center : TextAlign.left,
+                    style: TextStyle(
+                      fontWeight: (index == 0)
+                          ? FontWeight.w800
+                          : (controller.navIndex.value == index)
+                              ? FontWeight.w800
+                              : FontWeight.w300,
+                    ),
+                  ),
+                  onTap: () {
+                    // goto that view
+                    controller.navIndex.value = index;
+                    controller.update();
+                  },
+                );
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }
