@@ -24,7 +24,7 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: IndexedStack(
                   index: controller.navIndex.value,
-                  children: [
+                  children: const [
                     ProductAdminView(),
                     DealerView(),
                   ],
@@ -57,7 +57,7 @@ class SideMenu extends GetView<HomeController> {
               child: SvgPicture.asset("icons/home.svg", fit: BoxFit.contain),
             ),
           ),
-          Text(
+          const Text(
             "เมนูการทำงาน",
             textAlign: TextAlign.center,
             style: TextStyle(
