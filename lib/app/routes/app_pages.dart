@@ -41,7 +41,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRODUCT_ADMIN,
-      page: () => const ProductAdminView(),
+      page: () => ProductAdminView(),
       binding: ProductAdminBinding(),
     ),
   ];

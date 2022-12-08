@@ -24,7 +24,7 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: IndexedStack(
                   index: controller.navIndex.value,
-                  children: const [
+                  children: [
                     ProductAdminView(),
                     DealerView(),
                   ],
@@ -47,11 +47,11 @@ class SideMenu extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey.shade200,
-      width: 250,
+      width: 180,
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(defaultPadding),
             child: SizedBox(
               height: 150,
               child: SvgPicture.asset("icons/home.svg", fit: BoxFit.contain),

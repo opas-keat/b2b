@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
-class ProductAdminController extends GetxController {
-  //TODO: Implement ProductAdminController
+import '../../../data/order.dart';
 
-  final count = 0.obs;
+class ProductAdminController extends GetxController {
+  RxString currentCategory = "1".obs;
+  RxList<OrderItem> listOrder = <OrderItem>[].obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +20,4 @@ class ProductAdminController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
