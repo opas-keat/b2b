@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../data/menu.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
@@ -27,8 +28,17 @@ class LoginController extends GetxController {
   Future<void> login(String email, String password) async {
     debugPrint('user: ${email}');
     debugPrint('pass: ${password}');
+    // menuItems2 = menuItemsAdmin
+    //     .where((element) => (element.isAdmin == false))
+    //     .toList()
+    //     .obs;
     if (email != 'admin') {
       isAdmin.write('isAdmin', '0');
+      // GetStorage().write(
+      //     'menu',
+      //     menuItemsAdmin
+      //         .where((element) => (element.isAdmin == false))
+      //         .toList());
       Get.offNamed(Routes.HOME);
     } else {
       isAdmin.write('isAdmin', '1');

@@ -68,11 +68,12 @@ class SideMenu extends GetView<HomeController> {
           const SizedBox(height: defaultPadding),
           Expanded(
             child: ListView.builder(
-              itemCount: menuItemsAdmin.length,
+              // itemCount: menuItemsAdmin.length,
+              itemCount: controller.menus.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   title: Text(
-                    menuItemsAdmin[index].title,
+                    controller.menus[index].title,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontWeight: (controller.navIndex.value == index)
