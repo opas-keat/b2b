@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
 import '../../../../shared/widgets/custom_flat_button.dart';
@@ -8,8 +9,12 @@ import '../../../data/sample.dart';
 import '../controllers/product_admin_controller.dart';
 
 class ProductAdminView extends StatelessWidget {
+  // final isAdmin = GetStorage();
+  String isAdmin = GetStorage().read('isAdmin');
+
   @override
   Widget build(BuildContext context) {
+    debugPrint(isAdmin);
     return Scaffold(
       appBar: AppBar(
         title: const Text('สินค้าคงคลัง'),
@@ -42,67 +47,67 @@ class ProductAdminView extends StatelessWidget {
             child: Column(
               children: [
                 // menu list
-                MenuWidget(),
+                isAdmin == '0' ? Container() : MenuWidget(),
                 // Container(),
                 CategoryList(),
                 // product list
-                // ProductList(),
+                ProductList(),
               ],
             ),
           ),
 
           // list card
-          // const VerticalDivider(
-          //   width: 12.0,
-          // ),
-          // GetBuilder<ProductAdminController>(
-          //   builder: (controller) {
-          //     return Container(
-          //       width: 300,
-          //       child: Column(
-          //         children: [
-          //           // top billing
-          //           Container(
-          //               height: 64,
-          //               child: const Center(child: Text("CUSTOMER 1"))),
+          const VerticalDivider(
+            width: 12.0,
+          ),
+          GetBuilder<ProductAdminController>(
+            builder: (controller) {
+              return Container(
+                width: 300,
+                child: Column(
+                  children: [
+                    // top billing
+                    Container(
+                        height: 64,
+                        child: const Center(child: Text("รายการสั่งซื้อ"))),
 
-          //           // list  products
-          //           Expanded(
-          //             child: ListView.builder(
-          //               itemCount: controller.listOrder.length,
-          //               itemBuilder: (BuildContext context, int index) {
-          //                 return ListTile(
-          //                   title: Text(controller.listOrder[index].title),
-          //                   trailing: Text('${controller.listOrder[index].qt}'),
-          //                 );
-          //               },
-          //             ),
-          //           ),
+                    // list  products
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: controller.listOrder.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            title: Text(controller.listOrder[index].title),
+                            trailing: Text('${controller.listOrder[index].qt}'),
+                          );
+                        },
+                      ),
+                    ),
 
-          //           // purchase
-          //           Container(
-          //             padding: const EdgeInsets.symmetric(
-          //                 horizontal: 8.0, vertical: 8.0),
-          //             width: 300,
-          //             child: ElevatedButton(
-          //               onPressed: () {},
-          //               child: Padding(
-          //                 padding: const EdgeInsets.all(8.0),
-          //                 child: Text(
-          //                   "สั่งอาหาร",
-          //                   style: Theme.of(context)
-          //                       .textTheme
-          //                       .titleLarge!
-          //                       .copyWith(color: Colors.white),
-          //                 ),
-          //               ),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //     );
-          //   },
-          // )
+                    // purchase
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 8.0),
+                      width: 300,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "สั่งซื้อสินค้า",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          )
         ],
       ),
     );
@@ -110,16 +115,9 @@ class ProductAdminView extends StatelessWidget {
 }
 
 class CategoryList extends StatelessWidget {
-// class CategoryList extends GetView<ProductAdminController> {
-//   const CategoryList({
-//     Key? key,
-//   }) : super(key: key);
   ProductAdminController controller = Get.put(ProductAdminController());
   @override
   Widget build(BuildContext context) {
-    print(controller.currentCategory.value);
-    print(sampleCategory.length);
-    // return Container();
     return GetBuilder<ProductAdminController>(
       init: ProductAdminController(),
       initState: (_) {},
@@ -160,44 +158,52 @@ class CategoryList extends StatelessWidget {
         );
       },
     );
-    // return GetBuilder<ProductAdminController>(builder: (context) {
-    //   // return Container();
-    //   return Container(
-    //     // height: 64 + 8,
-    //     height: 100,
-    //     child: ListView.builder(
-    //       scrollDirection: Axis.horizontal,
-    //       itemCount: sampleCategory.length,
-    //       itemBuilder: (BuildContext context, int index) {
-    //         return Container();
-    //         // return Card(
-    //         //   clipBehavior: Clip.antiAliasWithSaveLayer,
-    //         //   child: InkWell(
-    //         //     // onTap: () {
-    //         //     //   controller.currentCategory.value = sampleCategory[index].id;
-    //         //     //   controller.update();
-    //         //     // },
-    //         //     child: Center(
-    //         //       child: Padding(
-    //         //         padding: const EdgeInsets.symmetric(
-    //         //             horizontal: 24.0, vertical: 16.0),
-    //         //         child: Text("test"
-    //         //             // sampleCategory[index].title,
-    //         //             // style: TextStyle(
-    //         //             //   fontWeight: (controller.currentCategory.value ==
-    //         //             //           sampleCategory[index].id)
-    //         //             //       ? FontWeight.bold
-    //         //             //       : FontWeight.normal,
-    //         //             // ),
-    //         //             ),
-    //         //       ),
-    //         //     ),
-    //         //   ),
-    //         // );
-    //       },
-    //     ),
-    //   );
-    // });
+  }
+}
+
+class ProductList extends StatelessWidget {
+  ProductAdminController controller = Get.put(ProductAdminController());
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<ProductAdminController>(
+      builder: (controller) {
+        return Expanded(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+            ),
+            itemCount: sampleProducts
+                .where((element) =>
+                    (element.categoryId == controller.currentCategory.value))
+                .toList()
+                .length,
+            itemBuilder: (BuildContext context, int index) {
+              final items = sampleProducts
+                  .where((element) =>
+                      (element.categoryId == controller.currentCategory.value))
+                  .toList();
+              return Card(
+                clipBehavior: Clip.antiAlias,
+                child: InkWell(
+                  onTap: () {
+                    // add to cart
+                    controller.addItem2Cart(product: items[index]);
+                  },
+                  child: GridTile(
+                    footer: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(items[index].title),
+                    ),
+                    child: Container(),
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -231,54 +237,6 @@ class MenuWidget extends StatelessWidget {
           onPressed: () {},
         ),
       ],
-    );
-  }
-}
-
-class ProductList extends StatelessWidget {
-  const ProductList({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder<ProductAdminController>(
-      builder: (controller) {
-        return Expanded(
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-            ),
-            itemCount: sampleProducts
-                .where((element) =>
-                    (element.categoryId == controller.currentCategory.value))
-                .toList()
-                .length,
-            itemBuilder: (BuildContext context, int index) {
-              final items = sampleProducts
-                  .where((element) =>
-                      (element.categoryId == controller.currentCategory.value))
-                  .toList();
-              return Card(
-                clipBehavior: Clip.antiAlias,
-                child: InkWell(
-                  onTap: () {
-                    // add to cart
-                    // controller.addItem2Cart(product: items[index]);
-                  },
-                  child: GridTile(
-                    footer: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(items[index].title),
-                    ),
-                    child: Container(),
-                  ),
-                ),
-              );
-            },
-          ),
-        );
-      },
     );
   }
 }

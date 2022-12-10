@@ -97,14 +97,14 @@ List<Product> sampleProducts = [
 List<Category> sampleCategory = [
   Category(
     id: "1",
-    title: "ตามสั่ง",
-  ),
-  Category(
-    id: "3",
-    title: "ก๋วยเตี๋ยว",
+    title: "ล้อ",
   ),
   Category(
     id: "2",
-    title: "เครื่องดื่ม",
+    title: "ยาง",
   ),
+  // Category(
+  //   id: "3",
+  //   title: "โปรโมชั่น",
+  // ),
 ];

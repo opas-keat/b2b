@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  final isAdmin = GetStorage();
 
   final count = 0.obs;
   @override
@@ -23,9 +24,16 @@ class LoginController extends GetxController {
     debugPrint("LoginController onClose");
   }
 
-  Future<void> login() async {
-    // debugPrint('user: ${usernameController.text}');
-    // debugPrint('pass: ${passwordController.text}');
+  Future<void> login(String email, String password) async {
+    debugPrint('user: ${email}');
+    debugPrint('pass: ${password}');
+    if (email != 'admin') {
+      isAdmin.write('isAdmin', '0');
+      Get.offNamed(Routes.HOME);
+    } else {
+      isAdmin.write('isAdmin', '1');
+      Get.offNamed(Routes.HOME);
+    }
     // Get.dialog(const Center(child: CircularProgressIndicator()),
     //     barrierDismissible: false);
     // String responseLogin = '';
@@ -56,7 +64,7 @@ class LoginController extends GetxController {
     // } else {
     //   Get.offNamed(Routes.dashboardPageRoute);
     // }
-    Get.offNamed(Routes.HOME);
+    // Get.offNamed(Routes.HOME);
     // return responseLogin;
   }
 }

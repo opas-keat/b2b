@@ -4,10 +4,11 @@ import '../../../../constants.dart';
 import '../../../../shared/widgets/custom_flat_button.dart';
 import '../controllers/login_controller.dart';
 
-class LoginForm extends GetView<LoginController> {
-  const LoginForm({
-    Key? key,
-  }) : super(key: key);
+class LoginForm extends StatelessWidget {
+  LoginController controller = Get.put(LoginController());
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,11 @@ class LoginForm extends GetView<LoginController> {
       child: Column(
         children: [
           TextFormField(
-            keyboardType: TextInputType.emailAddress,
+            // keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
-            onSaved: (email) {},
+            // onSaved: (email) {},
+            controller: _emailController,
             decoration: const InputDecoration(
               hintText: "Your user",
               // prefixIcon: Padding(
@@ -33,6 +35,7 @@ class LoginForm extends GetView<LoginController> {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
+              controller: _passwordController,
               decoration: const InputDecoration(
                 hintText: "Your password",
                 // prefixIcon: Padding(
@@ -49,7 +52,10 @@ class LoginForm extends GetView<LoginController> {
               label: "Login".toUpperCase(),
               onPressed: () {
                 // Get.off(const RegisterView());
-                controller.login();
+                controller.login(
+                  _emailController.text,
+                  _passwordController.text,
+                );
               },
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../data/order.dart';
+import '../../../data/product.dart';
 
 class ProductAdminController extends GetxController {
   RxString currentCategory = "1".obs;
@@ -19,5 +20,28 @@ class ProductAdminController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  addItem2Cart({required Product product}) {
+    // add to cart
+    OrderItem? orderExist = listOrder
+        .firstWhereOrNull((element) => (element.productId == product.id));
+
+    if (orderExist != null) {
+      orderExist.qt = orderExist.qt + 1;
+      orderExist.total = orderExist.price * orderExist.qt;
+    } else {
+      listOrder.add(
+        OrderItem(
+          productId: product.id,
+          title: product.title,
+          qt: 1,
+          price: product.price,
+          total: (product.price) * 1,
+        ),
+      );
+    }
+
+    update();
   }
 }
