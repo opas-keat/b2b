@@ -7,6 +7,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "1",
     price: 50.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "2",
@@ -14,6 +16,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "1",
     price: 50.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "3",
@@ -21,6 +25,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "1",
     price: 40.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "4",
@@ -28,6 +34,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "1",
     price: 50.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "5",
@@ -35,6 +43,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "1",
     price: 40.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "6",
@@ -42,6 +52,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "1",
     price: 40.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "7",
@@ -49,6 +61,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "2",
     price: 25.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "8",
@@ -56,6 +70,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "2",
     price: 15.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "9",
@@ -63,6 +79,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "2",
     price: 5.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "10",
@@ -70,6 +88,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "3",
     price: 40.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "11",
@@ -77,6 +97,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "3",
     price: 50.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "12",
@@ -84,6 +106,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "3",
     price: 50.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   ),
   Product(
     id: "13",
@@ -91,6 +115,8 @@ List<Product> sampleProducts = [
     image: "https://via.placeholder.com/150",
     categoryId: "3",
     price: 20.00,
+    priceCredit: 55.00,
+    priceSuggest: 60.00,
   )
 ];
 
