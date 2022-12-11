@@ -7,6 +7,7 @@ class Product {
   int fNDealerPrice1;
   int priceCredit;
   int fNPrice;
+  int fNQuantityBal;
 
   Product({
     required this.fNMSysProdId,
@@ -17,5 +18,6 @@ class Product {
     required this.fNDealerPrice1,
     required this.priceCredit,
     required this.fNPrice,
+    required this.fNQuantityBal,
   });
 }

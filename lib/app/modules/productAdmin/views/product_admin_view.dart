@@ -9,7 +9,6 @@ import '../../../data/sample.dart';
 import '../controllers/product_admin_controller.dart';
 
 class ProductAdminView extends StatelessWidget {
-  // final isAdmin = GetStorage();
   String isAdmin = GetStorage().read('isAdmin');
 
   @override
@@ -20,26 +19,6 @@ class ProductAdminView extends StatelessWidget {
         title: const Text('สินค้าคงคลัง'),
         centerTitle: true,
       ),
-      // body: DatatableProduct(),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(defaultPadding),
-      //   child: Row(
-      //     children: [
-      //       Expanded(
-      //         flex: 1,
-      //         child: Column(
-      //           children: [
-      //             // menu list
-      //             // const ProductList(),
-      //             MenuWidget(),
-      //             // product list
-      //             ProductList(),
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: Row(
         children: [
           Expanded(
@@ -47,9 +26,7 @@ class ProductAdminView extends StatelessWidget {
             child: Column(
               children: [
                 // menu list
-                isAdmin == '0' ? Container() : MenuWidget(),
-                // Container(),
-                CategoryList(),
+                isAdmin == '1' ? MenuWidget() : CategoryList(),
                 // product list
                 ProductList(),
               ],
@@ -57,57 +34,64 @@ class ProductAdminView extends StatelessWidget {
           ),
 
           // list card
-          const VerticalDivider(
-            width: 12.0,
-          ),
-          GetBuilder<ProductAdminController>(
-            builder: (controller) {
-              return Container(
-                width: 300,
-                child: Column(
-                  children: [
-                    // top billing
-                    Container(
-                        height: 64,
-                        child: const Center(child: Text("รายการสั่งซื้อ"))),
-
-                    // list  products
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: controller.listOrder.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(
-                            title: Text(controller.listOrder[index].title),
-                            trailing: Text('${controller.listOrder[index].qt}'),
-                          );
-                        },
-                      ),
-                    ),
-
-                    // purchase
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 8.0),
+          isAdmin == '1'
+              ? const VerticalDivider(
+                  width: 12.0,
+                )
+              : Container(),
+          isAdmin == '1'
+              ? Container()
+              : GetBuilder<ProductAdminController>(
+                  builder: (controller) {
+                    return Container(
                       width: 300,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "สั่งซื้อสินค้า",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(color: Colors.white),
+                      child: Column(
+                        children: [
+                          // top billing
+                          Container(
+                              height: 64,
+                              child:
+                                  const Center(child: Text("รายการสั่งซื้อ"))),
+
+                          // list  products
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: controller.listOrder.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ListTile(
+                                  title:
+                                      Text(controller.listOrder[index].title),
+                                  trailing:
+                                      Text('${controller.listOrder[index].qt}'),
+                                );
+                              },
+                            ),
                           ),
-                        ),
+
+                          // purchase
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 8.0),
+                            width: 300,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "สั่งซื้อสินค้า",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          )
+                    );
+                  },
+                )
         ],
       ),
     );
@@ -170,8 +154,13 @@ class ProductList extends StatelessWidget {
       builder: (controller) {
         return Expanded(
           child: GridView.builder(
+            padding: EdgeInsets.all(8.0),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
+              mainAxisSpacing: defaultPadding,
+              crossAxisSpacing: defaultPadding,
+              // width / height: fixed for *all* items
+              childAspectRatio: 0.85,
             ),
             itemCount: sampleProducts
                 .where((element) =>
@@ -184,18 +173,36 @@ class ProductList extends StatelessWidget {
                       (element.categoryId == controller.currentCategory.value))
                   .toList();
               return Card(
+                color: Colors.white,
+                elevation: 10,
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onTap: () {
                     // add to cart
                     controller.addItem2Cart(product: items[index]);
                   },
-                  child: GridTile(
-                    footer: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(items[index].fTProdNameTH),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Text(items[index].fTProdNameTH),
+                        Image.asset('images/undraw_electric_car_b7hl.png'),
+                        Text(
+                          items[index].fTProdNameTH,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Text("ราคาขาย : ${items[index].fNPrice.toString()}"),
+                        Text(
+                            "ราคาเงินสด : ${items[index].fNDealerPrice1.toString()}"),
+                        Text(
+                            "ราคาเครดิต : ${items[index].priceCredit.toString()}"),
+                        Text(
+                            "มีสินค้า : ${items[index].fNQuantityBal <= 4 ? items[index].fNQuantityBal.toString() : '4+'}"),
+                      ],
                     ),
-                    child: Container(),
                   ),
                 ),
               );
@@ -214,29 +221,32 @@ class MenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // const SizedBox(height: defaultPadding * 2),
-        CustomFlatButton(
-          isWrapped: true,
-          label: "เพิ่ม".toUpperCase(),
-          onPressed: () {},
-        ),
-        const SizedBox(width: defaultPadding),
-        CustomFlatButton(
-          color: Colors.yellow.shade600,
-          isWrapped: true,
-          label: "แก้ไข".toUpperCase(),
-          onPressed: () {},
-        ),
-        const SizedBox(width: defaultPadding),
-        CustomFlatButton(
-          color: Colors.redAccent,
-          isWrapped: true,
-          label: "ลบ".toUpperCase(),
-          onPressed: () {},
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          // const SizedBox(height: defaultPadding * 2),
+          CustomFlatButton(
+            isWrapped: true,
+            label: "เพิ่ม".toUpperCase(),
+            onPressed: () {},
+          ),
+          const SizedBox(width: defaultPadding),
+          CustomFlatButton(
+            color: Colors.yellow.shade600,
+            isWrapped: true,
+            label: "แก้ไข".toUpperCase(),
+            onPressed: () {},
+          ),
+          const SizedBox(width: defaultPadding),
+          CustomFlatButton(
+            color: Colors.redAccent,
+            isWrapped: true,
+            label: "ลบ".toUpperCase(),
+            onPressed: () {},
+          ),
+        ],
+      ),
     );
   }
 }
