@@ -1,27 +1,21 @@
 class Product {
-  String id;
-  String title;
-  String image;
+  String fNMSysProdId;
+  String fTProdCode;
+  String fTProdNameTH;
+  String fTProdImage;
   String categoryId;
-  double price;
-  double priceCredit;
-  double priceSuggest;
-  Product({
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.categoryId,
-    required this.price,
-    required this.priceCredit,
-    required this.priceSuggest,
-  });
-}
+  int fNDealerPrice1;
+  int priceCredit;
+  int fNPrice;
 
-class Category {
-  String id;
-  String title;
-  Category({
-    required this.id,
-    required this.title,
+  Product({
+    required this.fNMSysProdId,
+    required this.fTProdCode,
+    required this.fTProdNameTH,
+    required this.fTProdImage,
+    required this.categoryId,
+    required this.fNDealerPrice1,
+    required this.priceCredit,
+    required this.fNPrice,
   });
 }

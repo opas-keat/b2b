@@ -2,8 +2,8 @@ class OrderItem {
   String productId;
   String title;
   int qt;
-  double price;
-  double total;
+  int price;
+  int total;
   OrderItem({
     required this.productId,
     required this.title,

@@ -193,7 +193,7 @@ class ProductList extends StatelessWidget {
                   child: GridTile(
                     footer: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(items[index].title),
+                      child: Text(items[index].fTProdNameTH),
                     ),
                     child: Container(),
                   ),

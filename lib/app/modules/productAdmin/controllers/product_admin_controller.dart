@@ -24,8 +24,8 @@ class ProductAdminController extends GetxController {
 
   addItem2Cart({required Product product}) {
     // add to cart
-    OrderItem? orderExist = listOrder
-        .firstWhereOrNull((element) => (element.productId == product.id));
+    OrderItem? orderExist = listOrder.firstWhereOrNull(
+        (element) => (element.productId == product.fNMSysProdId));
 
     if (orderExist != null) {
       orderExist.qt = orderExist.qt + 1;
@@ -33,11 +33,11 @@ class ProductAdminController extends GetxController {
     } else {
       listOrder.add(
         OrderItem(
-          productId: product.id,
-          title: product.title,
+          productId: product.fNMSysProdId,
+          title: product.fTProdNameTH,
           qt: 1,
-          price: product.price,
-          total: (product.price) * 1,
+          price: product.fNDealerPrice1,
+          total: (product.fNDealerPrice1) * 1,
         ),
       );
     }
