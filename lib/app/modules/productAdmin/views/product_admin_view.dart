@@ -13,7 +13,7 @@ class ProductAdminView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(isAdmin);
+    // debugPrint(isAdmin);
     return Scaffold(
       appBar: AppBar(
         title: const Text('สินค้าคงคลัง'),

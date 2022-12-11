@@ -36,7 +36,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DEALER,
-      page: () => const DealerView(),
+      page: () => DealerView(),
       binding: DealerBinding(),
     ),
     GetPage(
