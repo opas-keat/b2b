@@ -23,11 +23,8 @@ class LoginForm extends StatelessWidget {
             // onSaved: (email) {},
             controller: _emailController,
             decoration: const InputDecoration(
-              hintText: "Your user",
-              // prefixIcon: Padding(
-              //   padding: EdgeInsets.all(defaultPadding),
-              //   child: Icon(Icons.person),
-              // ),
+              hintText: "Your Email",
+              prefixIcon: Icon(Icons.email_outlined),
             ),
           ),
           Padding(
@@ -39,10 +36,7 @@ class LoginForm extends StatelessWidget {
               controller: _passwordController,
               decoration: const InputDecoration(
                 hintText: "Your password",
-                // prefixIcon: Padding(
-                //   padding: EdgeInsets.all(defaultPadding),
-                //   child: Icon(Icons.lock),
-                // ),
+                prefixIcon: Icon(Icons.lock),
               ),
             ),
           ),
@@ -62,7 +56,9 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.forgotPassword();
+            },
             child: Text(
               'ลืมรหัสผ่าน?',
               style: TextStyle(color: Colors.grey[800]),

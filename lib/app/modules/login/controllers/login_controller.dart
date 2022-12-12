@@ -75,4 +75,8 @@ class LoginController extends GetxController {
   void register() {
     Get.offNamed(Routes.REGISTER);
   }
+
+  void forgotPassword() {
+    Get.offNamed(Routes.FORGOT_PASSWORD);
+  }
 }

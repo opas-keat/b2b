@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 
-class RegisterController extends GetxController {
+class ForgotPasswordController extends GetxController {
   final email = TextEditingController();
-  final password = TextEditingController();
   final memberCode = TextEditingController();
 
   @override
@@ -23,9 +22,8 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  Future<void> register() async {
+  Future<void> sendNewPassword() async {
     debugPrint('email: ${email.text}');
-    debugPrint('password: ${password.text}');
     debugPrint('memberCode: ${memberCode.text}');
     Get.offNamed(Routes.LOGIN);
   }

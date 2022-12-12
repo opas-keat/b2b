@@ -4,6 +4,8 @@ import '../modules/dealer/bindings/dealer_binding.dart';
 import '../modules/dealer/views/dealer_view.dart';
 import '../modules/dealerProfile/bindings/dealer_profile_binding.dart';
 import '../modules/dealerProfile/views/dealer_profile_view.dart';
+import '../modules/forgotPassword/bindings/forgot_password_binding.dart';
+import '../modules/forgotPassword/views/forgot_password_view.dart';
 import '../modules/historyAdmin/bindings/history_admin_binding.dart';
 import '../modules/historyAdmin/views/history_admin_view.dart';
 import '../modules/historyDealer/bindings/history_dealer_binding.dart';
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.DEALER_PROFILE,
       page: () => DealerProfileView(),
       binding: DealerProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD,
+      page: () => const ForgotPasswordView(),
+      binding: ForgotPasswordBinding(),
     ),
   ];
 }
