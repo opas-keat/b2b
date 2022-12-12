@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/addProduct/bindings/add_product_binding.dart';
+import '../modules/addProduct/views/add_product_view.dart';
 import '../modules/dealer/bindings/dealer_binding.dart';
 import '../modules/dealer/views/dealer_view.dart';
 import '../modules/dealerProfile/bindings/dealer_profile_binding.dart';
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.FORGOT_PASSWORD,
       page: () => const ForgotPasswordView(),
       binding: ForgotPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PRODUCT,
+      page: () => const AddProductView(),
+      binding: AddProductBinding(),
     ),
   ];
 }

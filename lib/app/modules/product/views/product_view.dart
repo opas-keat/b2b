@@ -154,7 +154,7 @@ class ProductList extends StatelessWidget {
       builder: (controller) {
         return Expanded(
           child: GridView.builder(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(defaultPadding / 2),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               mainAxisSpacing: defaultPadding,
@@ -182,7 +182,7 @@ class ProductList extends StatelessWidget {
                     controller.addItem2Cart(product: items[index]);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(defaultPadding / 2),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -215,9 +215,8 @@ class ProductList extends StatelessWidget {
 }
 
 class MenuWidget extends StatelessWidget {
-  const MenuWidget({
-    Key? key,
-  }) : super(key: key);
+  MenuWidget({super.key});
+  ProductController controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -228,23 +227,25 @@ class MenuWidget extends StatelessWidget {
           // const SizedBox(height: defaultPadding * 2),
           CustomFlatButton(
             isWrapped: true,
-            label: "เพิ่ม".toUpperCase(),
-            onPressed: () {},
+            label: "เพิ่มสินค้า".toUpperCase(),
+            onPressed: () {
+              controller.addNewItem();
+            },
           ),
           const SizedBox(width: defaultPadding),
-          CustomFlatButton(
-            color: Colors.yellow.shade600,
-            isWrapped: true,
-            label: "แก้ไข".toUpperCase(),
-            onPressed: () {},
-          ),
-          const SizedBox(width: defaultPadding),
-          CustomFlatButton(
-            color: Colors.redAccent,
-            isWrapped: true,
-            label: "ลบ".toUpperCase(),
-            onPressed: () {},
-          ),
+          // CustomFlatButton(
+          //   color: Colors.yellow.shade600,
+          //   isWrapped: true,
+          //   label: "แก้ไข".toUpperCase(),
+          //   onPressed: () {},
+          // ),
+          // const SizedBox(width: defaultPadding),
+          // CustomFlatButton(
+          //   color: Colors.redAccent,
+          //   isWrapped: true,
+          //   label: "ลบ".toUpperCase(),
+          //   onPressed: () {},
+          // ),
         ],
       ),
     );

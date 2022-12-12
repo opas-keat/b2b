@@ -14,6 +14,7 @@ abstract class Routes {
   static const HISTORY_DEALER = _Paths.HISTORY_DEALER;
   static const DEALER_PROFILE = _Paths.DEALER_PROFILE;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
+  static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const HISTORY_DEALER = '/history-dealer';
   static const DEALER_PROFILE = '/dealer-profile';
   static const FORGOT_PASSWORD = '/forgot-password';
+  static const ADD_PRODUCT = '/add-product';
 }

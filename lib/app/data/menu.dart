@@ -1,6 +1,6 @@
 List<MenuItem2> menuItems = [
   MenuItem2(
-    title: 'สินค้าคงคลัง',
+    title: 'รายการสินค้า',
     isAdmin: '1',
   ),
   MenuItem2(
