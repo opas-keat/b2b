@@ -12,6 +12,7 @@ abstract class Routes {
   static const HISTORY_ADMIN = _Paths.HISTORY_ADMIN;
   static const PRODUCT = _Paths.PRODUCT;
   static const HISTORY_DEALER = _Paths.HISTORY_DEALER;
+  static const DEALER_PROFILE = _Paths.DEALER_PROFILE;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const HISTORY_ADMIN = '/history-admin';
   static const PRODUCT = '/product';
   static const HISTORY_DEALER = '/history-dealer';
+  static const DEALER_PROFILE = '/dealer-profile';
 }

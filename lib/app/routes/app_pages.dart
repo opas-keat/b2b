@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/dealer/bindings/dealer_binding.dart';
 import '../modules/dealer/views/dealer_view.dart';
+import '../modules/dealerProfile/bindings/dealer_profile_binding.dart';
+import '../modules/dealerProfile/views/dealer_profile_view.dart';
 import '../modules/historyAdmin/bindings/history_admin_binding.dart';
 import '../modules/historyAdmin/views/history_admin_view.dart';
 import '../modules/historyDealer/bindings/history_dealer_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.HISTORY_DEALER,
       page: () => HistoryDealerView(),
       binding: HistoryDealerBinding(),
+    ),
+    GetPage(
+      name: _Paths.DEALER_PROFILE,
+      page: () => DealerProfileView(),
+      binding: DealerProfileBinding(),
     ),
   ];
 }
