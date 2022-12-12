@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/dealer/bindings/dealer_binding.dart';
 import '../modules/dealer/views/dealer_view.dart';
+import '../modules/historyAdmin/bindings/history_admin_binding.dart';
+import '../modules/historyAdmin/views/history_admin_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -21,7 +23,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.PRODUCT_ADMIN,
       page: () => ProductAdminView(),
       binding: ProductAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.HISTORY_ADMIN,
+      page: () => HistoryAdminView(),
+      binding: HistoryAdminBinding(),
     ),
   ];
 }

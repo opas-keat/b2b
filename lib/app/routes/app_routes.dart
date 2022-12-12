@@ -9,6 +9,7 @@ abstract class Routes {
   static const PAGENOTFOUND = _Paths.PAGENOTFOUND;
   static const DEALER = _Paths.DEALER;
   static const PRODUCT_ADMIN = _Paths.PRODUCT_ADMIN;
+  static const HISTORY_ADMIN = _Paths.HISTORY_ADMIN;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const PAGENOTFOUND = '/pagenotfound';
   static const DEALER = '/dealer';
   static const PRODUCT_ADMIN = '/product-admin';
+  static const HISTORY_ADMIN = '/history-admin';
 }

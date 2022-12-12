@@ -12,7 +12,7 @@ List<MenuItem2> menuItems = [
   //   isAdmin: '1',
   // ),
   MenuItem2(
-    title: "ประวัติการทำงาน",
+    title: "ประวัติการใช้งาน",
     isAdmin: '1',
   ),
   MenuItem2(

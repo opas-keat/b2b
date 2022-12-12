@@ -18,9 +18,6 @@ class DealerView extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10),
           Padding(

@@ -1,8 +1,10 @@
 import 'package:b2b/app/modules/dealer/views/dealer_view.dart';
+import 'package:b2b/app/modules/historyAdmin/views/history_admin_view.dart';
 import 'package:b2b/app/modules/productAdmin/views/product_admin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
 import '../../../data/menu.dart';
@@ -10,7 +12,7 @@ import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  String isAdmin = GetStorage().read('isAdmin');
   @override
   Widget build(BuildContext context) {
     return GetX<HomeController>(
@@ -25,10 +27,13 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: IndexedStack(
                   index: controller.navIndex.value,
-                  children: [
-                    ProductAdminView(),
-                    DealerView(),
-                  ],
+                  children: isAdmin == '1'
+                      ? [
+                          ProductAdminView(),
+                          DealerView(),
+                          HistoryAdminView(),
+                        ]
+                      : [],
                 ),
               ),
             ],
