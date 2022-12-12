@@ -5,7 +5,8 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
 import '../../../../shared/widgets/custom_flat_button.dart';
-import '../../../data/sample.dart';
+import '../../../data/category.dart';
+import '../../../data/product.dart';
 import '../controllers/product_controller.dart';
 
 class ProductView extends StatelessWidget {

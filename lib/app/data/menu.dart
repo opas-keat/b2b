@@ -19,14 +19,14 @@ List<MenuItem2> menuItems = [
     title: "รายการสินค้า",
     isAdmin: '0',
   ),
-  MenuItem2(
-    title: "รายการสั่งซื้อ",
-    isAdmin: '0',
-  ),
   // MenuItem2(
-  //   title: "ประวัติการสั่งซื้อ",
+  //   title: "รายการสั่งซื้อ",
   //   isAdmin: '0',
   // ),
+  MenuItem2(
+    title: "ประวัติการสั่งซื้อ",
+    isAdmin: '0',
+  ),
   MenuItem2(
     title: "ตั้งค่า",
     isAdmin: '0',

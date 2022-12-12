@@ -1,24 +1,21 @@
+import 'package:b2b/app/data/history_order.dart';
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-
 import '../../../../constants.dart';
-import '../../../data/log.dart';
-import '../controllers/history_admin_controller.dart';
 
-class HistoryAdminView extends GetView<HistoryAdminController> {
-  HistoryAdminView({Key? key}) : super(key: key);
+class HistoryDealerView extends StatelessWidget {
+  HistoryDealerView({super.key});
   final scrollBarController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ประวัติการใช้งาน'),
+        title: const Text('ประวัติการสั่งซื้อ'),
         centerTitle: true,
       ),
       body: Column(
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: TextField(
@@ -28,7 +25,7 @@ class HistoryAdminView extends GetView<HistoryAdminController> {
                 // });
                 // controller.
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'ค้นหา',
                 suffixIcon: Icon(Icons.search),
               ),
@@ -50,26 +47,26 @@ class HistoryAdminView extends GetView<HistoryAdminController> {
                       children: <Widget>[
                         ListTile(
                           title: Text(
-                            sampleLog[index].detail,
-                            style: TextStyle(
+                            sampleHistoryOrder[index].detail,
+                            style: const TextStyle(
                               color: darkBlueColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          subtitle: Text(sampleLog[index].dateTime),
+                          subtitle: Text(sampleHistoryOrder[index].dateTime),
                         ),
-                        Divider(
+                        const Divider(
                           height: 5.0,
                         ),
                       ],
                     );
                   },
-                  itemCount: sampleLog.length,
+                  itemCount: sampleHistoryOrder.length,
                 ),
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:b2b/app/modules/dealer/views/dealer_view.dart';
 import 'package:b2b/app/modules/historyAdmin/views/history_admin_view.dart';
+import 'package:b2b/app/modules/historyDealer/views/history_dealer_view.dart';
 import 'package:b2b/app/modules/product/views/product_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,6 +35,7 @@ class HomeView extends GetView<HomeController> {
                         ]
                       : [
                           ProductView(),
+                          HistoryDealerView(),
                         ],
                 ),
               ),

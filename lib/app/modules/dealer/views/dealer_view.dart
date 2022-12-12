@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants.dart';
-import '../../../data/sample.dart';
+import '../../../data/dealer.dart';
 import '../controllers/dealer_controller.dart';
 
 class DealerView extends StatelessWidget {

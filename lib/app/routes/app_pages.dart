@@ -4,6 +4,8 @@ import '../modules/dealer/bindings/dealer_binding.dart';
 import '../modules/dealer/views/dealer_view.dart';
 import '../modules/historyAdmin/bindings/history_admin_binding.dart';
 import '../modules/historyAdmin/views/history_admin_view.dart';
+import '../modules/historyDealer/bindings/history_dealer_binding.dart';
+import '../modules/historyDealer/views/history_dealer_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.PRODUCT,
       page: () => ProductView(),
       binding: ProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.HISTORY_DEALER,
+      page: () => HistoryDealerView(),
+      binding: HistoryDealerBinding(),
     ),
   ];
 }
