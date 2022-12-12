@@ -155,12 +155,12 @@ class ProductList extends StatelessWidget {
         return Expanded(
           child: GridView.builder(
             padding: const EdgeInsets.all(defaultPadding / 2),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: defaultPadding,
-              crossAxisSpacing: defaultPadding,
-              // width / height: fixed for *all* items
-              childAspectRatio: isAdmin == '1' ? 0.85 : 0.75,
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              // crossAxisCount: 4,
+              mainAxisSpacing: 0,
+              crossAxisSpacing: defaultPadding / 2,
+              childAspectRatio: isAdmin == '1' ? 0.85 : 0.80,
+              maxCrossAxisExtent: 350,
             ),
             itemCount: sampleProducts
                 .where((element) =>
@@ -172,37 +172,33 @@ class ProductList extends StatelessWidget {
                   .where((element) =>
                       (element.categoryId == controller.currentCategory.value))
                   .toList();
-              return Card(
-                color: Colors.white,
-                elevation: 10,
-                clipBehavior: Clip.antiAlias,
-                child: InkWell(
-                  onTap: () {
-                    // add to cart
-                    controller.addItem2Cart(product: items[index]);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(defaultPadding / 2),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Text(items[index].fTProdNameTH),
-                        Image.asset('images/undraw_electric_car_b7hl.png'),
-                        Text(
-                          items[index].fTProdNameTH,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w800,
-                          ),
+              return InkWell(
+                onTap: () {
+                  // add to cart
+                  controller.addItem2Cart(product: items[index]);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(defaultPadding / 2),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Text(items[index].fTProdNameTH),
+                      Image.asset('images/undraw_electric_car_b7hl.png'),
+                      Text(
+                        items[index].fTProdNameTH,
+                        style: const TextStyle(
+                          // fontSize: 24,
+                          fontWeight: FontWeight.w800,
                         ),
-                        Text("ราคาขาย : ${items[index].fNPrice.toString()}"),
-                        Text(
-                            "ราคาเงินสด : ${items[index].fNDealerPrice1.toString()}"),
-                        Text(
-                            "ราคาเครดิต : ${items[index].priceCredit.toString()}"),
-                        Text(
-                            "มีสินค้า : ${items[index].fNQuantityBal <= 4 ? items[index].fNQuantityBal.toString() : '4+'}"),
-                      ],
-                    ),
+                      ),
+                      Text("ราคาขาย : ${items[index].fNPrice.toString()}"),
+                      Text(
+                          "ราคาเงินสด : ${items[index].fNDealerPrice1.toString()}"),
+                      Text(
+                          "ราคาเครดิต : ${items[index].priceCredit.toString()}"),
+                      Text(
+                          "มีสินค้า : ${items[index].fNQuantityBal <= 4 ? items[index].fNQuantityBal.toString() : '4+'}"),
+                    ],
                   ),
                 ),
               );

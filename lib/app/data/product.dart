@@ -71,7 +71,7 @@ List<Product> sampleProducts = [
     fTProdNameTH:
         "แม็กซ์ FATTAH/F6-R(YA033) 18X9.5 6X139.7 ET25 CB.106 B-LPTG-WTG-PLATE  (สีดำ+ขอบไดร์ทอง+CNCข้างก้านไดร์ทอง+เพลท)",
     fTProdImage: "https://via.placeholder.com/150",
-    categoryId: "2",
+    categoryId: "1",
     fNDealerPrice1: 25,
     priceCredit: 55,
     fNPrice: 60,
