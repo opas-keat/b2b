@@ -1,13 +1,12 @@
 import 'package:b2b/app/modules/dealer/views/dealer_view.dart';
 import 'package:b2b/app/modules/historyAdmin/views/history_admin_view.dart';
-import 'package:b2b/app/modules/productAdmin/views/product_admin_view.dart';
+import 'package:b2b/app/modules/product/views/product_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
-import '../../../data/menu.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -29,11 +28,13 @@ class HomeView extends GetView<HomeController> {
                   index: controller.navIndex.value,
                   children: isAdmin == '1'
                       ? [
-                          ProductAdminView(),
+                          ProductView(),
                           DealerView(),
                           HistoryAdminView(),
                         ]
-                      : [],
+                      : [
+                          ProductView(),
+                        ],
                 ),
               ),
             ],

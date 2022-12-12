@@ -6,17 +6,17 @@ import 'package:get_storage/get_storage.dart';
 import '../../../../constants.dart';
 import '../../../../shared/widgets/custom_flat_button.dart';
 import '../../../data/sample.dart';
-import '../controllers/product_admin_controller.dart';
+import '../controllers/product_controller.dart';
 
-class ProductAdminView extends StatelessWidget {
-  String isAdmin = GetStorage().read('isAdmin');
+class ProductView extends StatelessWidget {
+  ProductView({super.key});
+  final isAdmin = GetStorage().read('isAdmin');
 
   @override
   Widget build(BuildContext context) {
-    // debugPrint(isAdmin);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('สินค้าคงคลัง'),
+        title: const Text('ProductView'),
         centerTitle: true,
       ),
       body: Row(
@@ -41,17 +41,16 @@ class ProductAdminView extends StatelessWidget {
               : Container(),
           isAdmin == '1'
               ? Container()
-              : GetBuilder<ProductAdminController>(
+              : GetBuilder<ProductController>(
                   builder: (controller) {
-                    return Container(
+                    return SizedBox(
                       width: 300,
                       child: Column(
                         children: [
                           // top billing
-                          Container(
+                          const SizedBox(
                               height: 64,
-                              child:
-                                  const Center(child: Text("รายการสั่งซื้อ"))),
+                              child: Center(child: Text("รายการสั่งซื้อ"))),
 
                           // list  products
                           Expanded(
@@ -91,7 +90,7 @@ class ProductAdminView extends StatelessWidget {
                       ),
                     );
                   },
-                )
+                ),
         ],
       ),
     );
@@ -99,11 +98,11 @@ class ProductAdminView extends StatelessWidget {
 }
 
 class CategoryList extends StatelessWidget {
-  ProductAdminController controller = Get.put(ProductAdminController());
+  ProductController controller = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductAdminController>(
-      init: ProductAdminController(),
+    return GetBuilder<ProductController>(
+      init: ProductController(),
       initState: (_) {},
       builder: (_) {
         return Container(
@@ -146,21 +145,21 @@ class CategoryList extends StatelessWidget {
 }
 
 class ProductList extends StatelessWidget {
-  ProductAdminController controller = Get.put(ProductAdminController());
-
+  ProductController controller = Get.put(ProductController());
+  final isAdmin = GetStorage().read('isAdmin');
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductAdminController>(
+    return GetBuilder<ProductController>(
       builder: (controller) {
         return Expanded(
           child: GridView.builder(
             padding: EdgeInsets.all(8.0),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               mainAxisSpacing: defaultPadding,
               crossAxisSpacing: defaultPadding,
               // width / height: fixed for *all* items
-              childAspectRatio: 0.85,
+              childAspectRatio: isAdmin == '1' ? 0.85 : 0.75,
             ),
             itemCount: sampleProducts
                 .where((element) =>
@@ -190,7 +189,7 @@ class ProductList extends StatelessWidget {
                         Image.asset('images/undraw_electric_car_b7hl.png'),
                         Text(
                           items[index].fTProdNameTH,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w800,
                           ),
                         ),

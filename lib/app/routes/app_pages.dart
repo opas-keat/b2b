@@ -8,8 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/productAdmin/bindings/product_admin_binding.dart';
-import '../modules/productAdmin/views/product_admin_view.dart';
+import '../modules/product/bindings/product_binding.dart';
+import '../modules/product/views/product_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 
@@ -42,14 +42,14 @@ class AppPages {
       binding: DealerBinding(),
     ),
     GetPage(
-      name: _Paths.PRODUCT_ADMIN,
-      page: () => ProductAdminView(),
-      binding: ProductAdminBinding(),
-    ),
-    GetPage(
       name: _Paths.HISTORY_ADMIN,
       page: () => HistoryAdminView(),
       binding: HistoryAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRODUCT,
+      page: () => ProductView(),
+      binding: ProductBinding(),
     ),
   ];
 }

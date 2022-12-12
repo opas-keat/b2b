@@ -34,11 +34,6 @@ class LoginController extends GetxController {
     //     .obs;
     if (email != 'admin') {
       isAdmin.write('isAdmin', '0');
-      // GetStorage().write(
-      //     'menu',
-      //     menuItemsAdmin
-      //         .where((element) => (element.isAdmin == false))
-      //         .toList());
       Get.offNamed(Routes.HOME);
     } else {
       isAdmin.write('isAdmin', '1');

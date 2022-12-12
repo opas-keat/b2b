@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../data/order.dart';
 import '../../../data/product.dart';
 
-class ProductAdminController extends GetxController {
+class ProductController extends GetxController {
   RxString currentCategory = "1".obs;
   RxList<OrderItem> listOrder = <OrderItem>[].obs;
 
