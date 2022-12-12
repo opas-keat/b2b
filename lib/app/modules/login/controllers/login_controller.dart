@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../data/menu.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
@@ -71,5 +70,9 @@ class LoginController extends GetxController {
     // }
     // Get.offNamed(Routes.HOME);
     // return responseLogin;
+  }
+
+  void register() {
+    Get.offNamed(Routes.REGISTER);
   }
 }

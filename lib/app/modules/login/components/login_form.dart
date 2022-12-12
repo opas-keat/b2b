@@ -5,7 +5,8 @@ import '../../../../shared/widgets/custom_flat_button.dart';
 import '../controllers/login_controller.dart';
 
 class LoginForm extends StatelessWidget {
-  LoginController controller = Get.put(LoginController());
+  LoginForm({super.key});
+  final controller = Get.put(LoginController());
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -60,6 +61,28 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: defaultPadding),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'ลืมรหัสผ่าน?',
+              style: TextStyle(color: Colors.grey[800]),
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
+          Text(
+            'หรือ',
+            style: TextStyle(color: Colors.grey[600]),
+          ),
+          const SizedBox(height: defaultPadding),
+          TextButton(
+            onPressed: () {
+              controller.register();
+            },
+            child: Text(
+              'ลงทะเบียน',
+              style: TextStyle(color: Colors.grey[800]),
+            ),
+          ),
           // AlreadyHaveAnAccountCheck(
           //   press: () {
           //     Navigator.push(

@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
-  //TODO: Implement RegisterController
+  final email = TextEditingController();
+  final password = TextEditingController();
+  final memberCode = TextEditingController();
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +21,9 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<void> register() async {
+    debugPrint('email: ${email.text}');
+    debugPrint('password: ${password.text}');
+    debugPrint('memberCode: ${memberCode.text}');
+  }
 }
