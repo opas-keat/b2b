@@ -11,17 +11,14 @@ class HomeController extends GetxController {
   // String isAdmin = GetStorage().read('isAdmin');
   // RxString isAdmin = GetStorage().read('isAdmin').obs;
   List<MenuItem2> menus = menuItems
-      .where((element) => (element.isAdmin == GetStorage().read('isAdmin')))
+      .where((element) =>
+          ((element.isAdmin == GetStorage().read('isAdmin'))) ||
+          element.isAdmin == '2')
       .toList();
 
   @override
   void onInit() {
     super.onInit();
-    // menuItems2 = menuItemsAdmin
-    //     .where((element) => (element.isAdmin == false))
-    //     .toList()
-    //     .obs;
-    // debugPrint('length: ${menuItems2.length}');
   }
 
   @override

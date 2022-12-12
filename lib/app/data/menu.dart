@@ -7,12 +7,12 @@ List<MenuItem2> menuItems = [
     title: "ร้านค้า",
     isAdmin: '1',
   ),
+  // MenuItem2(
+  //   title: "ตั้งค่า admin",
+  //   isAdmin: '1',
+  // ),
   MenuItem2(
-    title: "ตั้งค่า admin",
-    isAdmin: '1',
-  ),
-  MenuItem2(
-    title: "Log",
+    title: "ประวัติการทำงาน",
     isAdmin: '1',
   ),
   MenuItem2(
@@ -34,6 +34,10 @@ List<MenuItem2> menuItems = [
   // MenuItem(
   //   title: "รายงาน",
   // ),
+  MenuItem2(
+    title: "ออกจากระบบ",
+    isAdmin: '2',
+  ),
 ];
 
 class MenuItem2 {

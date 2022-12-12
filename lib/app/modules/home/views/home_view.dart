@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../constants.dart';
 import '../../../data/menu.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -83,8 +84,12 @@ class SideMenu extends GetView<HomeController> {
                   ),
                   onTap: () {
                     // goto that view
-                    controller.navIndex.value = index;
-                    controller.update();
+                    if (controller.menus[index].title == 'ออกจากระบบ') {
+                      Get.offNamed(Routes.LOGIN);
+                    } else {
+                      controller.navIndex.value = index;
+                      controller.update();
+                    }
                   },
                 );
               },
