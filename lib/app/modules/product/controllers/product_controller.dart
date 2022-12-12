@@ -1,3 +1,4 @@
+import 'package:b2b/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,6 +46,7 @@ class ProductController extends GetxController {
     //     ),
     //   ),
     // );
+    Get.toNamed(Routes.ADD_PRODUCT);
   }
 
   addItem2Cart({required Product product}) {

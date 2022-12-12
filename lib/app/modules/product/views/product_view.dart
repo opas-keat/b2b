@@ -17,7 +17,7 @@ class ProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProductView'),
+        title: const Text('รายการสินค้า'),
         centerTitle: true,
       ),
       body: Row(
