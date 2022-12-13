@@ -16,7 +16,7 @@ class ForgotPasswordScreenTopImage extends StatelessWidget {
             Expanded(
               flex: 4,
               child: SvgPicture.network(
-                  "icons/undraw_forgot_password_re_hxwm.svg"),
+                  "assets/icons/undraw_forgot_password_re_hxwm.svg"),
             ),
             const Spacer(),
           ],

@@ -13,7 +13,7 @@ class PageNotFound extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.network(
-            "images/404.png",
+            "assets/images/404.png",
             width: 350,
           ),
           const SizedBox(

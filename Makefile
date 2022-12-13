@@ -4,6 +4,9 @@ run:
 run_web:
 	flutter run -d web-server --web-port 8888 --web-hostname 0.0.0.0
 
+build_web_pwa:
+	flutter build web
+
 build_web:
 	flutter build web --pwa-strategy=none
 

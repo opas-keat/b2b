@@ -21,7 +21,7 @@ class DealerProfileView extends StatelessWidget {
               backgroundColor: kPrimaryColor,
               child: CircleAvatar(
                 backgroundImage:
-                    AssetImage("images/undraw_apartment_rent_o0ut.png"),
+                    AssetImage("assets/images/undraw_apartment_rent_o0ut.png"),
                 radius: 70,
               ),
             ),
@@ -59,7 +59,7 @@ class DealerProfileView extends StatelessWidget {
             ),
           ),
           Image.network(
-            'images/qr-code.png',
+            'assets/images/qr-code.png',
             height: 300,
           ),
         ],
