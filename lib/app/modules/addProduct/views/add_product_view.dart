@@ -23,7 +23,7 @@ class AddProductView extends StatelessWidget {
             children: [
               SizedBox(
                 height: 200,
-                child: Image.asset(
+                child: Image.network(
                   'images/undraw_Add_files_re_v09g.png',
                   fit: BoxFit.cover,
                 ),

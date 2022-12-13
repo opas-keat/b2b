@@ -58,7 +58,7 @@ class DealerProfileView extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Image.asset(
+          Image.network(
             'images/qr-code.png',
             height: 300,
           ),

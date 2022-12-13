@@ -15,7 +15,8 @@ class RegisterScreenTopImage extends StatelessWidget {
             const Spacer(),
             Expanded(
               flex: 6,
-              child: SvgPicture.asset("icons/undraw_mobile_login_re_9ntv.svg"),
+              child:
+                  SvgPicture.network("icons/undraw_mobile_login_re_9ntv.svg"),
             ),
             const Spacer(),
           ],

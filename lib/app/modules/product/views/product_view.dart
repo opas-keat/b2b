@@ -183,7 +183,7 @@ class ProductList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Text(items[index].fTProdNameTH),
-                      Image.asset('images/undraw_electric_car_b7hl.png'),
+                      Image.network('images/undraw_electric_car_b7hl.png'),
                       Text(
                         items[index].fTProdNameTH,
                         style: const TextStyle(
