@@ -5,13 +5,15 @@ description: A new Flutter project.
 environment: 
   sdk: '>=2.18.5 <3.0.0'
 
-dependencies: 
+dependencies:
+  flutter: 
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   cupertino_icons: ^1.0.2
   get: 4.6.5
   get_storage: 2.0.3
-  google_fonts: ^3.0.1
-  flutter: 
-    sdk: flutter
+  google_fonts: ^3.0.1  
   flutter_svg: ^1.1.6
   data_table_2: ^2.3.8
 
