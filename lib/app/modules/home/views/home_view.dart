@@ -10,6 +10,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
 import '../../../routes/app_pages.dart';
+import '../../cart/views/cart_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -35,7 +36,8 @@ class HomeView extends GetView<HomeController> {
                           HistoryAdminView(),
                         ]
                       : [
-                          ProductView(),
+                          // ProductView(),
+                          CartView(),
                           HistoryDealerView(),
                           DealerProfileView(),
                         ],
@@ -65,7 +67,8 @@ class SideMenu extends GetView<HomeController> {
             padding: const EdgeInsets.all(defaultPadding),
             child: SizedBox(
               height: 150,
-              child: SvgPicture.network("assets/icons/home.svg", fit: BoxFit.contain),
+              child: SvgPicture.network("assets/icons/home.svg",
+                  fit: BoxFit.contain),
             ),
           ),
           const Text(

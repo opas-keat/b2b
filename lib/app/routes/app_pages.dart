@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/addProduct/bindings/add_product_binding.dart';
 import '../modules/addProduct/views/add_product_view.dart';
+import '../modules/cart/bindings/cart_binding.dart';
+import '../modules/cart/views/cart_view.dart';
 import '../modules/dealer/bindings/dealer_binding.dart';
 import '../modules/dealer/views/dealer_view.dart';
 import '../modules/dealerProfile/bindings/dealer_profile_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.ADD_PRODUCT,
       page: () => AddProductView(),
       binding: AddProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.CART,
+      page: () => CartView(),
+      binding: CartBinding(),
     ),
   ];
 }
