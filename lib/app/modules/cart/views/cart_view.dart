@@ -1,17 +1,14 @@
-import 'dart:html';
 import 'dart:ui';
 
-import 'package:b2b/app/data/product.dart';
 import 'package:b2b/constants.dart';
-import 'package:b2b/shared/widgets/custom_flat_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../../data/cart_order.dart';
-import '../../../data/history_order.dart';
 import '../controllers/cart_controller.dart';
-import 'credit_widget.dart';
+import 'cart_total_widget.dart';
+import 'payment_channel_widget.dart';
 
 class CartView extends StatelessWidget {
   CartView({super.key});
@@ -77,7 +74,7 @@ class CartView extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          child: CreditWidget(),
+                          child: PaymentChannelWidget(),
                         ),
                       ],
                     ),
@@ -117,10 +114,10 @@ class CartView extends StatelessWidget {
                                     ),
                                   ),
                                   subtitle: Text(
-                                    "ราคา: 100 จำนวน: 2",
+                                    "ราคา: ${sampleCartOrders[index].fNDealerPrice1} จำนวน: ${sampleCartOrders[index].quantity}",
                                   ),
                                   trailing: Text(
-                                    "200",
+                                    '${(sampleCartOrders[index].fNDealerPrice1 * sampleCartOrders[index].quantity)}',
                                     style: const TextStyle(
                                       color: Colors.black87,
                                       fontWeight: FontWeight.bold,
@@ -143,125 +140,8 @@ class CartView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: defaultPadding / 2),
-          const CartTotalWidget(),
+          CartTotalWidget(),
           const SizedBox(height: defaultPadding / 2),
-        ],
-      ),
-      // bottomNavigationBar: Container(
-      //   decoration: BoxDecoration(
-      //     border: Border(
-      //       top: BorderSide(
-      //         color: Colors.lightBlue.shade900,
-      //         width: 2.0,
-      //       ),
-      //     ),
-      //   ),
-      //   width: double.infinity,
-      //   padding: EdgeInsets.symmetric(
-      //     horizontal: 15,
-      //   ),
-      //   child: Text(
-      //     'สรุป',
-      //     style: TextStyle(fontSize: 20),
-      //   ),
-      // ),
-    );
-  }
-}
-
-class CartTotalWidget extends StatelessWidget {
-  const CartTotalWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding * 2),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                "รายการทั้งหมด",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerRight,
-                width: 120,
-                child: Text(
-                  "5",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                "ราคารวม",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerRight,
-                width: 120,
-                child: Text(
-                  "100",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                "ส่วนลด",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerRight,
-                width: 120,
-                child: Text(
-                  "-100",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: defaultPadding),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomFlatButton(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 16,
-                ),
-                isWrapped: true,
-                label: 'ยืนยันสั่งซื้อสินค้า',
-                onPressed: () {/* ... */},
-              ),
-            ],
-          )
         ],
       ),
     );
