@@ -107,17 +107,17 @@ class CartView extends StatelessWidget {
                               children: <Widget>[
                                 ListTile(
                                   title: Text(
-                                    "${index + 1}. ${sampleCartOrders[index].fTProdNameTH}",
+                                    "${index + 1}. ${controller.cartOrders[index].fTProdNameTH}",
                                     style: const TextStyle(
                                       color: darkBlueColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   subtitle: Text(
-                                    "ราคา: ${sampleCartOrders[index].fNDealerPrice1} จำนวน: ${sampleCartOrders[index].quantity}",
+                                    "ราคา: ${controller.cartOrders[index].fNDealerPrice1} จำนวน: ${controller.cartOrders[index].quantity}",
                                   ),
                                   trailing: Text(
-                                    '${(sampleCartOrders[index].fNDealerPrice1 * sampleCartOrders[index].quantity)}',
+                                    '${(controller.cartOrders[index].fNDealerPrice1 * controller.cartOrders[index].quantity)}',
                                     style: const TextStyle(
                                       color: Colors.black87,
                                       fontWeight: FontWeight.bold,
@@ -130,7 +130,7 @@ class CartView extends StatelessWidget {
                               ],
                             );
                           },
-                          itemCount: sampleCartOrders.length,
+                          itemCount: controller.cartOrders.length,
                         ),
                       ),
                     ),

@@ -1,9 +1,11 @@
+import 'package:b2b/app/data/cart_order.dart';
 import 'package:b2b/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/order.dart';
 import '../../../data/product.dart';
+import '../../cart/controllers/cart_controller.dart';
 
 class ProductController extends GetxController {
   RxString currentCategory = "1".obs;
@@ -50,7 +52,6 @@ class ProductController extends GetxController {
   }
 
   addItem2Cart({required Product product}) {
-    // add to cart
     OrderItem? orderExist = listOrder.firstWhereOrNull(
         (element) => (element.productId == product.fNMSysProdId));
 
@@ -68,7 +69,32 @@ class ProductController extends GetxController {
         ),
       );
     }
-
+    addItemToCartOrder(product);
     update();
+  }
+
+  addItemToCartOrder(Product product) {
+    CartController cartController = Get.find<CartController>();
+
+    CartOrder? cartOrderExist = cartController.cartOrders.firstWhereOrNull(
+        (element) => (element.fNMSysProdId == product.fNMSysProdId));
+
+    if (cartOrderExist != null) {
+      cartOrderExist.quantity = cartOrderExist.quantity + 1;
+    } else {
+      cartController.cartOrders.add(
+        CartOrder(
+          fNMSysProdId: product.fNMSysProdId,
+          fTProdCode: product.fTProdCode,
+          fTProdNameTH: product.fTProdNameTH,
+          fNDealerPrice1: product.fNDealerPrice1,
+          priceCredit: 0,
+          fNPrice: product.fNPrice,
+          fNQuantityBal: product.fNQuantityBal,
+          quantity: 1,
+        ),
+      );
+    }  
+    cartController.updateCartOrder();
   }
 }

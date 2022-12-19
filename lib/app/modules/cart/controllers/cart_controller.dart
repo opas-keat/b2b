@@ -4,7 +4,7 @@ import '../../../../constants.dart';
 import '../../../data/cart_order.dart';
 
 class CartController extends GetxController {
-  final RxList<CartOrder> cartOrders = sampleCartOrders.obs;
+  RxList<CartOrder> cartOrders = sampleCartOrders.obs;
 
   final RxInt cashDiscount = cashDiscountPercent.obs;
   final RxString currentPaymentChannel = '1'.obs;
@@ -17,10 +17,7 @@ class CartController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    updateCartTotalItem();
-    updateTotal();
-    updateDiscount();
-    updateGrandTotal();
+    updateCartOrder();
   }
 
   @override
@@ -39,8 +36,19 @@ class CartController extends GetxController {
     updateGrandTotal();
   }
 
+  updateCartOrder() {
+    updateCartTotalItem();
+    updateTotal();
+    updateDiscount();
+    updateGrandTotal();
+  }
+
   updateCartTotalItem() {
-    cartTotalItem.value = cartOrders.length;
+    int tempItem = 0;
+    for (var order in cartOrders) {
+      tempItem += order.quantity;
+    }
+    cartTotalItem.value = tempItem;
   }
 
   updateTotal() {
@@ -64,8 +72,8 @@ class CartController extends GetxController {
   }
 
   confirmOrder() {
-    sampleCartOrders.removeWhere((item) => item.fNMSysProdId == '777777');
-    cartOrders.value = sampleCartOrders;
+    // sampleCartOrders.removeWhere((item) => item.fNMSysProdId == '777777');
+    // cartOrders.value = sampleCartOrders;
     updateCartTotalItem();
     updateTotal();
     updateDiscount();
