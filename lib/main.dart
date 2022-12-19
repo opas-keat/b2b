@@ -11,7 +11,6 @@ import 'shared/widgets/page_not_found.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // usePathUrlStrategy();
   await GetStorage.init();
   runApp(const MyApp());
 }

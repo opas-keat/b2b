@@ -5,9 +5,6 @@ const primaryLightColor = Color(0xff223F8F);
 const accentColor = Color(0xFF5E000C);
 const accentLightColor = Color(0xFFB70018);
 
-// const darkBlueColor = Color(0xff101D40);
-// const darkRedColor = Color(0xFF5E000C);
-
 const double defaultPadding = 16.0;
 
 const int cashDiscountPercent = 2;
