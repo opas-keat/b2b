@@ -161,7 +161,7 @@ class ProductList extends StatelessWidget {
               // crossAxisCount: 4,
               mainAxisSpacing: 0,
               crossAxisSpacing: defaultPadding / 2,
-              childAspectRatio: isAdmin == '1' ? 0.85 : 0.80,
+              childAspectRatio: isAdmin == '1' ? 0.80 : 0.80,
               maxCrossAxisExtent: 350,
             ),
             itemCount: sampleProducts
