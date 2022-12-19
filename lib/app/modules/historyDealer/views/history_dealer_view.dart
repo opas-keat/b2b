@@ -12,7 +12,6 @@ class HistoryDealerView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ประวัติการสั่งซื้อ'),
         centerTitle: true,
-        backgroundColor: darkBlueColor,
       ),
       body: Column(
         children: [
@@ -50,7 +49,7 @@ class HistoryDealerView extends StatelessWidget {
                           title: Text(
                             sampleHistoryOrder[index].detail,
                             style: const TextStyle(
-                              color: darkBlueColor,
+                              // color: darkBlueColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

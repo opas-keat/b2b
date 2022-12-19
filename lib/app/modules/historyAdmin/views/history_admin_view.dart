@@ -15,7 +15,6 @@ class HistoryAdminView extends GetView<HistoryAdminController> {
       appBar: AppBar(
         title: const Text('ประวัติการใช้งาน'),
         centerTitle: true,
-        backgroundColor: darkBlueColor,
       ),
       body: Column(
         children: [
@@ -53,7 +52,7 @@ class HistoryAdminView extends GetView<HistoryAdminController> {
                           title: Text(
                             sampleLog[index].detail,
                             style: TextStyle(
-                              color: darkBlueColor,
+                              // color: darkBlueColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

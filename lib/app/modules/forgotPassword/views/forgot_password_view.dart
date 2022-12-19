@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../background.dart';
-import '../../../../constants.dart';
 import '../../../../responsive.dart';
 import '../components/forgot_password_form.dart';
 import '../components/forgot_password_screen_top_image.dart';
@@ -23,7 +22,6 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
             'assets/images/pp_white.png',
           ),
         ),
-        backgroundColor: darkBlueColor,
       ),
       body: Background(
         child: SingleChildScrollView(

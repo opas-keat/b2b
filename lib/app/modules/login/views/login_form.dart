@@ -19,7 +19,7 @@ class LoginForm extends StatelessWidget {
           TextFormField(
             // keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            cursorColor: kPrimaryColor,
+            cursorColor: primaryColor,
             // onSaved: (email) {},
             controller: _emailController,
             decoration: const InputDecoration(
@@ -32,7 +32,7 @@ class LoginForm extends StatelessWidget {
             child: TextFormField(
               textInputAction: TextInputAction.done,
               obscureText: true,
-              cursorColor: kPrimaryColor,
+              cursorColor: primaryColor,
               controller: _passwordController,
               decoration: const InputDecoration(
                 hintText: "Your password",
@@ -44,7 +44,7 @@ class LoginForm extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 35),
             child: CustomFlatButton(
-              color: darkBlueColor,
+              // color: darkBlueColor,
               label: "Login".toUpperCase(),
               onPressed: () {
                 // Get.off(const RegisterView());

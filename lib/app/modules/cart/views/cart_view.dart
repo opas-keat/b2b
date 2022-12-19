@@ -21,7 +21,6 @@ class CartView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('รายการสั่งซื้อ'),
         centerTitle: true,
-        backgroundColor: darkBlueColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +109,7 @@ class CartView extends StatelessWidget {
                                   title: Text(
                                     "${index + 1}. ${controller.cartOrders[index].fTProdNameTH}",
                                     style: const TextStyle(
-                                      color: darkBlueColor,
+                                      // color: darkBlueColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),

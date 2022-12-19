@@ -19,7 +19,6 @@ class ProductView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('รายการสินค้า'),
         centerTitle: true,
-        backgroundColor: darkBlueColor,
       ),
       body: Row(
         children: [
@@ -51,8 +50,13 @@ class ProductView extends StatelessWidget {
                         children: [
                           // top billing
                           const SizedBox(
-                              height: 64,
-                              child: Center(child: Text("รายการสั่งซื้อ"))),
+                            height: 64,
+                            child: Center(
+                              child: Text(
+                                "รายการสั่งซื้อ",
+                              ),
+                            ),
+                          ),
 
                           // list  products
                           Expanded(
@@ -69,28 +73,15 @@ class ProductView extends StatelessWidget {
                             ),
                           ),
 
-                          // purchase
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 8.0),
-                            width: 300,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: darkRedColor,
-                              ),
+                            margin: const EdgeInsets.all(defaultPadding),
+                            child: CustomFlatButton(
+                              color: accentColor,
+                              overlayColor: accentLightColor,
+                              label: "สั่งซื้อสินค้า".toUpperCase(),
                               onPressed: () {
                                 controller.gotoCartOrder();
                               },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "สั่งซื้อสินค้า",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(color: Colors.white),
-                                ),
-                              ),
                             ),
                           ),
                         ],
@@ -105,20 +96,21 @@ class ProductView extends StatelessWidget {
 }
 
 class CategoryList extends StatelessWidget {
+  CategoryList({super.key});
   ProductController controller = Get.put(ProductController());
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductController>(
       init: ProductController(),
       initState: (_) {},
       builder: (_) {
-        return Container(
+        return SizedBox(
           height: 64 + 8,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: sampleCategory.length,
             itemBuilder: (BuildContext context, int index) {
-              // print(index);
               return Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: InkWell(
@@ -165,7 +157,7 @@ class ProductList extends StatelessWidget {
               // crossAxisCount: 4,
               mainAxisSpacing: 0,
               crossAxisSpacing: defaultPadding / 2,
-              childAspectRatio: isAdmin == '1' ? 0.80 : 0.50,
+              childAspectRatio: isAdmin == '1' ? 0.60 : 0.50,
               maxCrossAxisExtent: 300,
             ),
             itemCount: sampleProducts
@@ -189,7 +181,7 @@ class ProductList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Text(items[index].fTProdNameTH),
-                      Container(
+                      SizedBox(
                         width: 300,
                         child: Image.network(items[index].fTProdImage),
                       ),
@@ -230,7 +222,7 @@ class MenuWidget extends StatelessWidget {
       child: Row(
         children: [
           CustomFlatButton(
-            color: darkRedColor,
+            // color: darkRedColor,
             isWrapped: true,
             label: "เพิ่มสินค้า".toUpperCase(),
             onPressed: () {
@@ -238,19 +230,6 @@ class MenuWidget extends StatelessWidget {
             },
           ),
           const SizedBox(width: defaultPadding),
-          // CustomFlatButton(
-          //   color: Colors.yellow.shade600,
-          //   isWrapped: true,
-          //   label: "แก้ไข".toUpperCase(),
-          //   onPressed: () {},
-          // ),
-          // const SizedBox(width: defaultPadding),
-          // CustomFlatButton(
-          //   color: Colors.redAccent,
-          //   isWrapped: true,
-          //   label: "ลบ".toUpperCase(),
-          //   onPressed: () {},
-          // ),
         ],
       ),
     );

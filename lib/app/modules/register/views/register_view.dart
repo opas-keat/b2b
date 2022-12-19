@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../background.dart';
-import '../../../../constants.dart';
 import '../../../../responsive.dart';
 import '../components/register_screen_top_image.dart';
 import '../controllers/register_controller.dart';
@@ -23,7 +22,6 @@ class RegisterView extends GetView<RegisterController> {
             'assets/images/pp_white.png',
           ),
         ),
-        backgroundColor: darkBlueColor,
       ),
       body: Background(
         child: SingleChildScrollView(

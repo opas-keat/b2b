@@ -16,7 +16,6 @@ class AddProductView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('เพิ่มสินค้า'),
         centerTitle: true,
-        backgroundColor: darkBlueColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,9 +83,9 @@ class AddProductView extends StatelessWidget {
                       horizontal: defaultPadding, vertical: defaultPadding),
                   width: 300,
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: darkRedColor,
-                    ),
+                    // style: ElevatedButton.styleFrom(
+                    //   backgroundColor: darkRedColor,
+                    // ),
                     onPressed: () {
                       controller.addProduct();
                     },

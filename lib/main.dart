@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app/routes/app_pages.dart';
+import 'constants.dart';
 import 'shared/widgets/page_not_found.dart';
 
 Future<void> main() async {
@@ -27,11 +28,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
         textTheme: GoogleFonts.promptTextTheme(),
+        primaryColor: primaryColor,
+        primaryColorDark: primaryLightColor,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          secondary: accentColor,
+        ),
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.black),
+          color: primaryColor,
+        ),
       ),
       unknownRoute: GetPage(
         name: "/not-found",
         page: () => const PageNotFound(),
-        transition: Transition.fadeIn,
+        transition: Transition.noTransition,
       ),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

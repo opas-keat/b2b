@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../background.dart';
-import '../../../../constants.dart';
 import '../../../../responsive.dart';
-import '../components/login_form.dart';
-import '../components/login_screen_top_image.dart';
+import 'login_form.dart';
+import 'login_screen_top_image.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -20,7 +19,6 @@ class LoginView extends StatelessWidget {
             'assets/images/pp_white.png',
           ),
         ),
-        backgroundColor: darkBlueColor,
       ),
       body: Background(
         child: SingleChildScrollView(
@@ -64,12 +62,12 @@ class MobileLoginScreen extends StatelessWidget {
         const LoginScreenTopImage(),
         Row(
           children: [
-            Spacer(),
+            const Spacer(),
             Expanded(
               flex: 8,
               child: LoginForm(),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ],

@@ -40,10 +40,9 @@ class CartTotalWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomFlatButton(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
-                  ),
+                  color: accentColor,
+                  overlayColor: accentLightColor,
+                  padding: const EdgeInsets.all(defaultPadding),
                   isWrapped: true,
                   label: 'ยืนยันสั่งซื้อสินค้า',
                   onPressed: () {

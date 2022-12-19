@@ -16,7 +16,6 @@ class DealerView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ร้านค้า'),
         centerTitle: true,
-        backgroundColor: darkBlueColor,
       ),
       body: Column(
         children: [
@@ -65,13 +64,13 @@ class DealerView extends StatelessWidget {
                         ListTile(
                           leading: Icon(
                             Icons.account_circle,
-                            color: darkBlueColor,
+                            // color: darkBlueColor,
                             size: 40.0,
                           ),
                           title: Text(
                             sampleDealer[index].fTCustName,
                             style: TextStyle(
-                              color: darkBlueColor,
+                              // color: darkBlueColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

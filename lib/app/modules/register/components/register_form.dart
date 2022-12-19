@@ -17,7 +17,7 @@ class RegisterForm extends StatelessWidget {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            cursorColor: kPrimaryColor,
+            cursorColor: primaryColor,
             // onSaved: (email) {},
             controller: controller.email,
             decoration: const InputDecoration(
@@ -30,7 +30,7 @@ class RegisterForm extends StatelessWidget {
             child: TextFormField(
               textInputAction: TextInputAction.done,
               obscureText: true,
-              cursorColor: kPrimaryColor,
+              cursorColor: primaryColor,
               controller: controller.password,
               decoration: const InputDecoration(
                 hintText: "Your password",
@@ -43,7 +43,7 @@ class RegisterForm extends StatelessWidget {
             child: TextFormField(
               textInputAction: TextInputAction.done,
               obscureText: false,
-              cursorColor: kPrimaryColor,
+              cursorColor: primaryColor,
               controller: controller.memberCode,
               decoration: const InputDecoration(
                 hintText: "Your Member Code",
@@ -54,7 +54,7 @@ class RegisterForm extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 35),
             child: CustomFlatButton(
-              color: darkBlueColor,
+              // color: darkBlueColor,
               label: "Register".toUpperCase(),
               onPressed: () {
                 controller.register();

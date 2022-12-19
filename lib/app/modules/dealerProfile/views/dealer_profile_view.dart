@@ -10,16 +10,13 @@ class DealerProfileView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ตั้งค่า'),
         centerTitle: true,
-        backgroundColor: darkBlueColor,
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
+          const Center(
             child: CircleAvatar(
               radius: 75,
-              backgroundColor: kPrimaryColor,
+              backgroundColor: primaryColor,
               child: CircleAvatar(
                 backgroundImage: NetworkImage(
                     "assets/images/undraw_apartment_rent_o0ut.png"),
@@ -27,34 +24,34 @@ class DealerProfileView extends StatelessWidget {
               ),
             ),
           ),
-          Text(
+          const Text(
             "ร้าน ฟิวเจอร์ แม็กซ์ ไทร์ เซ็นเตอร์",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 36,
-              color: darkBlueColor,
+              // color: darkBlueColor,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(
+          const Text(
             "9 ซ.สุทธิสารวินิจฉัย 1 ถ.สุทธิสารวินิจฉัย แขวงสามเสนใน เขตพญาไท กรุงเทพมหานคร 10400",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(
+          const Text(
             "โทรศัพท์ : 061-821-3441   โทรสาร : ",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 32,
           ),
-          Text(
+          const Text(
             "รับการแจ้งเตือนผ่านทาง Line กรุณาเพิ่มเพื่อนด้วย QR CODE ด้านล่าง",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
