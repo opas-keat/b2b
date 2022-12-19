@@ -63,7 +63,7 @@ class CartController extends GetxController {
     if (currentPaymentChannel.value == '1') {
       discount.value = (cartTotal.value * cashDiscount.value) / 100;
     } else {
-      discount.value = cartTotal.value;
+      discount.value = 0;
     }
   }
 

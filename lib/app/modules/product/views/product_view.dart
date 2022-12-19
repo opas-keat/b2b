@@ -19,6 +19,7 @@ class ProductView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('รายการสินค้า'),
         centerTitle: true,
+        backgroundColor: darkBlueColor,
       ),
       body: Row(
         children: [
@@ -74,6 +75,9 @@ class ProductView extends StatelessWidget {
                                 horizontal: 8.0, vertical: 8.0),
                             width: 300,
                             child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: darkRedColor,
+                              ),
                               onPressed: () {
                                 controller.gotoCartOrder();
                               },
@@ -186,7 +190,7 @@ class ProductList extends StatelessWidget {
                     children: [
                       // Text(items[index].fTProdNameTH),
                       Image.network(
-                          'assets/images/undraw_electric_car_b7hl.png'),
+                          'assets/images/undraw_by_my_car_re_g0c3.png'),
                       Text(
                         items[index].fTProdNameTH,
                         style: const TextStyle(
@@ -223,8 +227,8 @@ class MenuWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          // const SizedBox(height: defaultPadding * 2),
           CustomFlatButton(
+            color: darkRedColor,
             isWrapped: true,
             label: "เพิ่มสินค้า".toUpperCase(),
             onPressed: () {

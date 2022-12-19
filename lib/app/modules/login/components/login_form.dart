@@ -44,6 +44,7 @@ class LoginForm extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 35),
             child: CustomFlatButton(
+              color: darkBlueColor,
               label: "Login".toUpperCase(),
               onPressed: () {
                 // Get.off(const RegisterView());

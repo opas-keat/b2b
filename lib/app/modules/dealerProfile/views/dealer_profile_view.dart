@@ -10,6 +10,7 @@ class DealerProfileView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ตั้งค่า'),
         centerTitle: true,
+        backgroundColor: darkBlueColor,
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,

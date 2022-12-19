@@ -15,6 +15,7 @@ class HistoryAdminView extends GetView<HistoryAdminController> {
       appBar: AppBar(
         title: const Text('ประวัติการใช้งาน'),
         centerTitle: true,
+        backgroundColor: darkBlueColor,
       ),
       body: Column(
         children: [

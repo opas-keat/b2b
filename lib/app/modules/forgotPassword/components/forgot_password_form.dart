@@ -15,7 +15,7 @@ class ForgotPasswordForm extends StatelessWidget {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            cursorColor: kPrimaryColor,
+            cursorColor: darkBlueColor,
             // onSaved: (email) {},
             controller: controller.email,
             decoration: const InputDecoration(
@@ -39,6 +39,7 @@ class ForgotPasswordForm extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 35),
             child: CustomFlatButton(
+              color: darkBlueColor,
               label: "Submit".toUpperCase(),
               onPressed: () {
                 controller.sendNewPassword();

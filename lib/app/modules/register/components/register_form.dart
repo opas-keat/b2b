@@ -54,6 +54,7 @@ class RegisterForm extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 35),
             child: CustomFlatButton(
+              color: darkBlueColor,
               label: "Register".toUpperCase(),
               onPressed: () {
                 controller.register();

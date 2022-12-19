@@ -21,6 +21,7 @@ class CartView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('รายการสั่งซื้อ'),
         centerTitle: true,
+        backgroundColor: darkBlueColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -67,7 +67,8 @@ class SideMenu extends GetView<HomeController> {
             padding: const EdgeInsets.all(defaultPadding),
             child: SizedBox(
               height: 150,
-              child: SvgPicture.network("assets/icons/home.svg",
+              child: SvgPicture.network(
+                  "assets/icons/undraw_sweet_home_dkhr.svg",
                   fit: BoxFit.contain),
             ),
           ),

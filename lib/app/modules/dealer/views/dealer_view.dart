@@ -16,6 +16,7 @@ class DealerView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ร้านค้า'),
         centerTitle: true,
+        backgroundColor: darkBlueColor,
       ),
       body: Column(
         children: [

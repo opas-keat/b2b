@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../background.dart';
+import '../../../../constants.dart';
 import '../../../../responsive.dart';
 import '../components/login_form.dart';
 import '../components/login_screen_top_image.dart';
@@ -9,27 +10,40 @@ class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Background(
-      child: SingleChildScrollView(
-        child: Responsive(
-          mobile: const MobileLoginScreen(),
-          desktop: Row(
-            children: [
-              const Expanded(
-                child: LoginScreenTopImage(),
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 450,
-                      child: LoginForm(),
-                    ),
-                  ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        title: Container(
+          alignment: Alignment.centerLeft,
+          width: 120,
+          child: Image.network(
+            'assets/images/pp_white.png',
+          ),
+        ),
+        backgroundColor: darkBlueColor,
+      ),
+      body: Background(
+        child: SingleChildScrollView(
+          child: Responsive(
+            mobile: const MobileLoginScreen(),
+            desktop: Row(
+              children: [
+                const Expanded(
+                  child: LoginScreenTopImage(),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 450,
+                        child: LoginForm(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
