@@ -74,7 +74,9 @@ class ProductView extends StatelessWidget {
                                 horizontal: 8.0, vertical: 8.0),
                             width: 300,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.gotoCartOrder();
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
@@ -183,7 +185,8 @@ class ProductList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Text(items[index].fTProdNameTH),
-                      Image.network('assets/images/undraw_electric_car_b7hl.png'),
+                      Image.network(
+                          'assets/images/undraw_electric_car_b7hl.png'),
                       Text(
                         items[index].fTProdNameTH,
                         style: const TextStyle(
