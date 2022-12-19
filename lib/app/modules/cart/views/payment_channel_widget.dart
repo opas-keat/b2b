@@ -24,7 +24,7 @@ class PaymentChannelWidget extends StatelessWidget {
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
             elevation: 0,
-            value: controller.currentPaymentChannel!.value,
+            value: controller.currentPaymentChannel.value,
             isDense: true,
             // menuMaxHeight: 400,
             style: const TextStyle(
