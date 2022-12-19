@@ -165,8 +165,8 @@ class ProductList extends StatelessWidget {
               // crossAxisCount: 4,
               mainAxisSpacing: 0,
               crossAxisSpacing: defaultPadding / 2,
-              childAspectRatio: isAdmin == '1' ? 0.80 : 0.80,
-              maxCrossAxisExtent: 350,
+              childAspectRatio: isAdmin == '1' ? 0.80 : 0.50,
+              maxCrossAxisExtent: 300,
             ),
             itemCount: sampleProducts
                 .where((element) =>
@@ -189,8 +189,10 @@ class ProductList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Text(items[index].fTProdNameTH),
-                      Image.network(
-                          'assets/images/undraw_by_my_car_re_g0c3.png'),
+                      Container(
+                        width: 300,
+                        child: Image.network(items[index].fTProdImage),
+                      ),
                       Text(
                         items[index].fTProdNameTH,
                         style: const TextStyle(
