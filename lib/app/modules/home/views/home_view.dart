@@ -36,7 +36,7 @@ class HomeView extends GetView<HomeController> {
                           HistoryAdminView(),
                         ]
                       : [
-                          // ProductView(),
+                          ProductView(),
                           CartView(),
                           HistoryDealerView(),
                           DealerProfileView(),

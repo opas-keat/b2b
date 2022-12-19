@@ -20,8 +20,8 @@ class DealerProfileView extends StatelessWidget {
               radius: 75,
               backgroundColor: kPrimaryColor,
               child: CircleAvatar(
-                backgroundImage:
-                    AssetImage("assets/images/undraw_apartment_rent_o0ut.png"),
+                backgroundImage: NetworkImage(
+                    "assets/images/undraw_apartment_rent_o0ut.png"),
                 radius: 70,
               ),
             ),
