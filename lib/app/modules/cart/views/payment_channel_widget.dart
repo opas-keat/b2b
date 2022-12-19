@@ -27,7 +27,7 @@ class PaymentChannelWidget extends StatelessWidget {
             value: controller.currentPaymentChannel.value,
             isDense: true,
             // menuMaxHeight: 400,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
             ),
             onChanged: (newValue) {
@@ -36,7 +36,13 @@ class PaymentChannelWidget extends StatelessWidget {
             items: optionPaymentChannel.entries.map((item) {
               return DropdownMenuItem<String>(
                 value: item.key,
-                child: Text(item.value),
+                child: Text(
+                  item.value,
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontSize: 18,
+                  ),
+                ),
               );
             }).toList(),
           ),
