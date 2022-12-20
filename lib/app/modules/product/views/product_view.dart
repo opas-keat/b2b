@@ -19,6 +19,15 @@ class ProductView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('รายการสินค้า'),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.shopping_cart_checkout,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          )
+        ],
       ),
       body: Row(
         children: [
@@ -27,6 +36,23 @@ class ProductView extends StatelessWidget {
             child: Column(
               children: [
                 // menu list
+                const SizedBox(height: defaultPadding / 2),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: TextField(
+                    onChanged: (value) {
+                      // setState(() {
+                      //   searchString = value.toLowerCase();
+                      // });
+                      // controller.
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'ค้นหา',
+                      suffixIcon: Icon(Icons.search),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: defaultPadding / 2),
                 isAdmin == '1' ? MenuWidget() : CategoryList(),
                 // product list
                 ProductList(),
@@ -53,7 +79,7 @@ class ProductView extends StatelessWidget {
                             height: 64,
                             child: Center(
                               child: Text(
-                                "รายการสั่งซื้อ",
+                                "รายละเอียดสินค้า",
                               ),
                             ),
                           ),
@@ -78,7 +104,7 @@ class ProductView extends StatelessWidget {
                             child: CustomFlatButton(
                               color: accentColor,
                               overlayColor: accentLightColor,
-                              label: "สั่งซื้อสินค้า".toUpperCase(),
+                              label: "เพิ่มลงตะกร้า".toUpperCase(),
                               onPressed: () {
                                 controller.gotoCartOrder();
                               },
@@ -154,11 +180,10 @@ class ProductList extends StatelessWidget {
           child: GridView.builder(
             padding: const EdgeInsets.all(defaultPadding / 2),
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              // crossAxisCount: 4,
               mainAxisSpacing: 0,
-              crossAxisSpacing: defaultPadding / 2,
-              childAspectRatio: isAdmin == '1' ? 0.60 : 0.50,
-              maxCrossAxisExtent: 300,
+              crossAxisSpacing: defaultPadding / 4,
+              childAspectRatio: isAdmin == '1' ? 0.75 : 0.75,
+              maxCrossAxisExtent: 200,
             ),
             itemCount: sampleProducts
                 .where((element) =>
@@ -183,22 +208,27 @@ class ProductList extends StatelessWidget {
                       // Text(items[index].fTProdNameTH),
                       SizedBox(
                         width: 300,
-                        child: Image.network(items[index].fTProdImage),
-                      ),
-                      Text(
-                        items[index].fTProdNameTH,
-                        style: const TextStyle(
-                          // fontSize: 24,
-                          fontWeight: FontWeight.w800,
+                        child: Image.network(
+                          items[index].fTProdImage,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
-                      Text("ราคาขาย : ${items[index].fNPrice.toString()}"),
-                      Text(
-                          "ราคาเงินสด : ${items[index].fNDealerPrice1.toString()}"),
-                      Text(
-                          "ราคาเครดิต : ${items[index].priceCredit.toString()}"),
-                      Text(
-                          "มีสินค้า : ${items[index].fNQuantityBal <= 4 ? items[index].fNQuantityBal.toString() : '4+'}"),
+                      Expanded(
+                        child: Text(
+                          items[index].fTProdNameTH,
+                          style: const TextStyle(
+                            // fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                      Text("ราคา : ${items[index].fNPrice.toString()}"),
+                      // Text(
+                      //     "ราคาเงินสด : ${items[index].fNDealerPrice1.toString()}"),
+                      // Text(
+                      //     "ราคาเครดิต : ${items[index].priceCredit.toString()}"),
+                      // Text(
+                      //     "มีสินค้า : ${items[index].fNQuantityBal <= 4 ? items[index].fNQuantityBal.toString() : '4+'}"),
                     ],
                   ),
                 ),

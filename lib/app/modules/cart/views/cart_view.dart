@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../data/cart_order.dart';
 import '../controllers/cart_controller.dart';
 import 'cart_total_widget.dart';
 import 'payment_channel_widget.dart';
