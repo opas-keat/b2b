@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,11 +7,12 @@ import 'package:get_storage/get_storage.dart';
 import '../../../../constants.dart';
 import '../../../../shared/widgets/custom_flat_button.dart';
 import '../../../data/category.dart';
-import '../../../data/product.dart';
 import '../controllers/product_controller.dart';
+import 'product_list_widget.dart';
 
 class ProductView extends StatelessWidget {
   ProductView({super.key});
+  ProductController controller = Get.put(ProductController());
   final isAdmin = GetStorage().read('isAdmin');
 
   @override
@@ -20,13 +22,7 @@ class ProductView extends StatelessWidget {
         title: const Text('รายการสินค้า'),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.shopping_cart_checkout,
-              color: Colors.white,
-            ),
-            onPressed: () {},
-          )
+          shoppingCartBadge(),
         ],
       ),
       body: Row(
@@ -55,7 +51,9 @@ class ProductView extends StatelessWidget {
                 const SizedBox(height: defaultPadding / 2),
                 isAdmin == '1' ? MenuWidget() : CategoryList(),
                 // product list
-                ProductList(),
+                Expanded(
+                  child: ProductList(),
+                ),
               ],
             ),
           ),
@@ -85,18 +83,93 @@ class ProductView extends StatelessWidget {
                           ),
 
                           // list  products
+                          // Expanded(
+                          //   child: ListView.builder(
+                          //     itemCount: controller.listOrder.length,
+                          //     itemBuilder: (BuildContext context, int index) {
+                          //       return ListTile(
+                          //         title:
+                          //             Text(controller.listOrder[index].title),
+                          //         trailing:
+                          //             Text('${controller.listOrder[index].qt}'),
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
+                          // const SizedBox(height: defaultPadding),
+                          // detailForm('ชื่อสินค้า'),
                           Expanded(
-                            child: ListView.builder(
-                              itemCount: controller.listOrder.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListTile(
-                                  title:
-                                      Text(controller.listOrder[index].title),
-                                  trailing:
-                                      Text('${controller.listOrder[index].qt}'),
-                                );
-                              },
-                            ),
+                            child: controller
+                                        .selectedProduct.value.fTProdNameTH !=
+                                    ""
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: 300,
+                                        child: Image.network(
+                                          controller.selectedProduct.value
+                                              .fTProdImage,
+                                          fit: BoxFit.scaleDown,
+                                        ),
+                                      ),
+                                      Text(
+                                        "ชื่อสินค้า",
+                                        style: const TextStyle(
+                                          // fontSize: 24,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                      Text(controller
+                                          .selectedProduct.value.fTProdNameTH),
+                                      Text(
+                                        "รหัสสินค้า",
+                                        style: const TextStyle(
+                                          // fontSize: 24,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                      Text(controller
+                                          .selectedProduct.value.fTProdCode),
+                                      Text(
+                                        "ราคาแนะนำ",
+                                        style: const TextStyle(
+                                          // fontSize: 24,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                      Text(controller
+                                          .selectedProduct.value.fNPrice
+                                          .toString()),
+                                      Text(
+                                        "ราคาร้านค้า",
+                                        style: const TextStyle(
+                                          // fontSize: 24,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                      Text(controller
+                                          .selectedProduct.value.fNDealerPrice1
+                                          .toString()),
+                                      Text(
+                                        "จำนวน",
+                                        style: const TextStyle(
+                                          // fontSize: 24,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                      Text(controller.selectedProduct.value
+                                                  .fNQuantityBal <=
+                                              4
+                                          ? controller.selectedProduct.value
+                                              .fNQuantityBal
+                                              .toString()
+                                          : '4+'),
+                                    ],
+                                  )
+                                : Container(),
                           ),
 
                           Container(
@@ -106,7 +179,7 @@ class ProductView extends StatelessWidget {
                               overlayColor: accentLightColor,
                               label: "เพิ่มลงตะกร้า".toUpperCase(),
                               onPressed: () {
-                                controller.gotoCartOrder();
+                                controller.addItem2Cart();
                               },
                             ),
                           ),
@@ -121,9 +194,44 @@ class ProductView extends StatelessWidget {
   }
 }
 
+class shoppingCartBadge extends StatelessWidget {
+  shoppingCartBadge({super.key});
+  ProductController controller = Get.find<ProductController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        right: defaultPadding,
+      ),
+      child: Badge(
+        position: BadgePosition.topEnd(top: 0, end: 0),
+        animationDuration: const Duration(milliseconds: 300),
+        animationType: BadgeAnimationType.scale,
+        badgeContent: Obx(
+          () => Text(
+            controller.cartTotalItem.value.toString(),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        child: IconButton(
+          icon: const Icon(Icons.shopping_cart),
+          color: Colors.white,
+          onPressed: () {
+            controller.gotoCartOrder();
+          },
+        ),
+      ),
+    );
+  }
+}
+
 class CategoryList extends StatelessWidget {
   CategoryList({super.key});
-  ProductController controller = Get.put(ProductController());
+  ProductController controller = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -169,81 +277,9 @@ class CategoryList extends StatelessWidget {
   }
 }
 
-class ProductList extends StatelessWidget {
-  ProductController controller = Get.put(ProductController());
-  final isAdmin = GetStorage().read('isAdmin');
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder<ProductController>(
-      builder: (controller) {
-        return Expanded(
-          child: GridView.builder(
-            padding: const EdgeInsets.all(defaultPadding / 2),
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              mainAxisSpacing: 0,
-              crossAxisSpacing: defaultPadding / 4,
-              childAspectRatio: isAdmin == '1' ? 0.75 : 0.75,
-              maxCrossAxisExtent: 200,
-            ),
-            itemCount: sampleProducts
-                .where((element) =>
-                    (element.categoryId == controller.currentCategory.value))
-                .toList()
-                .length,
-            itemBuilder: (BuildContext context, int index) {
-              final items = sampleProducts
-                  .where((element) =>
-                      (element.categoryId == controller.currentCategory.value))
-                  .toList();
-              return InkWell(
-                onTap: () {
-                  // add to cart
-                  controller.addItem2Cart(product: items[index]);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(defaultPadding / 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Text(items[index].fTProdNameTH),
-                      SizedBox(
-                        width: 300,
-                        child: Image.network(
-                          items[index].fTProdImage,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          items[index].fTProdNameTH,
-                          style: const TextStyle(
-                            // fontSize: 24,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                      Text("ราคา : ${items[index].fNPrice.toString()}"),
-                      // Text(
-                      //     "ราคาเงินสด : ${items[index].fNDealerPrice1.toString()}"),
-                      // Text(
-                      //     "ราคาเครดิต : ${items[index].priceCredit.toString()}"),
-                      // Text(
-                      //     "มีสินค้า : ${items[index].fNQuantityBal <= 4 ? items[index].fNQuantityBal.toString() : '4+'}"),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        );
-      },
-    );
-  }
-}
-
 class MenuWidget extends StatelessWidget {
   MenuWidget({super.key});
-  ProductController controller = Get.put(ProductController());
+  ProductController controller = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -266,57 +302,57 @@ class MenuWidget extends StatelessWidget {
   }
 }
 
-class DatatableProduct extends StatelessWidget {
-  const DatatableProduct({
-    Key? key,
-  }) : super(key: key);
+// class DatatableProduct extends StatelessWidget {
+//   const DatatableProduct({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(defaultPadding),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              // const SizedBox(height: defaultPadding * 2),
-            ],
-          ),
-          // Expanded(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(defaultPadding),
-          //     child: DataTable2(
-          //         columnSpacing: 12,
-          //         horizontalMargin: 12,
-          //         minWidth: 600,
-          //         smRatio: 0.75,
-          //         lmRatio: 1.5,
-          //         columns: [
-          //           DataColumn2(
-          //             label: Text('รหัสสินค้า'),
-          //             size: ColumnSize.M,
-          //           ),
-          //           DataColumn2(
-          //             label: Text('รายละเอียด'),
-          //             size: ColumnSize.L,
-          //           ),
-          //           DataColumn2(
-          //             size: ColumnSize.S,
-          //             label: Text('จำนวน'),
-          //             numeric: true,
-          //           ),
-          //         ],
-          //         rows: List<DataRow>.generate(
-          //             50,
-          //             (index) => DataRow(cells: [
-          //                   DataCell(Text('A' * (10 - index % 10))),
-          //                   DataCell(Text('D' * (15 - (index + 10) % 10))),
-          //                   DataCell(Text(((index + 0.1) * 25.4).toString()))
-          //                 ]))),
-          //   ),
-          // ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(defaultPadding),
+//       child: Column(
+//         children: [
+//           Row(
+//             children: [
+//               // const SizedBox(height: defaultPadding * 2),
+//             ],
+//           ),
+//           // Expanded(
+//           //   child: Padding(
+//           //     padding: const EdgeInsets.all(defaultPadding),
+//           //     child: DataTable2(
+//           //         columnSpacing: 12,
+//           //         horizontalMargin: 12,
+//           //         minWidth: 600,
+//           //         smRatio: 0.75,
+//           //         lmRatio: 1.5,
+//           //         columns: [
+//           //           DataColumn2(
+//           //             label: Text('รหัสสินค้า'),
+//           //             size: ColumnSize.M,
+//           //           ),
+//           //           DataColumn2(
+//           //             label: Text('รายละเอียด'),
+//           //             size: ColumnSize.L,
+//           //           ),
+//           //           DataColumn2(
+//           //             size: ColumnSize.S,
+//           //             label: Text('จำนวน'),
+//           //             numeric: true,
+//           //           ),
+//           //         ],
+//           //         rows: List<DataRow>.generate(
+//           //             50,
+//           //             (index) => DataRow(cells: [
+//           //                   DataCell(Text('A' * (10 - index % 10))),
+//           //                   DataCell(Text('D' * (15 - (index + 10) % 10))),
+//           //                   DataCell(Text(((index + 0.1) * 25.4).toString()))
+//           //                 ]))),
+//           //   ),
+//           // ),
+//         ],
+//       ),
+//     );
+//   }
+// }

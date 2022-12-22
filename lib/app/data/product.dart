@@ -170,3 +170,5 @@ class Product {
     required this.fNQuantityBal,
   });
 }
+
+
