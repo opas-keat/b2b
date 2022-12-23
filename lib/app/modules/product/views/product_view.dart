@@ -6,8 +6,10 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
 import '../../../../shared/widgets/custom_flat_button.dart';
+import '../../../../shared/widgets/custom_text.dart';
 import '../../../data/category.dart';
 import '../controllers/product_controller.dart';
+import 'product_detail.dart';
 import 'product_list_widget.dart';
 
 class ProductView extends StatelessWidget {
@@ -76,101 +78,14 @@ class ProductView extends StatelessWidget {
                           const SizedBox(
                             height: 64,
                             child: Center(
-                              child: Text(
-                                "รายละเอียดสินค้า",
+                              child: CustomText(
+                                text: 'รายละเอียดสินค้า',
+                                weight: FontWeight.bold,
                               ),
                             ),
                           ),
 
-                          // list  products
-                          // Expanded(
-                          //   child: ListView.builder(
-                          //     itemCount: controller.listOrder.length,
-                          //     itemBuilder: (BuildContext context, int index) {
-                          //       return ListTile(
-                          //         title:
-                          //             Text(controller.listOrder[index].title),
-                          //         trailing:
-                          //             Text('${controller.listOrder[index].qt}'),
-                          //       );
-                          //     },
-                          //   ),
-                          // ),
-                          // const SizedBox(height: defaultPadding),
-                          // detailForm('ชื่อสินค้า'),
-                          Expanded(
-                            child: controller
-                                        .selectedProduct.value.fTProdNameTH !=
-                                    ""
-                                ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 300,
-                                        child: Image.network(
-                                          controller.selectedProduct.value
-                                              .fTProdImage,
-                                          fit: BoxFit.scaleDown,
-                                        ),
-                                      ),
-                                      Text(
-                                        "ชื่อสินค้า",
-                                        style: const TextStyle(
-                                          // fontSize: 24,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                      Text(controller
-                                          .selectedProduct.value.fTProdNameTH),
-                                      Text(
-                                        "รหัสสินค้า",
-                                        style: const TextStyle(
-                                          // fontSize: 24,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                      Text(controller
-                                          .selectedProduct.value.fTProdCode),
-                                      Text(
-                                        "ราคาแนะนำ",
-                                        style: const TextStyle(
-                                          // fontSize: 24,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                      Text(controller
-                                          .selectedProduct.value.fNPrice
-                                          .toString()),
-                                      Text(
-                                        "ราคาร้านค้า",
-                                        style: const TextStyle(
-                                          // fontSize: 24,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                      Text(controller
-                                          .selectedProduct.value.fNDealerPrice1
-                                          .toString()),
-                                      Text(
-                                        "จำนวน",
-                                        style: const TextStyle(
-                                          // fontSize: 24,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                      Text(controller.selectedProduct.value
-                                                  .fNQuantityBal <=
-                                              4
-                                          ? controller.selectedProduct.value
-                                              .fNQuantityBal
-                                              .toString()
-                                          : '4+'),
-                                    ],
-                                  )
-                                : Container(),
-                          ),
+                          ProductDetail(),
 
                           Container(
                             margin: const EdgeInsets.all(defaultPadding),
