@@ -1,6 +1,7 @@
 import 'package:b2b/app/data/cart_order.dart';
 import 'package:b2b/app/modules/home/controllers/home_controller.dart';
 import 'package:b2b/app/routes/app_pages.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/order.dart';
@@ -41,31 +42,10 @@ class ProductController extends GetxController {
   }
 
   addNewItem() {
-    // Get.dialog(const Center(child: CircularProgressIndicator()),
-    //     barrierDismissible: false);
-    // Get.defaultDialog(
-    //   radius: 10.0,
-    //   contentPadding: const EdgeInsets.all(20.0),
-    //   title: 'เพิ่มสินค้า',
-    //   // middleText: responseLogin,
-    //   content: Container(),
-    //   textConfirm: 'Okay',
-    //   confirm: OutlinedButton.icon(
-    //     onPressed: () => Get.back(),
-    //     icon: Icon(
-    //       Icons.close,
-    //       color: Colors.red.shade700,
-    //     ),
-    //     label: const Text(
-    //       'ปิด',
-    //       style: TextStyle(color: Colors.blue),
-    //     ),
-    //   ),
-    // );
     Get.toNamed(Routes.ADD_PRODUCT);
   }
 
-  selectProduct({required Product product}) {
+  selectProduct({required Product2 product}) {
     selectedProduct.value.fTProdNameTH = product.fTProdNameTH;
     selectedProduct.value.fTProdCode = product.fTProdCode;
     selectedProduct.value.fTProdImage = product.fTProdImage;
@@ -99,7 +79,7 @@ class ProductController extends GetxController {
     cartTotalItem.value += 1;
   }
 
-  addItemToCartOrder(Product product) {
+  addItemToCartOrder(Product2 product) {
     CartController cartController = Get.find<CartController>();
 
     CartOrder? cartOrderExist = cartController.cartOrders.firstWhereOrNull(

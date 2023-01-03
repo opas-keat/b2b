@@ -1,5 +1,5 @@
-List<Product> sampleProducts = [
-  Product(
+List<Product2> sampleProducts = [
+  Product2(
     fNMSysProdId: "210340020",
     fTProdCode: "1855516DLTYLM75",
     fTProdNameTH: "ยาง DUNLOP LM705 185-55-16",
@@ -10,7 +10,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 10,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210340021",
     fTProdCode: "2853520ZTTY07SL",
     fTProdNameTH: "ยาง ZESTINO 285-35-20 GREDGE 07RS (SILVER)",
@@ -21,7 +21,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 2,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210400001",
     fTProdCode: "2457016LLD20000",
     fTProdNameTH: "ยาง LINGLONG 245-70-16  (D2)",
@@ -32,7 +32,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 10,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210420001",
     fTProdCode: "2355018YK00AE61",
     fTProdNameTH: "ยาง YOKOHAMA BLUEARTH AE61 235-50-18",
@@ -43,7 +43,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 10,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210480001",
     fTProdCode: "2656517RSD20000",
     fTProdNameTH: "ยาง ROADSTONE  265-65-17  (D2)",
@@ -54,7 +54,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 3,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210570002",
     fTProdCode: "1955516BSD20000",
     fTProdNameTH: "ยาง BRIDGESTONE 195-55-16  (D2)",
@@ -65,7 +65,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 10,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210370003",
     fTProdCode: "F6R0ABGTD69DA25",
     fTProdNameTH:
@@ -77,7 +77,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 2,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210360004",
     fTProdCode: "3760LFRBLTGC040",
     fTProdNameTH:
@@ -89,7 +89,7 @@ List<Product> sampleProducts = [
     fNPrice: 60,
     fNQuantityBal: 10,
   ),
-  Product(
+  Product2(
     fNMSysProdId: "210350008",
     fTProdCode: "MUZ0GPDSV5NFA32",
     fTProdNameTH:
@@ -147,7 +147,7 @@ List<Product> sampleProducts = [
   // )
 ];
 
-class Product {
+class Product2 {
   String fNMSysProdId;
   String fTProdCode;
   String fTProdNameTH;
@@ -158,7 +158,7 @@ class Product {
   int fNPrice;
   int fNQuantityBal;
 
-  Product({
+  Product2({
     required this.fNMSysProdId,
     required this.fTProdCode,
     required this.fTProdNameTH,
@@ -171,4 +171,98 @@ class Product {
   });
 }
 
+class ProductResponseModel {
+  int? statusCode;
+  String? code;
+  String? message;
+  Product? data;
 
+  ProductResponseModel({this.statusCode, this.code, this.message, this.data});
+
+  ProductResponseModel.fromJson(Map<String, dynamic> json) {
+    statusCode = json['status_code'];
+    code = json['code'];
+    message = json['message'];
+    data = json['data'] != null ? Product.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status_code'] = statusCode;
+    data['code'] = code;
+    data['message'] = message;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
+}
+
+class Product {
+  String? id = '';
+  String? code;
+  String? name;
+  String? matSize;
+  String? color;
+  String? brand;
+  String? model;
+  String? width;
+  String? offset;
+  String? treadWare;
+  String? pitchCircleCode;
+  int? price;
+  int? dealerPrice1;
+  String? groupCode;
+
+  Product(
+      {this.id,
+      this.code,
+      this.name,
+      this.matSize,
+      this.color,
+      this.brand,
+      this.model,
+      this.width,
+      this.offset,
+      this.treadWare,
+      this.pitchCircleCode,
+      this.price,
+      this.dealerPrice1,
+      this.groupCode});
+
+  Product.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    code = json['code'];
+    name = json['name'];
+    matSize = json['mat_size'];
+    color = json['color'];
+    brand = json['brand'];
+    model = json['model'];
+    width = json['width'];
+    offset = json['offset'];
+    treadWare = json['tread_ware'];
+    pitchCircleCode = json['pitch_circle_code'];
+    price = json['price'];
+    dealerPrice1 = json['dealer_price_1'];
+    groupCode = json['group_code'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['code'] = code;
+    data['name'] = name;
+    data['mat_size'] = matSize;
+    data['color'] = color;
+    data['brand'] = brand;
+    data['model'] = model;
+    data['width'] = width;
+    data['offset'] = offset;
+    data['tread_ware'] = treadWare;
+    data['pitch_circle_code'] = pitchCircleCode;
+    data['price'] = price;
+    data['dealer_price_1'] = dealerPrice1;
+    data['group_code'] = groupCode;
+    return data;
+  }
+}

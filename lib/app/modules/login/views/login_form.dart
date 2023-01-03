@@ -10,6 +10,7 @@ class LoginForm extends StatelessWidget {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _dealerCodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,19 @@ class LoginForm extends StatelessWidget {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: TextFormField(
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              cursorColor: primaryColor,
+              controller: _dealerCodeController,
+              decoration: const InputDecoration(
+                hintText: "Your Code",
+                prefixIcon: Icon(Icons.lock),
+              ),
+            ),
+          ),
           // const SizedBox(height: defaultPadding),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 35),
@@ -47,10 +61,10 @@ class LoginForm extends StatelessWidget {
               // color: darkBlueColor,
               label: "Login".toUpperCase(),
               onPressed: () {
-                // Get.off(const RegisterView());
                 controller.login(
                   _emailController.text,
                   _passwordController.text,
+                  _dealerCodeController.text,
                 );
               },
             ),

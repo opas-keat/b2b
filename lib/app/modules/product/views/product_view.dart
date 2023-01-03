@@ -24,7 +24,11 @@ class ProductView extends StatelessWidget {
         title: const Text('รายการสินค้า'),
         centerTitle: true,
         actions: <Widget>[
-          shoppingCartBadge(),
+          isAdmin == '1'
+              ? const SizedBox(
+                  width: 0,
+                )
+              : shoppingCartBadge(),
         ],
       ),
       body: Row(
@@ -38,12 +42,7 @@ class ProductView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: TextField(
-                    onChanged: (value) {
-                      // setState(() {
-                      //   searchString = value.toLowerCase();
-                      // });
-                      // controller.
-                    },
+                    onChanged: (value) {},
                     decoration: const InputDecoration(
                       labelText: 'ค้นหา',
                       suffixIcon: Icon(Icons.search),

@@ -1,10 +1,23 @@
+import 'dart:convert';
+import 'dart:html';
+
+import 'package:b2b/app/api/api_end_points.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../../shared/utils/log_util.dart';
+import '../../../api/api.dart';
+import '../../../api/api_utils.dart';
+import '../../../data/constants.dart';
+import '../../../data/login_model.dart';
 import '../../../routes/app_pages.dart';
 
+final title = "LoginController";
+
 class LoginController extends GetxController {
+  var response = <LoginResponseModel>{}.obs;
+
   final isAdmin = GetStorage();
 
   final count = 0.obs;
@@ -24,52 +37,64 @@ class LoginController extends GetxController {
     debugPrint("LoginController onClose");
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(String email, String password, String dealerCode) async {
     debugPrint('user: ${email}');
     debugPrint('pass: ${password}');
-    // menuItems2 = menuItemsAdmin
-    //     .where((element) => (element.isAdmin == false))
-    //     .toList()
-    //     .obs;
-    if (email != 'admin') {
-      isAdmin.write('isAdmin', '0');
-      Get.offNamed(Routes.HOME);
-    } else {
-      isAdmin.write('isAdmin', '1');
-      Get.offNamed(Routes.HOME);
+    debugPrint('code: ${dealerCode}');
+    email = "admin@ppsw.com";
+    password = "P@ssw0rd";
+    dealerCode = "99999999";
+    var login = LoginRequestModel(
+      email: email,
+      dealerCode: dealerCode,
+      password: password,
+    );
+
+    Get.dialog(
+      const Center(
+        child: CircularProgressIndicator(),
+      ),
+      barrierDismissible: false,
+    );
+    try {
+      final res = await apiUtils.post(
+        url: Api.baseUrlMembers + ApiEndPoints.membersLogin,
+        data: login.toJson(),
+      );
+      Get.back();
+      LoginResponseModel loginResponseModel =
+          LoginResponseModel.fromJson(res.data);
+      // debugPrint(loginResponseModel.statusCode.toString());
+      // debugPrint(loginResponseModel.code);
+      // debugPrint(loginResponseModel.message);
+      // debugPrint(loginResponseModel.data?.accessToken.toString());
+      if (loginResponseModel.data?.accessToken.toString() != "") {
+        window.localStorage["token"] =
+            loginResponseModel.data!.accessToken.toString();
+        isAdmin.write('isAdmin', dealerCode != "99999999" ? '0' : '1');
+        Get.offNamed(Routes.HOME);
+      }
+    } catch (e) {
+      Get.back();
+      Get.defaultDialog(
+        radius: 10.0,
+        contentPadding: const EdgeInsets.all(20.0),
+        title: '',
+        middleText: constants.INVALID_EMAIL_OR_PASSWORD,
+        textConfirm: 'Okay',
+        confirm: OutlinedButton.icon(
+          onPressed: () => Get.back(),
+          icon: Icon(
+            Icons.close,
+            color: Colors.red.shade700,
+          ),
+          label: const Text(
+            'ปิด',
+            style: TextStyle(color: Colors.blue),
+          ),
+        ),
+      );
     }
-    // Get.dialog(const Center(child: CircularProgressIndicator()),
-    //     barrierDismissible: false);
-    // String responseLogin = '';
-    // LoginService loginService = LoginService();
-    // responseLogin = await loginService.login(
-    //     usernameController.text, passwordController.text);
-    // print(responseLogin);
-    // Get.back();
-    // if (responseLogin.isNotEmpty) {
-    //   Get.defaultDialog(
-    //     radius: 10.0,
-    //     contentPadding: const EdgeInsets.all(20.0),
-    //     title: '',
-    //     middleText: responseLogin,
-    //     textConfirm: 'Okay',
-    //     confirm: OutlinedButton.icon(
-    //       onPressed: () => Get.back(),
-    //       icon: Icon(
-    //         Icons.close,
-    //         color: Colors.red.shade700,
-    //       ),
-    //       label: const Text(
-    //         'ปิด',
-    //         style: TextStyle(color: Colors.blue),
-    //       ),
-    //     ),
-    //   );
-    // } else {
-    //   Get.offNamed(Routes.dashboardPageRoute);
-    // }
-    // Get.offNamed(Routes.HOME);
-    // return responseLogin;
   }
 
   void register() {

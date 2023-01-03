@@ -10,6 +10,8 @@ class AddProductView extends StatelessWidget {
   AddProductView({Key? key}) : super(key: key);
   final controller = Get.put(AddProductController());
   final scrollBarController = ScrollController();
+
+  final _productCodeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,35 +36,81 @@ class AddProductView extends StatelessWidget {
                 SizedBox(
                   width: 450,
                   child: TextField(
+                    controller: _productCodeController,
                     onChanged: (value) {},
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'รหัสสินค้า',
-                      suffixIcon: Icon(Icons.search),
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.search),
+                        onPressed: () {
+                          controller.getProductByCode(
+                            _productCodeController.text,
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: defaultPadding),
-                detailForm('ชื่อสินค้า'),
+                // Obx(
+                //   () => detailForm('ชื่อสินค้า', controller.product.value.name),
+                // ),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm('ชื่อสินค้า',
+                      controller.product.value.name.toString(), 4),
+                ),
+                // const SizedBox(height: defaultPadding),
+                // detailForm('รายละเอียด', "", 4),
                 const SizedBox(height: defaultPadding),
-                detailForm('รายละเอียด'),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm(
+                      'ขนาด', controller.product.value.matSize.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
-                detailForm('ขนาด'),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm(
+                      'สี', controller.product.value.color.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
-                detailForm('สี'),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm(
+                      'ยี่ห้อ', controller.product.value.brand.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
-                detailForm('ยี่ห้อ'),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm(
+                      'รุ่น', controller.product.value.model.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
-                detailForm('รุ่น'),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm('ความกว้าง',
+                      controller.product.value.width.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
-                detailForm('ความกว้าง'),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm(
+                      'Offset', controller.product.value.offset.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
-                detailForm('Offset'),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm('ค่าสึกหรอ',
+                      controller.product.value.treadWare.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
-                detailForm('ค่าสึกหรอ'),
-                const SizedBox(height: defaultPadding),
-                detailForm('ราคา dealer'),
-                const SizedBox(height: defaultPadding),
-                detailForm('ราคา เงินสด'),
+                detailForm('ราคา', "", 1),
+                GetBuilder<AddProductController>(
+                  init: controller,
+                  builder: (_) => detailForm(
+                      'ราคา', controller.product.value.price.toString(), 1),
+                ),
                 const SizedBox(height: defaultPadding),
                 SizedBox(
                   width: 450,
@@ -109,11 +157,14 @@ class AddProductView extends StatelessWidget {
     );
   }
 
-  SizedBox detailForm(String label) {
+  SizedBox detailForm(String label, String value, int maxLine) {
     return SizedBox(
       width: 450,
       child: TextField(
-        onChanged: (value) {},
+        readOnly: true,
+        minLines: 1,
+        maxLines: maxLine,
+        controller: TextEditingController(text: value),
         decoration: InputDecoration(
           labelText: label,
         ),
