@@ -1,7 +1,6 @@
 import 'package:b2b/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../../../api/api.dart';
 import '../../../api/api_end_points.dart';
@@ -10,7 +9,7 @@ import '../../../data/constants.dart';
 import '../../../data/product.dart';
 
 class AddProductController extends GetxController {
-  final isAdmin = GetStorage().read('isAdmin');
+  final isAdmin = "";
 
   Rx<Product> product = Product(
     id: '',

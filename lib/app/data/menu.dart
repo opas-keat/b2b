@@ -1,50 +1,31 @@
-List<MenuItem2> menuItems = [
-  MenuItem2(
-    title: 'รายการสินค้า',
-    isAdmin: '1',
-  ),
-  MenuItem2(
-    title: "ร้านค้า",
-    isAdmin: '1',
-  ),
-  // MenuItem2(
-  //   title: "ตั้งค่า admin",
-  //   isAdmin: '1',
-  // ),
-  MenuItem2(
-    title: "ประวัติการใช้งาน",
-    isAdmin: '1',
-  ),
-  MenuItem2(
+List<MenuItem> menuItems = [
+  MenuItem(
     title: "รายการสินค้า",
-    isAdmin: '0',
+    isShow: true,
   ),
-  MenuItem2(
-    title: "รายการสั่งซื้อ",
-    isAdmin: '0',
+  MenuItem(
+    title: "ร้านค้า",
+    isShow: true,
   ),
-  MenuItem2(
-    title: "ประวัติการสั่งซื้อ",
-    isAdmin: '0',
+  MenuItem(
+    title: "ประวัติการใช้งาน",
+    isShow: true,
   ),
-  MenuItem2(
+  MenuItem(
     title: "ตั้งค่า",
-    isAdmin: '0',
+    isShow: true,
   ),
-  // MenuItem(
-  //   title: "รายงาน",
-  // ),
-  MenuItem2(
+  MenuItem(
     title: "ออกจากระบบ",
-    isAdmin: '2',
+    isShow: true,
   ),
 ];
 
-class MenuItem2 {
+class MenuItem {
   String title;
-  String isAdmin;
-  MenuItem2({
+  bool isShow;
+  MenuItem({
     required this.title,
-    required this.isAdmin,
+    required this.isShow,
   });
 }

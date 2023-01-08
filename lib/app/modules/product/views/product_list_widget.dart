@@ -2,15 +2,14 @@ import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-import '../../../../shared/constants.dart';
+import '../../../shared/constants.dart';
 import '../../../data/product.dart';
 import '../controllers/product_controller.dart';
 
 class ProductList extends StatelessWidget {
   ProductController controller = Get.find<ProductController>();
-  final isAdmin = GetStorage().read('isAdmin');
+  final isAdmin = "";
   final scrollBarController = ScrollController();
 
   @override

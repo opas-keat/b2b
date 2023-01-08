@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+// import 'package:graphql/client.dart';
+// import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
+
+// import '../../../data/graphql/graphql_users.dart';
+// import '../../../shared/constants.dart';
 
 class DealerController extends GetxController {
-  //TODO: Implement DealerController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +21,18 @@ class DealerController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  // Future<void> updateStatus(String dealerCode, bool status) async {
+  //   print("updateStatus");
+  //   final graphqlClient = createNhostGraphQLClient(nhostClient);
+  //   var mutationResult = await graphqlClient.mutate(
+  //     MutationOptions(
+  //       document: updateUserDisabledMutation,
+  //       variables: {
+  //         "status": status,
+  //         "dealerCode": "{\"dealerCode\": \"$dealerCode\"}",
+  //       },
+  //     ),
+  //   );
+  //   print(mutationResult);
+  // }
 }

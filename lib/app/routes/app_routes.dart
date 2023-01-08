@@ -3,8 +3,6 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const HOME = _Paths.HOME;
-  static const LOGIN = _Paths.LOGIN;
   static const REGISTER = _Paths.REGISTER;
   static const PAGENOTFOUND = _Paths.PAGENOTFOUND;
   static const DEALER = _Paths.DEALER;
@@ -16,12 +14,14 @@ abstract class Routes {
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
   static const CART = _Paths.CART;
+  static const SIGNIN = _Paths.SIGNIN;
+  static const HOME = _Paths.HOME;
+  static const PROFILE = _Paths.PROFILE;
+  static const LOGGING = _Paths.LOGGING;
 }
 
 abstract class _Paths {
   _Paths._();
-  static const HOME = '/home';
-  static const LOGIN = '/login';
   static const REGISTER = '/register';
   static const PAGENOTFOUND = '/pagenotfound';
   static const DEALER = '/dealer';
@@ -33,4 +33,8 @@ abstract class _Paths {
   static const FORGOT_PASSWORD = '/forgot-password';
   static const ADD_PRODUCT = '/add-product';
   static const CART = '/cart';
+  static const SIGNIN = '/signin';
+  static const HOME = '/home';
+  static const PROFILE = '/profile';
+  static const LOGGING = '/logging';
 }

@@ -43,7 +43,7 @@ class ProductController extends GetxController {
 
   @override
   void onReady() {
-    listBrandAndModel();
+    // listBrandAndModel();
     super.onReady();
   }
 

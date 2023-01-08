@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../shared/utils/log_util.dart';
+import '../shared/utils/log_util.dart';
 import 'custom_log_interceptor.dart';
 
 final title = "ApiUtils";

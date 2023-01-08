@@ -2,7 +2,7 @@ import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../shared/constants.dart';
+import '../../../shared/constants.dart';
 import '../controllers/product_controller.dart';
 
 class BrandAndModelWidget extends StatelessWidget {

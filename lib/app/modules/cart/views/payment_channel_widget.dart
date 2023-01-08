@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../shared/constants.dart';
+import '../../../shared/constants.dart';
 import '../controllers/cart_controller.dart';
 
 class PaymentChannelWidget extends StatelessWidget {

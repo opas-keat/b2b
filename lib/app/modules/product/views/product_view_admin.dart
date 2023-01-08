@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../shared/constants.dart';
-import '../../../../shared/custom_flat_button.dart';
+import '../../../shared/constants.dart';
+import '../../../shared/custom_flat_button.dart';
 import '../../../data/category.dart';
 import '../controllers/product_controller.dart';
 import 'product_list_widget.dart';

@@ -2,11 +2,10 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-import '../../../../shared/constants.dart';
-import '../../../../shared/custom_flat_button.dart';
-import '../../../../shared/custom_text.dart';
+import '../../../shared/constants.dart';
+import '../../../shared/custom_flat_button.dart';
+import '../../../shared/custom_text.dart';
 import '../../../data/category.dart';
 import '../controllers/product_controller.dart';
 import 'product_detail.dart';
@@ -15,7 +14,7 @@ import 'product_list_widget.dart';
 class ProductView extends StatelessWidget {
   ProductView({super.key});
   ProductController controller = Get.put(ProductController());
-  final isAdmin = GetStorage().read('isAdmin');
+  final isAdmin = "";
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:b2b/shared/constants.dart';
+import 'package:b2b/app/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

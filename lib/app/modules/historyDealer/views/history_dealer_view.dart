@@ -1,7 +1,7 @@
 import 'package:b2b/app/data/history_order.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/constants.dart';
+import '../../../shared/constants.dart';
 
 class HistoryDealerView extends StatelessWidget {
   HistoryDealerView({super.key});

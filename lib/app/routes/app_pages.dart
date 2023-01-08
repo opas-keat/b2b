@@ -12,15 +12,24 @@ import '../modules/historyAdmin/bindings/history_admin_binding.dart';
 import '../modules/historyAdmin/views/history_admin_view.dart';
 import '../modules/historyDealer/bindings/history_dealer_binding.dart';
 import '../modules/historyDealer/views/history_dealer_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
+import '../modules/logging/bindings/logging_binding.dart';
+import '../modules/logging/views/logging_view.dart';
 import '../modules/product/bindings/product_binding.dart';
 import '../modules/product/views/product_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/signin/bindings/signin_binding.dart';
+import '../modules/signin/views/signin_view.dart';
+import 'app_middleware.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.SIGNIN;
 
   static final routes = [
     GetPage(
@@ -57,6 +66,29 @@ class AppPages {
       name: _Paths.CART,
       page: () => CartView(),
       binding: CartBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNIN,
+      page: () => SigninView(),
+      binding: SigninBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => HomeView(),
+      binding: HomeBinding(),
+      middlewares: [RouteGuard()],
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => ProfileView(),
+      binding: ProfileBinding(),
+      middlewares: [RouteGuard()],
+    ),
+    GetPage(
+      name: _Paths.LOGGING,
+      page: () => LoggingView(),
+      binding: LoggingBinding(),
+      middlewares: [RouteGuard()],
     ),
   ];
 }
