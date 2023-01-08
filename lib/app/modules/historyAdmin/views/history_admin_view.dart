@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../constants.dart';
+import '../../../../shared/constants.dart';
 import '../../../data/log.dart';
 import '../controllers/history_admin_controller.dart';
 

@@ -3,6 +3,10 @@ class ApiEndPoints {
   static const members = "members";
   static const membersLogin = "/login";
 
-// ---- system_link products ----
-  static const systemLinkProducts = "";
+// ---- products ----
+  static const productListBrandAndModel = "/bams";
+
+// ---- system_link ----
+  static const systemLinkDealers = "/dealers";
+  static const systemLinkProducts = "/products";
 }

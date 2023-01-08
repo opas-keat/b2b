@@ -1,4 +1,4 @@
-import 'package:b2b/constants.dart';
+import 'package:b2b/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -126,28 +126,57 @@ class AddProductView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: defaultPadding),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: defaultPadding, vertical: defaultPadding),
-                  width: 300,
-                  child: ElevatedButton(
-                    // style: ElevatedButton.styleFrom(
-                    //   backgroundColor: darkRedColor,
-                    // ),
-                    onPressed: () {
-                      controller.addProduct();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(defaultPadding / 2),
-                      child: Text(
-                        "บันทึก",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(color: Colors.white),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding, vertical: defaultPadding),
+                      width: 200,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                        ),
+
+                        // style: const ButtonStyle(
+                        //   backgroundColor: primaryColor,
+                        // ),
+                        onPressed: () {
+                          controller.addProduct();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(defaultPadding / 4),
+                          child: Text(
+                            "บันทึก",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding, vertical: defaultPadding),
+                      width: 200,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          controller.gotoHome();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(defaultPadding / 4),
+                          child: Text(
+                            "ย้อนกลับ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

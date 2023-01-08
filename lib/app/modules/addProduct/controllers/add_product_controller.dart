@@ -28,7 +28,7 @@ class AddProductController extends GetxController {
     dealerPrice1: 0,
     groupCode: '',
   ).obs;
-  RxString productName = "".obs;
+  // RxString productName = "".obs;
 
   @override
   void onInit() {
@@ -99,7 +99,28 @@ class AddProductController extends GetxController {
     }
   }
 
-  addProduct() {
-    Get.toNamed(Routes.HOME);
+  addProduct() async {
+    debugPrint(product.value.name);
+    Get.dialog(
+      const Center(
+        child: CircularProgressIndicator(),
+      ),
+      barrierDismissible: false,
+    );
+    try {
+      final res = await apiUtils.post(
+        url: Api.baseUrlProducts,
+        data: product.toJson(),
+      );
+      Get.back();
+    } catch (e) {
+      Get.back();
+    }
+
+    // Get.toNamed(Routes.HOME);
+  }
+
+  gotoHome() {
+    Get.offNamed(Routes.HOME);
   }
 }

@@ -6,8 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app/routes/app_pages.dart';
-import 'constants.dart';
-import 'shared/widgets/page_not_found.dart';
+import 'shared/constants.dart';
+import 'shared/utils/page_not_found.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

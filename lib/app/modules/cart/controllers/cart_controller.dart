@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../../constants.dart';
+import '../../../../shared/constants.dart';
 import '../../../data/cart_order.dart';
 
 class CartController extends GetxController {

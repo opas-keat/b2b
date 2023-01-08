@@ -1,9 +1,9 @@
-import 'package:b2b/constants.dart';
+import 'package:b2b/shared/constants.dart';
 import 'package:b2b/shared/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../shared/widgets/custom_text.dart';
+import '../../../../shared/custom_text.dart';
 import '../controllers/product_controller.dart';
 
 class ProductDetail extends StatelessWidget {

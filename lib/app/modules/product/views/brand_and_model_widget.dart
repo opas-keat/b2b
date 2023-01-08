@@ -1,27 +1,20 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../../../../shared/constants.dart';
-import '../../../data/product.dart';
 import '../controllers/product_controller.dart';
 
-class ProductList extends StatelessWidget {
+class BrandAndModelWidget extends StatelessWidget {
   ProductController controller = Get.find<ProductController>();
-  final isAdmin = GetStorage().read('isAdmin');
   final scrollBarController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
-    final items = sampleProducts
-        .where((element) =>
-            (element.categoryId == controller.currentCategory.value))
-        .toList();
-    return Padding(
-      padding: const EdgeInsets.all(defaultPadding / 4),
-      child: CustomScrollView(
+    // return Text("BrandAndModelWidget");
+    // final items = controller.brandAndModels.value.data!.rows!.toList();
+    return Obx(() {
+      final items = controller.brandAndModels.value.data!.rows!.toList();
+      return CustomScrollView(
         shrinkWrap: true,
         primary: false,
         // physics: AlwaysScrollableScrollPhysics.,
@@ -35,28 +28,35 @@ class ProductList extends StatelessWidget {
                 hoverColor: Colors.grey.shade300,
                 onTap: () {
                   // controller.addItem2Cart(product: items[index]);
-                  controller.selectProduct(product: items[index]);
+                  // controller.selectProduct(product: items[index]);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(defaultPadding / 2),
+                  padding: EdgeInsets.all(defaultPadding / 2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 300,
-                        child: Image.network(
-                          items[index].fTProdImage,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
+                      // SizedBox(
+                      //   width: 300,
+                      //   child: Image.network(
+                      //     controller.brandAndModels.value.data!.rows![index].brand,
+                      //     fit: BoxFit.scaleDown,
+                      //   ),
+                      // ),
                       Text(
-                        items[index].fTProdNameTH,
+                        "ยี่ห้อ: ${items[index].brand}",
                         style: const TextStyle(
                           // fontSize: 24,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
-                      Text("ราคา : ${items[index].fNPrice.toString()}"),
+                      Text(
+                        "รุ่น: ${items[index].model}",
+                        style: const TextStyle(
+                          // fontSize: 24,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      // Text("ราคา : ${items[index].fNPrice.toString()}"),
                     ],
                   ),
                 ),
@@ -64,7 +64,7 @@ class ProductList extends StatelessWidget {
             },
           ),
         ],
-      ),
-    );
+      );
+    });
   }
 }

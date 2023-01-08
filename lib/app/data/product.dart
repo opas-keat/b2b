@@ -266,3 +266,119 @@ class Product {
     return data;
   }
 }
+
+class ProductBrandAndModelRequestModel {
+  ProductBrandAndModelCriteria? criteria;
+  int? limit;
+  int? offset;
+
+  ProductBrandAndModelRequestModel({this.criteria, this.limit, this.offset});
+
+  ProductBrandAndModelRequestModel.fromJson(Map<String, dynamic> json) {
+    criteria = json['criteria'] != null
+        ? ProductBrandAndModelCriteria.fromJson(json['criteria'])
+        : null;
+    limit = json['limit'];
+    offset = json['offset'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (criteria != null) {
+      data['criteria'] = criteria!.toJson();
+    }
+    data['limit'] = limit;
+    data['offset'] = offset;
+    return data;
+  }
+}
+
+class ProductBrandAndModelCriteria {
+  String? productType;
+
+  ProductBrandAndModelCriteria({this.productType});
+
+  ProductBrandAndModelCriteria.fromJson(Map<String, dynamic> json) {
+    productType = json['product_type'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['product_type'] = productType;
+    return data;
+  }
+}
+
+class ProductBrandAndModelResponseModel {
+  int? statusCode;
+  String? code;
+  String? message;
+  BrandAndModelList? data;
+
+  ProductBrandAndModelResponseModel(
+      {this.statusCode, this.code, this.message, this.data});
+
+  ProductBrandAndModelResponseModel.fromJson(Map<String, dynamic> json) {
+    statusCode = json['status_code'];
+    code = json['code'];
+    message = json['message'];
+    data =
+        json['data'] != null ? BrandAndModelList.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status_code'] = statusCode;
+    data['code'] = code;
+    data['message'] = message;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
+}
+
+class BrandAndModelList {
+  List<BrandAndModel>? rows;
+  int? totalCount;
+
+  BrandAndModelList({this.rows, this.totalCount});
+
+  BrandAndModelList.fromJson(Map<String, dynamic> json) {
+    if (json['rows'] != null) {
+      rows = <BrandAndModel>[];
+      json['rows'].forEach((v) {
+        rows!.add(BrandAndModel.fromJson(v));
+      });
+    }
+    totalCount = json['total_count'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (rows != null) {
+      data['rows'] = rows!.map((v) => v.toJson()).toList();
+    }
+    data['total_count'] = totalCount;
+    return data;
+  }
+}
+
+class BrandAndModel {
+  String? brand;
+  String? model;
+
+  BrandAndModel({this.brand, this.model});
+
+  BrandAndModel.fromJson(Map<String, dynamic> json) {
+    brand = json['brand'];
+    model = json['model'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['brand'] = brand;
+    data['model'] = model;
+    return data;
+  }
+}

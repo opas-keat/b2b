@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../constants.dart';
-import '../../../../shared/widgets/custom_flat_button.dart';
+import '../../../../shared/constants.dart';
+import '../../../../shared/custom_flat_button.dart';
 import '../controllers/login_controller.dart';
 
 class LoginForm extends StatelessWidget {

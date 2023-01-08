@@ -8,9 +8,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../constants.dart';
+import '../../../../shared/constants.dart';
 import '../../../routes/app_pages.dart';
 import '../../cart/views/cart_view.dart';
+import '../../product/views/product_view_admin.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -31,7 +32,7 @@ class HomeView extends GetView<HomeController> {
                   index: controller.navIndex.value,
                   children: isAdmin == '1'
                       ? [
-                          ProductView(),
+                          ProductViewAdmin(),
                           DealerView(),
                           HistoryAdminView(),
                         ]

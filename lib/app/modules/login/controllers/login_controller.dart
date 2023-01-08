@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:html';
 
 import 'package:b2b/app/api/api_end_points.dart';
@@ -6,17 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../shared/utils/log_util.dart';
 import '../../../api/api.dart';
 import '../../../api/api_utils.dart';
 import '../../../data/constants.dart';
-import '../../../data/login_model.dart';
+import '../../../models/login_model.dart';
 import '../../../routes/app_pages.dart';
 
-final title = "LoginController";
-
 class LoginController extends GetxController {
-  var response = <LoginResponseModel>{}.obs;
+  var response = <LoginResponse>{}.obs;
 
   final isAdmin = GetStorage();
 
@@ -44,7 +40,7 @@ class LoginController extends GetxController {
     email = "admin@ppsw.com";
     password = "P@ssw0rd";
     dealerCode = "99999999";
-    var login = LoginRequestModel(
+    var login = LoginRequest(
       email: email,
       dealerCode: dealerCode,
       password: password,
@@ -62,15 +58,14 @@ class LoginController extends GetxController {
         data: login.toJson(),
       );
       Get.back();
-      LoginResponseModel loginResponseModel =
-          LoginResponseModel.fromJson(res.data);
+      LoginResponse loginResponse = LoginResponse.fromJson(res.data);
       // debugPrint(loginResponseModel.statusCode.toString());
       // debugPrint(loginResponseModel.code);
       // debugPrint(loginResponseModel.message);
       // debugPrint(loginResponseModel.data?.accessToken.toString());
-      if (loginResponseModel.data?.accessToken.toString() != "") {
+      if (loginResponse.data.accessToken.toString() != "") {
         window.localStorage["token"] =
-            loginResponseModel.data!.accessToken.toString();
+            loginResponse.data.accessToken.toString();
         isAdmin.write('isAdmin', dealerCode != "99999999" ? '0' : '1');
         Get.offNamed(Routes.HOME);
       }

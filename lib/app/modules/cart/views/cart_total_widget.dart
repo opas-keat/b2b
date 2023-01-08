@@ -1,11 +1,11 @@
-import 'package:b2b/constants.dart';
-import 'package:b2b/shared/widgets/custom_flat_button.dart';
+import 'package:b2b/shared/constants.dart';
+import 'package:b2b/shared/custom_flat_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../../../shared/services.dart';
-import '../../../../shared/widgets/custom_text.dart';
+import '../../../../shared/custom_text.dart';
 import '../controllers/cart_controller.dart';
 
 class CartTotalWidget extends StatelessWidget {

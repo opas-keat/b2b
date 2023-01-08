@@ -1,31 +1,28 @@
-import 'package:badges/badges.dart';
+import 'package:b2b/app/modules/product/views/brand_and_model_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../../../../shared/constants.dart';
 import '../../../../shared/custom_flat_button.dart';
-import '../../../../shared/custom_text.dart';
 import '../../../data/category.dart';
 import '../controllers/product_controller.dart';
-import 'product_detail.dart';
 import 'product_list_widget.dart';
 
-class ProductView extends StatelessWidget {
-  ProductView({super.key});
+class ProductViewAdmin extends StatelessWidget {
+  ProductViewAdmin({super.key});
   ProductController controller = Get.put(ProductController());
-  final isAdmin = GetStorage().read('isAdmin');
-
+  final scrollBarController = ScrollController();
   @override
   Widget build(BuildContext context) {
+    // final items = sampleProducts
+    //     .where((element) =>
+    //         (element.categoryId == controller.brandAndModels.value))
+    //     .toList();
     return Scaffold(
       appBar: AppBar(
         title: const Text('รายการสินค้า'),
         centerTitle: true,
-        actions: <Widget>[
-          shoppingCartBadge(),
-        ],
       ),
       body: Row(
         children: [
@@ -46,94 +43,17 @@ class ProductView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: defaultPadding / 2),
-                CategoryList(),
+                MenuWidget(),
                 // product list
+
                 Expanded(
-                  child: ProductList(),
+                  // child: ProductList(),
+                  child: BrandAndModelWidget(),
                 ),
               ],
             ),
           ),
-
-          // list card
-          isAdmin == '1'
-              ? const VerticalDivider(
-                  width: 12.0,
-                )
-              : Container(),
-          isAdmin == '1'
-              ? Container()
-              : GetBuilder<ProductController>(
-                  builder: (controller) {
-                    return SizedBox(
-                      width: 300,
-                      child: Column(
-                        children: [
-                          // top billing
-                          const SizedBox(
-                            height: 64,
-                            child: Center(
-                              child: CustomText(
-                                text: 'รายละเอียดสินค้า',
-                                weight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-
-                          ProductDetail(),
-
-                          Container(
-                            margin: const EdgeInsets.all(defaultPadding),
-                            child: CustomFlatButton(
-                              color: accentColor,
-                              overlayColor: accentLightColor,
-                              label: "เพิ่มลงตะกร้า".toUpperCase(),
-                              onPressed: () {
-                                controller.addItem2Cart();
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
         ],
-      ),
-    );
-  }
-}
-
-class shoppingCartBadge extends StatelessWidget {
-  shoppingCartBadge({super.key});
-  ProductController controller = Get.find<ProductController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        right: defaultPadding,
-      ),
-      child: Badge(
-        position: BadgePosition.topEnd(top: 0, end: 0),
-        animationDuration: const Duration(milliseconds: 300),
-        animationType: BadgeAnimationType.scale,
-        badgeContent: Obx(
-          () => Text(
-            controller.cartTotalItem.value.toString(),
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-        child: IconButton(
-          icon: const Icon(Icons.shopping_cart),
-          color: Colors.white,
-          onPressed: () {
-            controller.gotoCartOrder();
-          },
-        ),
       ),
     );
   }
@@ -202,7 +122,8 @@ class MenuWidget extends StatelessWidget {
             isWrapped: true,
             label: "เพิ่มสินค้า".toUpperCase(),
             onPressed: () {
-              controller.addNewProduct();
+              // controller.addNewProduct();
+              controller.listBrandAndModel();
             },
           ),
           const SizedBox(width: defaultPadding),

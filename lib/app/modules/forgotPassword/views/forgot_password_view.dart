@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../background.dart';
-import '../../../../responsive.dart';
+import '../../../../shared/background.dart';
+import '../../../../shared/responsive.dart';
 import '../components/forgot_password_form.dart';
 import '../components/forgot_password_screen_top_image.dart';
 import '../controllers/forgot_password_controller.dart';
