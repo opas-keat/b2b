@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../shared/services.dart';
+import '../../../../shared/convert.dart';
 import '../../../../shared/custom_text.dart';
 import '../controllers/cart_controller.dart';
 

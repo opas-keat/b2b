@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'app/routes/app_pages.dart';
 import 'shared/constants.dart';
-import 'shared/utils/page_not_found.dart';
+import 'shared/page_not_found.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +24,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.noTransition,
       title: "PPSW",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+      locale: const Locale('th', 'TH'),
+      fallbackLocale: const Locale('th', 'TH'),
+      unknownRoute: GetPage(
+        name: "/not-found",
+        page: () => const PageNotFound(),
+        transition: Transition.noTransition,
+      ),
       theme: ThemeData(
         useMaterial3: false,
         textTheme: GoogleFonts.promptTextTheme(),
@@ -37,15 +46,6 @@ class MyApp extends StatelessWidget {
           color: primaryColor,
         ),
       ),
-      unknownRoute: GetPage(
-        name: "/not-found",
-        page: () => const PageNotFound(),
-        transition: Transition.noTransition,
-      ),
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-      locale: const Locale('th', 'TH'),
-      fallbackLocale: const Locale('th', 'TH'),
     );
   }
 }

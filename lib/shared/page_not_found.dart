@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import '../custom_text.dart';
+import 'constants.dart';
+import 'custom_text.dart';
 
 class PageNotFound extends StatelessWidget {
   const PageNotFound({Key? key}) : super(key: key);

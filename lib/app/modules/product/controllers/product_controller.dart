@@ -1,7 +1,6 @@
 import 'dart:html';
 
 import 'package:b2b/app/data/cart_order.dart';
-import 'package:b2b/app/modules/home/controllers/home_controller.dart';
 import 'package:b2b/app/routes/app_pages.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -154,7 +153,7 @@ class ProductController extends GetxController {
   }
 
   gotoCartOrder() {
-    HomeController homeController = Get.find<HomeController>();
-    homeController.navIndex.value = 1;
+    // HomeController homeController = Get.find<HomeController>();
+    // homeController.navIndex.value = 1;
   }
 }
