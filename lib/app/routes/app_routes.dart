@@ -8,7 +8,6 @@ abstract class Routes {
   static const DEALER = _Paths.DEALER;
   static const PRODUCT_ADMIN = _Paths.PRODUCT_ADMIN;
   static const HISTORY_ADMIN = _Paths.HISTORY_ADMIN;
-  static const PRODUCT = _Paths.PRODUCT;
   static const HISTORY_DEALER = _Paths.HISTORY_DEALER;
   static const DEALER_PROFILE = _Paths.DEALER_PROFILE;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
@@ -18,6 +17,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const PROFILE = _Paths.PROFILE;
   static const LOGGING = _Paths.LOGGING;
+  static const PRODUCT = _Paths.PRODUCT;
 }
 
 abstract class _Paths {
@@ -27,7 +27,6 @@ abstract class _Paths {
   static const DEALER = '/dealer';
   static const PRODUCT_ADMIN = '/product-admin';
   static const HISTORY_ADMIN = '/history-admin';
-  static const PRODUCT = '/product';
   static const HISTORY_DEALER = '/history-dealer';
   static const DEALER_PROFILE = '/dealer-profile';
   static const FORGOT_PASSWORD = '/forgot-password';
@@ -37,4 +36,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const PROFILE = '/profile';
   static const LOGGING = '/logging';
+  static const PRODUCT = '/product';
 }

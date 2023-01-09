@@ -32,7 +32,7 @@ class SelectedProduct {
   int fNQuantityBal = 0;
 }
 
-class ProductController extends GetxController {
+class ProductOldController extends GetxController {
   RxString currentCategory = "1".obs;
   RxList<OrderItem> listOrder = <OrderItem>[].obs;
   RxInt cartTotalItem = 0.obs;

@@ -6,7 +6,7 @@ import '../../../shared/constants.dart';
 import '../controllers/product_controller.dart';
 
 class BrandAndModelWidget extends StatelessWidget {
-  ProductController controller = Get.find<ProductController>();
+  ProductOldController controller = Get.find<ProductOldController>();
   final scrollBarController = ScrollController();
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ import 'product_list_widget.dart';
 
 class ProductViewAdmin extends StatelessWidget {
   ProductViewAdmin({super.key});
-  ProductController controller = Get.put(ProductController());
+  ProductOldController controller = Get.put(ProductOldController());
   final scrollBarController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -61,12 +61,12 @@ class ProductViewAdmin extends StatelessWidget {
 
 class CategoryList extends StatelessWidget {
   CategoryList({super.key});
-  ProductController controller = Get.find<ProductController>();
+  ProductOldController controller = Get.find<ProductOldController>();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductController>(
-      init: ProductController(),
+    return GetBuilder<ProductOldController>(
+      init: ProductOldController(),
       initState: (_) {},
       builder: (_) {
         return SizedBox(
@@ -109,7 +109,7 @@ class CategoryList extends StatelessWidget {
 
 class MenuWidget extends StatelessWidget {
   MenuWidget({super.key});
-  ProductController controller = Get.find<ProductController>();
+  ProductOldController controller = Get.find<ProductOldController>();
 
   @override
   Widget build(BuildContext context) {

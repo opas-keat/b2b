@@ -8,7 +8,7 @@ import '../controllers/product_controller.dart';
 
 class ProductDetail extends StatelessWidget {
   ProductDetail({super.key});
-  ProductController controller = Get.find<ProductController>();
+  ProductOldController controller = Get.find<ProductOldController>();
 
   @override
   Widget build(BuildContext context) {

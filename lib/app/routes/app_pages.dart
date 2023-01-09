@@ -36,7 +36,7 @@ class AppPages {
     GetPage(
       name: _Paths.PRODUCT,
       page: () => ProductViewOld(),
-      binding: ProductBinding(),
+      binding: ProductOldBinding(),
     ),
     GetPage(
       name: _Paths.HISTORY_DEALER,

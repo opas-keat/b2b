@@ -8,7 +8,7 @@ import '../../../data/product.dart';
 import '../controllers/product_controller.dart';
 
 class ProductList extends StatelessWidget {
-  ProductController controller = Get.find<ProductController>();
+  ProductOldController controller = Get.find<ProductOldController>();
   final isAdmin = "";
   final scrollBarController = ScrollController();
 
