@@ -14,7 +14,7 @@ import 'product_list_widget.dart';
 class ProductView extends StatelessWidget {
   ProductView({super.key});
   ProductController controller = Get.put(ProductController());
-  final isAdmin = "";
+  final isAdmin = "1";
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,9 @@ class ProductView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('รายการสินค้า'),
         centerTitle: true,
-        actions: <Widget>[
-          shoppingCartBadge(),
-        ],
+        // actions: <Widget>[
+        //   shoppingCartBadge(),
+        // ],
       ),
       body: Row(
         children: [

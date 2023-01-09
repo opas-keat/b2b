@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.noTransition,
-        title: "PPSW",
+        title: "PPSW ADMIN",
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         locale: const Locale('th', 'TH'),
