@@ -58,58 +58,58 @@ class AddProductView extends StatelessWidget {
                 GetBuilder<AddProductController>(
                   init: controller,
                   builder: (_) => detailForm('ชื่อสินค้า',
-                      controller.product.value.name.toString(), 4),
+                      controller.productInsert.value.name.toString(), 4),
                 ),
                 // const SizedBox(height: defaultPadding),
                 // detailForm('รายละเอียด', "", 4),
                 const SizedBox(height: defaultPadding),
                 GetBuilder<AddProductController>(
                   init: controller,
-                  builder: (_) => detailForm(
-                      'ขนาด', controller.product.value.matSize.toString(), 1),
+                  builder: (_) => detailForm('ขนาด',
+                      controller.productInsert.value.matSize.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 GetBuilder<AddProductController>(
                   init: controller,
                   builder: (_) => detailForm(
-                      'สี', controller.product.value.color.toString(), 1),
+                      'สี', controller.productInsert.value.color.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 GetBuilder<AddProductController>(
                   init: controller,
-                  builder: (_) => detailForm(
-                      'ยี่ห้อ', controller.product.value.brand.toString(), 1),
+                  builder: (_) => detailForm('ยี่ห้อ',
+                      controller.productInsert.value.brand.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 GetBuilder<AddProductController>(
                   init: controller,
-                  builder: (_) => detailForm(
-                      'รุ่น', controller.product.value.model.toString(), 1),
+                  builder: (_) => detailForm('รุ่น',
+                      controller.productInsert.value.model.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 GetBuilder<AddProductController>(
                   init: controller,
                   builder: (_) => detailForm('ความกว้าง',
-                      controller.product.value.width.toString(), 1),
+                      controller.productInsert.value.width.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 GetBuilder<AddProductController>(
                   init: controller,
-                  builder: (_) => detailForm(
-                      'Offset', controller.product.value.offset.toString(), 1),
+                  builder: (_) => detailForm('Offset',
+                      controller.productInsert.value.offset.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 GetBuilder<AddProductController>(
                   init: controller,
                   builder: (_) => detailForm('ค่าสึกหรอ',
-                      controller.product.value.treadWare.toString(), 1),
+                      controller.productInsert.value.treadWare.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 detailForm('ราคา', "", 1),
                 GetBuilder<AddProductController>(
                   init: controller,
-                  builder: (_) => detailForm(
-                      'ราคา', controller.product.value.price.toString(), 1),
+                  builder: (_) => detailForm('ราคา',
+                      controller.productInsert.value.price.toString(), 1),
                 ),
                 const SizedBox(height: defaultPadding),
                 SizedBox(

@@ -1,7 +1,7 @@
-import 'dart:html';
+// import 'dart:html';
+import 'package:graphql/client.dart';
+import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
 
-import 'package:b2b/app/data/cart_order.dart';
-import 'package:b2b/app/routes/app_pages.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,9 +9,16 @@ import 'package:get/get.dart';
 import '../../../api/api.dart';
 import '../../../api/api_end_points.dart';
 import '../../../api/api_utils.dart';
+import '../../../data/cart_order.dart';
+import '../../../data/graphql/graphql_product.dart';
 import '../../../data/order.dart';
 import '../../../data/product.dart';
+import '../../../routes/app_pages.dart';
+import '../../../shared/constants.dart';
+import '../../../shared/utils/log_util.dart';
 import '../../cart/controllers/cart_controller.dart';
+
+final logTitle = "ProductController";
 
 class SelectedProduct {
   String fNMSysProdId = "";
@@ -30,6 +37,7 @@ class ProductController extends GetxController {
   RxList<OrderItem> listOrder = <OrderItem>[].obs;
   RxInt cartTotalItem = 0.obs;
   final selectedProduct = SelectedProduct().obs;
+  final bamsList = <BrandAndModel>[].obs;
 
   Rx<ProductBrandAndModelResponseModel> brandAndModels =
       ProductBrandAndModelResponseModel(
@@ -43,7 +51,7 @@ class ProductController extends GetxController {
 
   @override
   void onReady() {
-    // listBrandAndModel();
+    listBrandAndModel();
     super.onReady();
   }
 
@@ -57,39 +65,64 @@ class ProductController extends GetxController {
   }
 
   listBrandAndModel() async {
-    debugPrint("listBrandAndModel");
-    Get.dialog(
-      const Center(
-        child: CircularProgressIndicator(),
-      ),
-      barrierDismissible: false,
-    );
+    //   debugPrint("listBrandAndModel");
+    //   Get.dialog(
+    //     const Center(
+    //       child: CircularProgressIndicator(),
+    //     ),
+    //     barrierDismissible: false,
+    //   );
     try {
-      String token = window.localStorage["token"].toString();
-      final res = await apiUtils.post(
-        url: "${Api.baseUrlProducts}${ApiEndPoints.productListBrandAndModel}",
-        options: Options(
-          headers: {"Authorization": "Bearer " + token},
-        ),
-        data: ProductBrandAndModelRequestModel(
-          limit: 10,
-          offset: 0,
-          criteria: ProductBrandAndModelCriteria(
-            productType: "1",
-          ),
+      //     String token = window.localStorage["token"].toString();
+      //     final res = await apiUtils.post(
+      //       url: "${Api.baseUrlProducts}${ApiEndPoints.productListBrandAndModel}",
+      //       options: Options(
+      //         headers: {"Authorization": "Bearer " + token},
+      //       ),
+      //       data: ProductBrandAndModelRequestModel(
+      //         limit: 10,
+      //         offset: 0,
+      //         criteria: ProductBrandAndModelCriteria(
+      //           productType: "1",
+      //         ),
+      //       ),
+      //     );
+      //     Get.back();
+      //     brandAndModels.value =
+      //         ProductBrandAndModelResponseModel.fromJson(res.data);
+      //     // ProductBrandAndModelResponseModel pBAMResponeModel =
+      //     //     ProductBrandAndModelResponseModel.fromJson(res.data);
+      //     // BrandAndModelList brandAndModelList =
+      //     //     BrandAndModelList.fromJson(productBamResModel.data);
+      //     // debugPrint(pBAMResponeModel.statusCode.toString());
+      //     update();
+      final graphqlClient = createNhostGraphQLClient(nhostClient);
+      var result = await graphqlClient.query(
+        QueryOptions(
+          document: listBrandAndModelQuery,
+          // variables: {
+          //   'product': productInsert.value,
+          // },
         ),
       );
-      Get.back();
-      brandAndModels.value =
-          ProductBrandAndModelResponseModel.fromJson(res.data);
-      // ProductBrandAndModelResponseModel pBAMResponeModel =
-      //     ProductBrandAndModelResponseModel.fromJson(res.data);
-      // BrandAndModelList brandAndModelList =
-      //     BrandAndModelList.fromJson(productBamResModel.data);
-      // debugPrint(pBAMResponeModel.statusCode.toString());
+      if (result.hasException) {
+        Log.loga(logTitle, 'listBrandAndModel:: ${result.exception}');
+      }
+      final bams = (result.data!['products'] as List)
+          .map((e) => BrandAndModelResponseQuery.fromMap(e))
+          .toList();
+      bams.forEach((element) {
+        Log.loga(logTitle, 'listBrandAndModel:: ${element.id}');
+        Log.loga(logTitle, 'listBrandAndModel:: ${element.brand}');
+        Log.loga(logTitle, 'listBrandAndModel:: ${element.model}');
+        bamsList.value.add(BrandAndModel(
+          brand: element.brand,
+          model: element.model,
+        ));
+      });
       update();
     } catch (e) {
-      Get.back();
+      Log.loga(logTitle, 'listBrandAndModel:: $e');
     }
   }
 

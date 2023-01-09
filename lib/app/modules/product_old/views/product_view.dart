@@ -11,8 +11,8 @@ import '../controllers/product_controller.dart';
 import 'product_detail.dart';
 import 'product_list_widget.dart';
 
-class ProductView extends StatelessWidget {
-  ProductView({super.key});
+class ProductViewOld extends StatelessWidget {
+  ProductViewOld({super.key});
   ProductController controller = Get.put(ProductController());
   final isAdmin = "1";
 

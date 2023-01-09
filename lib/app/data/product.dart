@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 List<Product2> sampleProducts = [
   Product2(
     fNMSysProdId: "210340020",
@@ -381,4 +383,119 @@ class BrandAndModel {
     data['model'] = model;
     return data;
   }
+}
+
+class ProductInsert {
+  String? linkId;
+  String? code;
+  String? name;
+  String? matSize;
+  String? color;
+  String? brand;
+  String? model;
+  String? width;
+  String? offset;
+  String? treadWare;
+  String? pitchCircleCode;
+  int? price;
+  int? dealerPrice1;
+  String? groupCode;
+  String? createdBy;
+
+  ProductInsert({
+    this.linkId,
+    this.code,
+    this.name,
+    this.matSize,
+    this.color,
+    this.brand,
+    this.model,
+    this.width,
+    this.offset,
+    this.treadWare,
+    this.pitchCircleCode,
+    this.price,
+    this.dealerPrice1,
+    this.groupCode,
+    this.createdBy,
+  });
+
+  factory ProductInsert.fromJson(Map<String, dynamic> json) => ProductInsert(
+        linkId: json['link_id'],
+        code: json['code'],
+        name: json['name'],
+        matSize: json['mat_size'],
+        color: json['color'],
+        brand: json['brand'],
+        model: json['model'],
+        width: json['width'],
+        offset: json['offset'],
+        treadWare: json['tread_ware'],
+        pitchCircleCode: json['pitch_circle_code'],
+        price: json['price'],
+        dealerPrice1: json['dealer_price_1'],
+        groupCode: json['group_code'],
+        createdBy: json["created_by"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'link_id': linkId,
+        'code': code,
+        'name': name,
+        'mat_size': matSize,
+        'color': color,
+        'brand': brand,
+        'model': model,
+        'width': width,
+        'offset': offset,
+        'tread_ware': treadWare,
+        'pitch_circle_code': pitchCircleCode,
+        'price': price,
+        'dealer_price_1': dealerPrice1,
+        'group_code': groupCode,
+        'created_by': createdBy,
+      };
+}
+
+BrandAndModelResponseQuery brandAndModelResponseQueryFromJson(String str) =>
+    BrandAndModelResponseQuery.fromJson(json.decode(str));
+
+String brandAndModelResponseQueryToJson(BrandAndModelResponseQuery data) =>
+    json.encode(data.toJson());
+
+class BrandAndModelResponseQuery {
+  BrandAndModelResponseQuery({
+    required this.id,
+    required this.brand,
+    required this.model,
+  });
+
+  String id;
+  String brand;
+  String model;
+
+  factory BrandAndModelResponseQuery.fromJson(Map<String, dynamic> json) =>
+      BrandAndModelResponseQuery(
+        id: json["id"],
+        brand: json["brand"],
+        model: json["model"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "brand": brand,
+        "model": model,
+      };
+  factory BrandAndModelResponseQuery.fromMap(Map<String, dynamic> json) =>
+      BrandAndModelResponseQuery(
+        id: json["id"],
+        brand: json["brand"],
+        model: json["model"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "brand": brand,
+        "model": model,
+      };
 }

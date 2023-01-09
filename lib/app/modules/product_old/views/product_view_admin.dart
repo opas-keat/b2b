@@ -1,4 +1,4 @@
-import 'package:b2b/app/modules/product/views/brand_and_model_widget.dart';
+import 'package:b2b/app/modules/product_old/views/brand_and_model_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -123,7 +123,7 @@ class MenuWidget extends StatelessWidget {
             label: "เพิ่มสินค้า".toUpperCase(),
             onPressed: () {
               // controller.addNewProduct();
-              controller.listBrandAndModel();
+              // controller.listBrandAndModel();
             },
           ),
           const SizedBox(width: defaultPadding),

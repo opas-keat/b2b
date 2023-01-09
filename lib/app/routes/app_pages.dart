@@ -12,8 +12,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/logging/bindings/logging_binding.dart';
 import '../modules/logging/views/logging_view.dart';
-import '../modules/product/bindings/product_binding.dart';
-import '../modules/product/views/product_view.dart';
+import '../modules/product_old/bindings/product_binding.dart';
+import '../modules/product_old/views/product_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/signin/bindings/signin_binding.dart';
@@ -35,7 +35,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRODUCT,
-      page: () => ProductView(),
+      page: () => ProductViewOld(),
       binding: ProductBinding(),
     ),
     GetPage(

@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../data/menu.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shared/constants.dart';
-import '../../product/views/product_view.dart';
+import '../../product_old/views/product_view.dart';
 import '../../profile/views/profile_view.dart';
 import '../controllers/home_controller.dart';
 
@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
                 child: IndexedStack(
                   index: controller.navIndex.value,
                   children: [
-                    ProductView(),
+                    ProductViewOld(),
                     DealerView(),
                     LoggingView(),
                     ProfileView(),
