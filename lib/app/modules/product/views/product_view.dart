@@ -46,6 +46,7 @@ class ProductView extends StatelessWidget {
                 ),
                 const SizedBox(height: defaultPadding / 2),
                 CategoryList(),
+                MenuWidget(),
                 // product list
                 Expanded(
                   child: ProductList(),

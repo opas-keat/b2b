@@ -48,6 +48,90 @@ class ProfileView extends GetView<ProfileController> {
           //     ),
           //   ),
           // ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: defaultPadding * 2,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: primaryColor,
+                        width: 1.0,
+                      ),
+                    ),
+                  ),
+                  child: const ListTile(
+                    leading: Icon(
+                      Icons.calendar_today_sharp,
+                    ),
+                    title: CustomText(
+                      text: 'การแสดงประวัติการซื้อย้อนหลัง',
+                      size: 24,
+                    ),
+                    dense: false,
+                  ),
+                ),
+                const SizedBox(height: defaultPadding),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: defaultPadding,
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: defaultPadding,
+                    ),
+                    color: const Color(0xFFF5F5F5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Flexible(
+                          flex: 2,
+                          child: SizedBox(height: defaultPadding),
+                        ),
+                        Flexible(
+                          flex: 2,
+                          child: TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            textInputAction: TextInputAction.done,
+                            cursorColor: primaryColor,
+                            controller: _textHistoryShow,
+                            decoration: const InputDecoration(
+                              hintText: 'จำนวนวันย้อนหลัง',
+                              prefixIcon: Icon(Icons.calendar_today_sharp),
+                            ),
+                            validator: (value) =>
+                                validateNotEmpty(value!, 'จำนวนวันย้อนหลัง'),
+                          ),
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: defaultPadding,
+                            ),
+                            child: CustomFlatButton(
+                              label: 'Update'.toUpperCase(),
+                              onPressed: () async {},
+                            ),
+                          ),
+                        ),
+                        const Flexible(
+                          flex: 2,
+                          child: SizedBox(height: defaultPadding),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
           Expanded(
             flex: 1,
             child: Padding(
@@ -70,7 +154,7 @@ class ProfileView extends GetView<ProfileController> {
                         Icons.calendar_today_sharp,
                       ),
                       title: CustomText(
-                        text: 'การแสดงประวัติการซื้อย้อนหลัง',
+                        text: 'Artwork แสดงข่าวสาร',
                         size: 24,
                       ),
                       dense: false,
@@ -97,19 +181,12 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                             Flexible(
                               flex: 2,
-                              child: TextFormField(
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
-                                textInputAction: TextInputAction.done,
-                                cursorColor: primaryColor,
-                                controller: _textHistoryShow,
-                                decoration: const InputDecoration(
-                                  hintText: 'จำนวนวันย้อนหลัง',
-                                  prefixIcon: Icon(Icons.calendar_today_sharp),
+                              child: SizedBox(
+                                height: 200,
+                                child: Image.network(
+                                  'assets/images/undraw_Add_files_re_v09g.png',
+                                  fit: BoxFit.cover,
                                 ),
-                                validator: (value) => validateNotEmpty(
-                                    value!, 'จำนวนวันย้อนหลัง'),
                               ),
                             ),
                             Flexible(

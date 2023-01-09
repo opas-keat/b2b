@@ -9,7 +9,7 @@ List<Category> sampleCategory = [
   ),
   Category(
     id: "3",
-    title: "อื่นๆ",
+    title: "โปรโมชั่น",
   ),
 ];
 

@@ -22,7 +22,7 @@ class SigninView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _textEmail.text = "admin@ppsuperwheels.com1";
+    _textEmail.text = "admin@ppsuperwheels.com";
     _textPassword.text = "P@ssw0rd";
     return Scaffold(
       appBar: AppBar(
