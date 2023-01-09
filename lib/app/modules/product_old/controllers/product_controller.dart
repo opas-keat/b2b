@@ -64,38 +64,17 @@ class ProductOldController extends GetxController {
     Get.toNamed(Routes.ADD_PRODUCT);
   }
 
-  listBrandAndModel() async {
-    //   debugPrint("listBrandAndModel");
-    //   Get.dialog(
-    //     const Center(
-    //       child: CircularProgressIndicator(),
-    //     ),
-    //     barrierDismissible: false,
-    //   );
+  listProducts() async {
     try {
-      //     String token = window.localStorage["token"].toString();
-      //     final res = await apiUtils.post(
-      //       url: "${Api.baseUrlProducts}${ApiEndPoints.productListBrandAndModel}",
-      //       options: Options(
-      //         headers: {"Authorization": "Bearer " + token},
-      //       ),
-      //       data: ProductBrandAndModelRequestModel(
-      //         limit: 10,
-      //         offset: 0,
-      //         criteria: ProductBrandAndModelCriteria(
-      //           productType: "1",
-      //         ),
-      //       ),
-      //     );
-      //     Get.back();
-      //     brandAndModels.value =
-      //         ProductBrandAndModelResponseModel.fromJson(res.data);
-      //     // ProductBrandAndModelResponseModel pBAMResponeModel =
-      //     //     ProductBrandAndModelResponseModel.fromJson(res.data);
-      //     // BrandAndModelList brandAndModelList =
-      //     //     BrandAndModelList.fromJson(productBamResModel.data);
-      //     // debugPrint(pBAMResponeModel.statusCode.toString());
-      //     update();
+      final graphqlClient = createNhostGraphQLClient(nhostClient);
+      
+    } catch (e) {
+      Log.loga(logTitle, 'listProducts:: $e');
+    }
+  }
+
+  listBrandAndModel() async {
+    try {
       final graphqlClient = createNhostGraphQLClient(nhostClient);
       var result = await graphqlClient.query(
         QueryOptions(
@@ -190,3 +169,28 @@ class ProductOldController extends GetxController {
     // homeController.navIndex.value = 1;
   }
 }
+
+
+//     String token = window.localStorage["token"].toString();
+      //     final res = await apiUtils.post(
+      //       url: "${Api.baseUrlProducts}${ApiEndPoints.productListBrandAndModel}",
+      //       options: Options(
+      //         headers: {"Authorization": "Bearer " + token},
+      //       ),
+      //       data: ProductBrandAndModelRequestModel(
+      //         limit: 10,
+      //         offset: 0,
+      //         criteria: ProductBrandAndModelCriteria(
+      //           productType: "1",
+      //         ),
+      //       ),
+      //     );
+      //     Get.back();
+      //     brandAndModels.value =
+      //         ProductBrandAndModelResponseModel.fromJson(res.data);
+      //     // ProductBrandAndModelResponseModel pBAMResponeModel =
+      //     //     ProductBrandAndModelResponseModel.fromJson(res.data);
+      //     // BrandAndModelList brandAndModelList =
+      //     //     BrandAndModelList.fromJson(productBamResModel.data);
+      //     // debugPrint(pBAMResponeModel.statusCode.toString());
+      //     update();

@@ -13,16 +13,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   dio: ^4.0.6
+  nhost_sdk: ^3.0.4
   nhost_flutter_graphql: ^2.1.0
   nhost_flutter_auth: ^2.0.4
   google_fonts: ^3.0.1  
   flutter_svg: ^1.1.6
   intl: ^0.18.0
+  http: ^0.13.5
   dynamic_height_grid_view: ^0.0.3
+  image_picker: ^0.8.6
   badges: ^2.0.3
   
-  
-
 dev_dependencies: 
   flutter_lints: ^2.0.0
   flutter_test: 

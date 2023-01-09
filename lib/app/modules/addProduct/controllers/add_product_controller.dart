@@ -1,12 +1,16 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graphql/client.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
+import 'package:nhost_sdk/nhost_sdk.dart';
 
 import '../../../api/api.dart';
 import '../../../api/api_end_points.dart';
 import '../../../api/api_utils.dart';
-import '../../../data/graphql/graphql_dealer.dart';
 import '../../../data/graphql/graphql_product.dart';
 import '../../../data/product.dart';
 import '../../../routes/app_pages.dart';
@@ -16,8 +20,13 @@ import '../../../shared/utils/log_util.dart';
 final logTitle = "AddProductController";
 
 class AddProductController extends GetxController {
-  final isAdmin = "";
+  Rx<String> filePath = ''.obs;
+  // Rx<Uint8List?> bytesData = Uint8List(0).obs;
 
+  // late Future<XFile?> imageFile;
+  Rx<XFile> fileUpload = XFile('').obs;
+  // Rx<List<PlatformFile>>? _paths = PlatformFile(name: '',size: 0).obs;
+  // final _paths = List<PlatformFile>;
   Rx<ProductInsert> productInsert = ProductInsert(
     name: '',
     brand: '',
@@ -32,7 +41,6 @@ class AddProductController extends GetxController {
     price: 0,
     dealerPrice1: 0,
   ).obs;
-  // RxString productName = "".obs;
 
   @override
   void onInit() {
@@ -49,9 +57,28 @@ class AddProductController extends GetxController {
     super.onClose();
   }
 
+  // pickFiles() async {
+  //   try {
+  //     _paths = (await FilePicker.platform.pickFiles(
+  //       type: FileType.custom,
+  //       allowMultiple: false,
+  //       onFileLoading: (FilePickerStatus status) => print(status),
+  //       allowedExtensions: ['png', 'jpg', 'jpeg', 'heic'],
+  //     ))
+  //         ?.files;
+  //   } on PlatformException catch (e) {
+  //     Log.loga(logTitle, 'pickFiles PlatformException :: ${e.toString()}');
+  //   } catch (e) {
+  //     Log.loga(logTitle, 'pickFiles error :: ${e.toString()}');
+  //   }
+  //   Log.loga(logTitle, 'pickFiles:: ${_paths!.first.name}');
+  //   bytesData.value = _paths!.first.bytes!;
+  //   update();
+  // }
+
   getProductByCode(String productCode) async {
     debugPrint(productCode);
-    // productCode = "99934BEXM6FD025P";
+    productCode = "99934BEXM6FD025P";
     Get.dialog(
       const Center(
         child: CircularProgressIndicator(),
@@ -59,7 +86,7 @@ class AddProductController extends GetxController {
       barrierDismissible: false,
     );
     try {
-      final userId = await nhostClient.auth.currentUser!.id;
+      final userId = nhostClient.auth.currentUser!.id;
       Log.loga(logTitle, 'getProductByCode before:: ${userId}');
       final res = await apiUtils.get(
         url:
@@ -118,25 +145,56 @@ class AddProductController extends GetxController {
       barrierDismissible: false,
     );
     try {
-      Log.loga(logTitle, 'addProduct before:: ${productInsert.value.toJson()}');
-      final graphqlClient = createNhostGraphQLClient(nhostClient);
-      var result = await graphqlClient.mutate(
-        MutationOptions(
-          document: createProductMutation,
-          variables: {
-            'product': productInsert.value,
-          },
-        ),
-      );
-      if (result.hasException) {
-        Log.loga(logTitle, 'addProduct:: ${result.exception}');
-      }
+      //add product image
+      Log.loga(logTitle, 'addProduct before upload:: ${fileUpload.value.path}');
+      Log.loga(
+          logTitle, 'addProduct before upload:: ${fileUpload.value.mimeType}');
+
+      nhostClient.storage
+          .uploadBytes(
+        fileName: fileUpload.value.name,
+        fileContents: await fileUpload.value.readAsBytes().then((value) {
+          return value.toList();
+        }),
+        // mimeType: fileUpload.value.mimeType.toString(),
+      )
+          .then((value) {
+        Log.loga(logTitle, 'addProduct:: ${value.id}');
+      });
+      // if (imageMetadata.id.isNotEmpty) {
+      //   Log.loga(logTitle, 'addProduct:: ${imageMetadata.id}');
+      // }
+      //     .then((value) {
+      //   Log.loga(logTitle, 'addProduct after upload:: ${value.id}');
+      // });
+
+      //66f2a32b-7ffa-4e01-a979-b939205eba18
+      // final resultUrl =
+      //     await nhostClient.storage.getPresignedUrl(imageMetadata.id);
+      // if (resultUrl.url.isNotEmpty) {
+      //   Log.loga(logTitle, 'addProduct 3 :: ${resultUrl.url.toString()}');
+      // } else {}
+      //add product detail
+      // Log.loga(logTitle, 'addProduct before:: ${productInsert.value.toJson()}');
+      // final graphqlClient = createNhostGraphQLClient(nhostClient);
+      // var result = await graphqlClient.mutate(
+      //   MutationOptions(
+      //     document: createProductMutation,
+      //     variables: {
+      //       'product': productInsert.value,
+      //     },
+      //   ),
+      // );
+      // if (result.hasException) {
+      //   Log.loga(logTitle, 'addProduct:: ${result.exception}');
+      // }
+
       Get.back();
     } catch (e) {
-      // Get.back();
-      Log.loga(logTitle, 'addProduct:: ${productInsert.value}');
+      Get.back();
+      Log.loga(logTitle, 'addProduct error :: ${e.toString()}');
     }
-    Get.toNamed(Routes.HOME);
+    // Get.toNamed(Routes.HOME);
   }
 
   gotoHome() {

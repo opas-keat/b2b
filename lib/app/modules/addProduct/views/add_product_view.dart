@@ -1,8 +1,11 @@
+import 'dart:html';
+
 import 'package:b2b/app/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../controllers/add_product_controller.dart';
 
@@ -12,6 +15,7 @@ class AddProductView extends StatelessWidget {
   final scrollBarController = ScrollController();
 
   final _productCodeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +29,43 @@ class AddProductView extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                SizedBox(
-                  height: 200,
-                  child: Image.network(
-                    'assets/images/undraw_Add_files_re_v09g.png',
-                    fit: BoxFit.cover,
-                  ),
+                InkWell(
+                  // onTap: () async {
+                  //   controller.pickFiles();
+                  //   final result = await FilePicker.platform.pickFiles(
+                  //     allowMultiple: false,
+                  //     withReadStream: true,
+                  //   );
+                  //   // controller.bytesData.value = result?.files.first.bytes;
+                  //   controller.objFile.value = result!.files.first;
+                  //   controller.filePath.value = result.files.first.name;
+                  //   print(controller.filePath.value);
+                  // },
+                  onTap: () async {
+                    final ImagePicker picker = ImagePicker();
+                    final XFile? pickedFile = await picker.pickImage(
+                      source: ImageSource.gallery,
+                      maxHeight: 640,
+                      maxWidth: 480,
+                    );
+                    if (pickedFile != null) {
+                      controller.fileUpload.value = pickedFile;
+                      controller.update();
+                    }
+                  },
+                  child: Obx(() => SizedBox(
+                        height: 200,
+                        child: (controller.fileUpload.value.path.isNotEmpty)
+                            ? Image.network(
+                                controller.fileUpload.value.path,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                'assets/images/undraw_Add_files_re_v09g.png',
+                                fit: BoxFit.cover,
+                              ),
+                      )),
                 ),
                 const SizedBox(height: defaultPadding),
                 SizedBox(

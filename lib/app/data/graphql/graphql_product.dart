@@ -9,7 +9,17 @@ mutation CreateProductsMutation($product: products_insert_input!) {
 ''');
 
 final productsQuery = gql(r'''
-query ProductsQuery {
+query productsQuery($limit: Int!, $offset: Int!) {
+  products(order_by: {created_at: desc_nulls_first}, limit: $limit, offset: $offset) {
+    id
+    name
+    price
+  }
+}
+''');
+
+final productDetailQuery = gql(r'''
+query productDetailQuery {
   products(order_by: {created_at: desc_nulls_first}) {
     id
     brand

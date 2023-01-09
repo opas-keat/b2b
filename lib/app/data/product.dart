@@ -457,6 +457,50 @@ class ProductInsert {
       };
 }
 
+ProductsResponseQuery productsResponseQueryFromJson(String str) =>
+    ProductsResponseQuery.fromJson(json.decode(str));
+
+String productsResponseQueryToJson(ProductsResponseQuery data) =>
+    json.encode(data.toJson());
+
+class ProductsResponseQuery {
+  ProductsResponseQuery({
+    required this.id,
+    required this.name,
+    required this.price,
+  });
+
+  String id;
+  String name;
+  int price;
+
+  factory ProductsResponseQuery.fromJson(Map<String, dynamic> json) =>
+      ProductsResponseQuery(
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "price": price,
+      };
+
+  factory ProductsResponseQuery.fromMap(Map<String, dynamic> json) =>
+      ProductsResponseQuery(
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "name": name,
+        "price": price,
+      };
+}
+
 BrandAndModelResponseQuery brandAndModelResponseQueryFromJson(String str) =>
     BrandAndModelResponseQuery.fromJson(json.decode(str));
 
