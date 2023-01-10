@@ -22,12 +22,7 @@ final logTitle = "AddProductController";
 
 class AddProductController extends GetxController {
   Rx<String> filePath = ''.obs;
-  // Rx<Uint8List?> bytesData = Uint8List(0).obs;
-
-  // late Future<XFile?> imageFile;
   Rx<XFile> fileUpload = XFile('').obs;
-  // Rx<List<PlatformFile>>? _paths = PlatformFile(name: '',size: 0).obs;
-  // final _paths = List<PlatformFile>;
   Rx<ProductInsert> productInsert = ProductInsert(
     name: '',
     brand: '',
@@ -45,7 +40,7 @@ class AddProductController extends GetxController {
 
   @override
   void onInit() {
-    // getImageUrl();
+    // setInitProduct();
     super.onInit();
   }
 
@@ -59,24 +54,24 @@ class AddProductController extends GetxController {
     super.onClose();
   }
 
-  // pickFiles() async {
-  //   try {
-  //     _paths = (await FilePicker.platform.pickFiles(
-  //       type: FileType.custom,
-  //       allowMultiple: false,
-  //       onFileLoading: (FilePickerStatus status) => print(status),
-  //       allowedExtensions: ['png', 'jpg', 'jpeg', 'heic'],
-  //     ))
-  //         ?.files;
-  //   } on PlatformException catch (e) {
-  //     Log.loga(logTitle, 'pickFiles PlatformException :: ${e.toString()}');
-  //   } catch (e) {
-  //     Log.loga(logTitle, 'pickFiles error :: ${e.toString()}');
-  //   }
-  //   Log.loga(logTitle, 'pickFiles:: ${_paths!.first.name}');
-  //   bytesData.value = _paths!.first.bytes!;
-  //   update();
-  // }
+  setInitProduct() {
+    productInsert.value = ProductInsert(
+      name: '',
+      brand: '',
+      model: '',
+      code: '',
+      color: '',
+      matSize: '',
+      width: '',
+      treadWare: '',
+      offset: '',
+      pitchCircleCode: '',
+      price: 0,
+      dealerPrice1: 0,
+    );
+    update();
+  }
+
   getImageUrl() async {
     final resultUrl = await nhostClient.storage
         .getPresignedUrl('4011f327-12d8-4b52-ad5d-58ee91b58a92');
@@ -99,7 +94,7 @@ class AddProductController extends GetxController {
 
   getProductByCode(String productCode) async {
     debugPrint(productCode);
-    productCode = "99934BEXM6FD025P";
+    // productCode = "99934BEXM6FD025P";
     Get.dialog(
       const Center(
         child: CircularProgressIndicator(),
@@ -208,9 +203,10 @@ class AddProductController extends GetxController {
         Log.loga(logTitle, 'addProduct:: ${resultProductFile.exception}');
       }
       Log.loga(logTitle, 'addProduct id:: ${resultProductFile.data!}');
-
+      setInitProduct();
       Get.back();
     } catch (e) {
+      setInitProduct();
       Get.back();
       Log.loga(logTitle, 'addProduct error :: ${e.toString()}');
     }
@@ -219,5 +215,8 @@ class AddProductController extends GetxController {
 
   gotoHome() {
     Get.offNamed(Routes.HOME);
+    // final controller = Get.put(ProductController());
+    // controller.productsList();
+    // Get.back();
   }
 }

@@ -30,17 +30,6 @@ class AddProductView extends StatelessWidget {
             child: Column(
               children: [
                 InkWell(
-                  // onTap: () async {
-                  //   controller.pickFiles();
-                  //   final result = await FilePicker.platform.pickFiles(
-                  //     allowMultiple: false,
-                  //     withReadStream: true,
-                  //   );
-                  //   // controller.bytesData.value = result?.files.first.bytes;
-                  //   controller.objFile.value = result!.files.first;
-                  //   controller.filePath.value = result.files.first.name;
-                  //   print(controller.filePath.value);
-                  // },
                   onTap: () async {
                     final ImagePicker picker = ImagePicker();
                     final XFile? pickedFile = await picker.pickImage(

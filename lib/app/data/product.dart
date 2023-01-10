@@ -457,49 +457,49 @@ class ProductInsert {
       };
 }
 
-ProductsResponseQuery productsResponseQueryFromJson(String str) =>
-    ProductsResponseQuery.fromJson(json.decode(str));
+// ProductsResponseQuery productsResponseQueryFromJson(String str) =>
+//     ProductsResponseQuery.fromJson(json.decode(str));
 
-String productsResponseQueryToJson(ProductsResponseQuery data) =>
-    json.encode(data.toJson());
+// String productsResponseQueryToJson(ProductsResponseQuery data) =>
+//     json.encode(data.toJson());
 
-class ProductsResponseQuery {
-  ProductsResponseQuery({
-    required this.id,
-    required this.name,
-    required this.price,
-  });
+// class ProductsResponseQuery {
+//   ProductsResponseQuery({
+//     required this.id,
+//     required this.name,
+//     required this.price,
+//   });
 
-  String id;
-  String name;
-  int price;
+//   String id;
+//   String name;
+//   int price;
 
-  factory ProductsResponseQuery.fromJson(Map<String, dynamic> json) =>
-      ProductsResponseQuery(
-        id: json["id"],
-        name: json["name"],
-        price: json["price"],
-      );
+//   factory ProductsResponseQuery.fromJson(Map<String, dynamic> json) =>
+//       ProductsResponseQuery(
+//         id: json["id"],
+//         name: json["name"],
+//         price: json["price"],
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "price": price,
-      };
+//   Map<String, dynamic> toJson() => {
+//         "id": id,
+//         "name": name,
+//         "price": price,
+//       };
 
-  factory ProductsResponseQuery.fromMap(Map<String, dynamic> json) =>
-      ProductsResponseQuery(
-        id: json["id"],
-        name: json["name"],
-        price: json["price"],
-      );
+//   factory ProductsResponseQuery.fromMap(Map<String, dynamic> json) =>
+//       ProductsResponseQuery(
+//         id: json["id"],
+//         name: json["name"],
+//         price: json["price"],
+//       );
 
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "price": price,
-      };
-}
+//   Map<String, dynamic> toMap() => {
+//         "id": id,
+//         "name": name,
+//         "price": price,
+//       };
+// }
 
 BrandAndModelResponseQuery brandAndModelResponseQueryFromJson(String str) =>
     BrandAndModelResponseQuery.fromJson(json.decode(str));
@@ -541,5 +541,57 @@ class BrandAndModelResponseQuery {
         "id": id,
         "brand": brand,
         "model": model,
+      };
+}
+
+ProductsResponseQuery productsSubscriptionFromMap(String str) =>
+    ProductsResponseQuery.fromMap(json.decode(str));
+
+String productsSubscriptionToMap(ProductsResponseQuery data) =>
+    json.encode(data.toMap());
+
+class ProductsResponseQuery {
+  ProductsResponseQuery({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.productFiles,
+  });
+
+  String id;
+  String name;
+  int price;
+  List<ProductFile> productFiles;
+
+  factory ProductsResponseQuery.fromMap(Map<String, dynamic> json) =>
+      ProductsResponseQuery(
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+        productFiles: List<ProductFile>.from(
+            json["product_files"].map((x) => ProductFile.fromMap(x))),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "name": name,
+        "price": price,
+        "product_files": List<dynamic>.from(productFiles.map((x) => x.toMap())),
+      };
+}
+
+class ProductFile {
+  ProductFile({
+    required this.fileId,
+  });
+
+  String fileId;
+
+  factory ProductFile.fromMap(Map<String, dynamic> json) => ProductFile(
+        fileId: json["file_id"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "file_id": fileId,
       };
 }

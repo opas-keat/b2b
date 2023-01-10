@@ -13,6 +13,7 @@ final logTitle = "ProductController";
 class ProductController extends GetxController {
   RxString currentCategory = "1".obs;
   final productsList = <ProductsResponseQuery>[].obs;
+  final imageUrl = <String>[].obs;
 
   @override
   void onInit() {
@@ -30,7 +31,16 @@ class ProductController extends GetxController {
     super.onClose();
   }
 
+  getImageUrl(String fileId) async {
+    final resultUrl = await nhostClient.storage.getPresignedUrl(fileId);
+    // if (resultUrl.url.isNotEmpty) {
+    //   Log.loga(logTitle, 'getImageUrl url :: ${resultUrl.url.toString()}');
+    // }
+    return resultUrl.url.toString();
+  }
+
   listProducts() async {
+    Log.loga(logTitle, 'listProducts::');
     try {
       final graphqlClient = createNhostGraphQLClient(nhostClient);
       var result = await graphqlClient.query(
@@ -40,30 +50,23 @@ class ProductController extends GetxController {
         ),
       );
       if (result.hasException) {
-        Log.loga(logTitle, 'listBrandAndModel:: ${result.exception}');
+        Log.loga(logTitle, 'listProducts:: ${result.exception}');
       }
-      final products = (result.data!['products'] as List)
+      productsList.value = (result.data!['products'] as List)
           .map((e) => ProductsResponseQuery.fromMap(e))
           .toList();
-      for (var element in products) {
-        productsList.add(ProductsResponseQuery(
-          id: element.id,
-          name: element.name,
-          price: element.price,
-        ));
+      for (var i = 0; i < productsList.value.length; i++) {
+        final u =
+            await getImageUrl(productsList.value[i].productFiles.first.fileId);
+        Log.loga(logTitle, 'listProducts::$u');
+        imageUrl.value.add(
+          u,
+        );
       }
-      // bams.forEach((element) {
-      //   Log.loga(logTitle, 'listBrandAndModel:: ${element.id}');
-      //   Log.loga(logTitle, 'listBrandAndModel:: ${element.brand}');
-      //   Log.loga(logTitle, 'listBrandAndModel:: ${element.model}');
-      //   bamsList.value.add(BrandAndModel(
-      //     brand: element.brand,
-      //     model: element.model,
-      //   ));
-      // });
+      // Log.loga(logTitle, 'listProducts after:: ${productsList.value}');
       update();
     } catch (e) {
-      Log.loga(logTitle, 'listBrandAndModel:: $e');
+      Log.loga(logTitle, 'listProducts:: $e');
     }
   }
 }

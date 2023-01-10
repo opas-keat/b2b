@@ -14,6 +14,9 @@ query productsQuery($limit: Int!, $offset: Int!) {
     id
     name
     price
+    product_files {
+      file_id
+    }
   }
 }
 ''');
@@ -46,6 +49,19 @@ query listBrandAndModelQuery($distinct_on: [products_select_column!] = [brand,mo
     id
     brand
     model
+  }
+}
+''');
+
+final productsSubscription = gql(r'''
+subscription ProductsSubscription {
+  products(order_by: {created_at: desc_nulls_first}) {
+    id
+    name
+    price
+    product_files {
+      file_id
+    }
   }
 }
 ''');
