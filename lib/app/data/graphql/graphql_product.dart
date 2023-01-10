@@ -21,6 +21,19 @@ query productsQuery($limit: Int!, $offset: Int!) {
 }
 ''');
 
+final productsNoLimitQuery = gql(r'''
+query productsQuery {
+  products(order_by: {created_at: desc_nulls_first}) {
+    id
+    name
+    price
+    product_files {
+      file_id
+    }
+  }
+}
+''');
+
 final productDetailQuery = gql(r'''
 query productDetailQuery {
   products(order_by: {created_at: desc_nulls_first}) {

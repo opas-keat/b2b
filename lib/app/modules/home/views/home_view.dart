@@ -12,7 +12,7 @@ import '../../product/views/product_view.dart';
 import '../../profile/views/profile_view.dart';
 import '../controllers/home_controller.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

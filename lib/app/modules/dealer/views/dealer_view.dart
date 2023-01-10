@@ -58,11 +58,11 @@ class DealerView extends StatelessWidget {
               }
 
               //show data
-              print(result);
+              // print(result);
               final dealers = (result.data!['dealers'] as List)
                   .map((json) => DealerResponseSubscription.fromJson(json))
                   .toList();
-              print("----" + dealers.length.toString());
+              // print("----" + dealers.length.toString());
               if (dealers.isNotEmpty) {
                 return Expanded(
                   child: Card(

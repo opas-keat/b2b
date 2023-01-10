@@ -72,25 +72,25 @@ class AddProductController extends GetxController {
     update();
   }
 
-  getImageUrl() async {
-    final resultUrl = await nhostClient.storage
-        .getPresignedUrl('4011f327-12d8-4b52-ad5d-58ee91b58a92');
-    if (resultUrl.url.isNotEmpty) {
-      Log.loga(logTitle, 'addProduct url :: ${resultUrl.url.toString()}');
-    }
-  }
+  // getImageUrl() async {
+  //   final resultUrl = await nhostClient.storage
+  //       .getPresignedUrl('4011f327-12d8-4b52-ad5d-58ee91b58a92');
+  //   if (resultUrl.url.isNotEmpty) {
+  //     Log.loga(logTitle, 'addProduct url :: ${resultUrl.url.toString()}');
+  //   }
+  // }
 
-  downloadFile(String fileId) async {
-    final scaledImage = await nhostClient.storage.downloadImage(
-      fileId,
-      transform: ImageTransform(
-        quality: 70,
-        cornerRadius: ImageCornerRadius.full(),
-      ),
-    );
-    Log.loga(logTitle,
-        'addProduct downloadFile size:: ${scaledImage.contentLength}');
-  }
+  // downloadFile(String fileId) async {
+  //   final scaledImage = await nhostClient.storage.downloadImage(
+  //     fileId,
+  //     transform: ImageTransform(
+  //       quality: 70,
+  //       cornerRadius: ImageCornerRadius.full(),
+  //     ),
+  //   );
+  //   Log.loga(logTitle,
+  //       'addProduct downloadFile size:: ${scaledImage.contentLength}');
+  // }
 
   getProductByCode(String productCode) async {
     debugPrint(productCode);

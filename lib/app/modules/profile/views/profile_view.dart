@@ -222,3 +222,18 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 }
+
+// Future<Widget> getImageUrl(String fileId) async {
+//   print(fileId);
+//   if (fileId.isNotEmpty) {
+//     final resultUrl = await nhostClient.storage.getPresignedUrl(fileId);
+//     return SizedBox(
+//       width: 300,
+//       child: Image.network(
+//         resultUrl.url,
+//         fit: BoxFit.cover,
+//       ),
+//     );
+//   }
+//   return CircularProgressIndicator();
+// }
