@@ -12,6 +12,7 @@ import '../../../api/api.dart';
 import '../../../api/api_end_points.dart';
 import '../../../api/api_utils.dart';
 import '../../../data/graphql/graphql_product.dart';
+import '../../../data/graphql/graphql_product_file.dart';
 import '../../../data/product.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shared/constants.dart';
@@ -44,6 +45,7 @@ class AddProductController extends GetxController {
 
   @override
   void onInit() {
+    // getImageUrl();
     super.onInit();
   }
 
@@ -75,6 +77,25 @@ class AddProductController extends GetxController {
   //   bytesData.value = _paths!.first.bytes!;
   //   update();
   // }
+  getImageUrl() async {
+    final resultUrl = await nhostClient.storage
+        .getPresignedUrl('4011f327-12d8-4b52-ad5d-58ee91b58a92');
+    if (resultUrl.url.isNotEmpty) {
+      Log.loga(logTitle, 'addProduct url :: ${resultUrl.url.toString()}');
+    }
+  }
+
+  downloadFile(String fileId) async {
+    final scaledImage = await nhostClient.storage.downloadImage(
+      fileId,
+      transform: ImageTransform(
+        quality: 70,
+        cornerRadius: ImageCornerRadius.full(),
+      ),
+    );
+    Log.loga(logTitle,
+        'addProduct downloadFile size:: ${scaledImage.contentLength}');
+  }
 
   getProductByCode(String productCode) async {
     debugPrint(productCode);
@@ -146,48 +167,47 @@ class AddProductController extends GetxController {
     );
     try {
       //add product image
-      Log.loga(logTitle, 'addProduct before upload:: ${fileUpload.value.path}');
-      Log.loga(
-          logTitle, 'addProduct before upload:: ${fileUpload.value.mimeType}');
-
-      nhostClient.storage
-          .uploadBytes(
+      final fileMeta = await nhostClient.storage.uploadBytes(
         fileName: fileUpload.value.name,
         fileContents: await fileUpload.value.readAsBytes().then((value) {
           return value.toList();
         }),
-        // mimeType: fileUpload.value.mimeType.toString(),
-      )
-          .then((value) {
-        Log.loga(logTitle, 'addProduct:: ${value.id}');
-      });
-      // if (imageMetadata.id.isNotEmpty) {
-      //   Log.loga(logTitle, 'addProduct:: ${imageMetadata.id}');
-      // }
-      //     .then((value) {
-      //   Log.loga(logTitle, 'addProduct after upload:: ${value.id}');
-      // });
+      );
+      Log.loga(logTitle, 'addProduct file id:: ${fileMeta.id}');
 
-      //66f2a32b-7ffa-4e01-a979-b939205eba18
-      // final resultUrl =
-      //     await nhostClient.storage.getPresignedUrl(imageMetadata.id);
-      // if (resultUrl.url.isNotEmpty) {
-      //   Log.loga(logTitle, 'addProduct 3 :: ${resultUrl.url.toString()}');
-      // } else {}
-      //add product detail
-      // Log.loga(logTitle, 'addProduct before:: ${productInsert.value.toJson()}');
-      // final graphqlClient = createNhostGraphQLClient(nhostClient);
-      // var result = await graphqlClient.mutate(
-      //   MutationOptions(
-      //     document: createProductMutation,
-      //     variables: {
-      //       'product': productInsert.value,
-      //     },
-      //   ),
-      // );
-      // if (result.hasException) {
-      //   Log.loga(logTitle, 'addProduct:: ${result.exception}');
-      // }
+      Log.loga(logTitle, 'addProduct before:: ${productInsert.value.toJson()}');
+      // connect graphqlClient
+      final graphqlClient = createNhostGraphQLClient(nhostClient);
+      // add product detail
+      final resultProductDetail = await graphqlClient.mutate(
+        MutationOptions(
+          document: createProductMutation,
+          variables: {
+            'product': productInsert.value,
+          },
+        ),
+      );
+      if (resultProductDetail.hasException) {
+        Log.loga(logTitle, 'addProduct:: ${resultProductDetail.exception}');
+      }
+
+      final products = resultProductDetail.data!['insert_products_one'];
+      final productId = products['id'];
+
+      // add product file
+      final resultProductFile = await graphqlClient.mutate(
+        MutationOptions(
+          document: createProductFileMutation,
+          variables: {
+            'product_id': productId,
+            'file_id': fileMeta.id,
+          },
+        ),
+      );
+      if (resultProductFile.hasException) {
+        Log.loga(logTitle, 'addProduct:: ${resultProductFile.exception}');
+      }
+      Log.loga(logTitle, 'addProduct id:: ${resultProductFile.data!}');
 
       Get.back();
     } catch (e) {

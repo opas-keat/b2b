@@ -42,6 +42,7 @@ class AppPages {
       name: _Paths.ADD_PRODUCT,
       page: () => AddProductView(),
       binding: AddProductBinding(),
+      middlewares: [RouteGuard()],
     ),
     GetPage(
       name: _Paths.CART,

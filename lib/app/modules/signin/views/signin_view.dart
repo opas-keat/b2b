@@ -109,16 +109,17 @@ class SigninView extends StatelessWidget {
                                         ),
                                         barrierDismissible: false,
                                       );
-                                      final result = nhostClient.auth
-                                          .signInEmailPassword(
-                                              email: _textEmail.text,
-                                              password: _textPassword.text);
-                                      Get.back();
+                                      // final result = nhostClient.auth
+                                      //     .signInEmailPassword(
+                                      //         email: _textEmail.text,
+                                      //         password: _textPassword.text);
+
                                       try {
                                         await nhostClient.auth
                                             .signInEmailPassword(
                                                 email: _textEmail.text,
                                                 password: _textPassword.text);
+                                        Get.back();
                                         Get.offAllNamed(Routes.HOME);
                                       } on ApiException {
                                         Get.snackbar(
