@@ -306,7 +306,6 @@ class MenuWidget extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   controller.addProduct();
-                                  // controller.loadMore();
                                 },
                                 child: Padding(
                                   padding:
@@ -328,8 +327,6 @@ class MenuWidget extends StatelessWidget {
                               width: 200,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  // controller.gotoHome();
-                                  controller.listProducts();
                                   Get.back();
                                 },
                                 child: Padding(

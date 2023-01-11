@@ -21,7 +21,7 @@ class ProductController extends GetxController {
   final productList = <ProductsResponseQuery>[].obs;
   final imageUrl = <String>[].obs;
   final offset = 0.obs;
-  final limit = 2.obs;
+  final limit = 20.obs;
 
   Rx<String> filePath = ''.obs;
   Rx<XFile> fileUpload = XFile('').obs;
@@ -235,6 +235,11 @@ class ProductController extends GetxController {
         Log.loga(logTitle, 'addProduct:: ${resultProductFile.exception}');
       }
       Log.loga(logTitle, 'addProduct id:: ${resultProductFile.data!}');
+      productList.value.clear();
+      imageUrl.value.clear();
+      offset.value = 0;
+      update();
+      listProducts();
       setInitProduct();
       Get.back();
     } catch (e) {
