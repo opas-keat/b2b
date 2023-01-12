@@ -17,6 +17,9 @@ import '../../../shared/utils/log_util.dart';
 final logTitle = "ProductController";
 
 class ProductController extends GetxController {
+  RxBool isLoading = true.obs;
+  RxBool isShowAddProduct = false.obs;
+
   final productsResponseQuery = <ProductsResponseQuery>[].obs;
   final productList = <ProductsResponseQuery>[].obs;
   final imageUrl = <String>[].obs;
@@ -54,6 +57,21 @@ class ProductController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  showAddProduct() {
+    productList.clear();
+    isLoading.value = false;
+    isShowAddProduct.value = true;
+    update();
+  }
+
+  hideAddProduct() {
+    isLoading.value = true;
+    isShowAddProduct.value = false;
+    productList.clear();
+    update();
+    listProducts();
   }
 
   getImageUrl(String fileId) async {
@@ -95,8 +113,10 @@ class ProductController extends GetxController {
       }
       // Log.loga(logTitle, 'listProducts after:: ${productsList.value}');
       update();
+      isLoading.value = false;
     } catch (e) {
       Log.loga(logTitle, 'listProducts:: $e');
+      isLoading.value = false;
     }
   }
 
@@ -185,7 +205,7 @@ class ProductController extends GetxController {
     }
   }
 
-  addProduct() async {
+  saveProduct() async {
     Get.dialog(
       const Center(
         child: CircularProgressIndicator(),

@@ -51,7 +51,7 @@ class ProductOldController extends GetxController {
 
   @override
   void onReady() {
-    listBrandAndModel();
+    // listBrandAndModel();
     super.onReady();
   }
 
@@ -67,7 +67,6 @@ class ProductOldController extends GetxController {
   listProducts() async {
     try {
       final graphqlClient = createNhostGraphQLClient(nhostClient);
-      
     } catch (e) {
       Log.loga(logTitle, 'listProducts:: $e');
     }
@@ -91,9 +90,9 @@ class ProductOldController extends GetxController {
           .map((e) => BrandAndModelResponseQuery.fromMap(e))
           .toList();
       bams.forEach((element) {
-        Log.loga(logTitle, 'listBrandAndModel:: ${element.id}');
-        Log.loga(logTitle, 'listBrandAndModel:: ${element.brand}');
-        Log.loga(logTitle, 'listBrandAndModel:: ${element.model}');
+        // Log.loga(logTitle, 'listBrandAndModel:: ${element.id}');
+        // Log.loga(logTitle, 'listBrandAndModel:: ${element.brand}');
+        // Log.loga(logTitle, 'listBrandAndModel:: ${element.model}');
         bamsList.value.add(BrandAndModel(
           brand: element.brand,
           model: element.model,
