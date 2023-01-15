@@ -8,15 +8,16 @@ import 'package:get/get.dart';
 import '../../../api/api.dart';
 import '../../../api/api_end_points.dart';
 import '../../../api/api_utils.dart';
+import '../../../api/services/logs_service.dart';
 import '../../../data/graphql/graphql_product.dart';
 import '../../../data/graphql/graphql_product_file.dart';
+import '../../../data/models/logs_service_model.dart';
 import '../../../data/product.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/utils/log_util.dart';
 
-final logTitle = "ProductController";
-
 class ProductController extends GetxController {
+  final logTitle = "ProductController";
   RxBool isLoading = true.obs;
   RxBool isShowAddProduct = false.obs;
 
@@ -225,6 +226,7 @@ class ProductController extends GetxController {
       Log.loga(logTitle, 'addProduct before:: ${productInsert.value.toJson()}');
       // connect graphqlClient
       final graphqlClient = createNhostGraphQLClient(nhostClient);
+
       // add product detail
       final resultProductDetail = await graphqlClient.mutate(
         MutationOptions(
@@ -258,6 +260,14 @@ class ProductController extends GetxController {
       productList.value.clear();
       imageUrl.value.clear();
       offset.value = 0;
+
+      // create log
+      final logsCreate = LogsCreateRequestModel(
+          createdBy: nhostClient.auth.currentUser!.id,
+          detail:
+              'admin : $logActionAddProduct : รหัสสินค้า ${productInsert.value.code}');
+      Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
+      final resultCreateLog = await LogsService().createLogs(logsCreate);
       update();
       listProducts();
       setInitProduct();

@@ -3,7 +3,9 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:get/get.dart';
 
+import '../../../api/services/logs_service.dart';
 import '../../../data/graphql/graphql_dealer.dart';
+import '../../../data/models/logs_service_model.dart';
 import '../../../shared/constants.dart';
 import '../../../data/dealer.dart';
 import '../../../shared/custom_text.dart';
@@ -108,7 +110,14 @@ class DealerView extends StatelessWidget {
                                             color: Colors.red,
                                             weight: FontWeight.bold,
                                           ),
-                                          onPressed: () {
+                                          onPressed: () async {
+                                            Get.dialog(
+                                              const Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
+                                              barrierDismissible: false,
+                                            );
                                             runMutation({
                                               "id": dealers[index].id,
                                               "disabled": false,
@@ -116,7 +125,17 @@ class DealerView extends StatelessWidget {
                                               "dealerCode":
                                                   "{\"dealerCode\": \"${dealers[index].dealerCode}\"}",
                                             });
-                                            // controller.updateStatus();
+                                            // create log
+                                            final logsCreate =
+                                                LogsCreateRequestModel(
+                                                    createdBy: nhostClient
+                                                        .auth.currentUser!.id,
+                                                    detail:
+                                                        'admin : $logActionEnableDealer : ${dealers[index].name}');
+                                            final resultCreateLog =
+                                                await LogsService()
+                                                    .createLogs(logsCreate);
+                                            Get.back();
                                           })
                                       : TextButton(
                                           child: const CustomText(
@@ -125,7 +144,14 @@ class DealerView extends StatelessWidget {
                                             color: Colors.green,
                                             weight: FontWeight.bold,
                                           ),
-                                          onPressed: () {
+                                          onPressed: () async {
+                                            Get.dialog(
+                                              const Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
+                                              barrierDismissible: false,
+                                            );
                                             runMutation({
                                               "id": dealers[index].id,
                                               "disabled": true,
@@ -133,6 +159,17 @@ class DealerView extends StatelessWidget {
                                               "dealerCode":
                                                   "{\"dealerCode\": \"${dealers[index].dealerCode}\"}",
                                             });
+                                            // create log
+                                            final logsCreate =
+                                                LogsCreateRequestModel(
+                                                    createdBy: nhostClient
+                                                        .auth.currentUser!.id,
+                                                    detail:
+                                                        'admin : $logActionDisableDealer : ${dealers[index].name}');
+                                            final resultCreateLog =
+                                                await LogsService()
+                                                    .createLogs(logsCreate);
+                                            Get.back();
                                           }),
                                 );
                               },

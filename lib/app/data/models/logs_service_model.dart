@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-class LogsServiceModel {
-  LogsServiceModel({
+class LogsListServiceResponse {
+  LogsListServiceResponse({
     required this.statusCode,
     required this.code,
     required this.message,
@@ -13,8 +13,8 @@ class LogsServiceModel {
   String message;
   LogsListResponse data;
 
-  factory LogsServiceModel.fromMap(Map<String, dynamic> json) =>
-      LogsServiceModel(
+  factory LogsListServiceResponse.fromMap(Map<String, dynamic> json) =>
+      LogsListServiceResponse(
         statusCode: json["status_code"],
         code: json["code"],
         message: json["message"],
@@ -26,6 +26,21 @@ class LogsServiceModel {
         "code": code,
         "message": message,
         "data": data.toMap(),
+      };
+
+  factory LogsListServiceResponse.fromJson(Map<String, dynamic> json) =>
+      LogsListServiceResponse(
+        statusCode: json["status_code"],
+        code: json["code"],
+        message: json["message"],
+        data: LogsListResponse.fromJson(json["data"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "status_code": statusCode,
+        "code": code,
+        "message": message,
+        "data": data.toJson(),
       };
 }
 
@@ -48,6 +63,18 @@ class LogsListResponse {
         "rows": List<dynamic>.from(rows.map((x) => x.toMap())),
         "total_count": totalCount,
       };
+
+  factory LogsListResponse.fromJson(Map<String, dynamic> json) =>
+      LogsListResponse(
+        rows:
+            List<LogsList>.from(json["rows"].map((x) => LogsList.fromJson(x))),
+        totalCount: json["total_count"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "rows": List<dynamic>.from(rows.map((x) => x.toJson())),
+        "total_count": totalCount,
+      };
 }
 
 class LogsList {
@@ -60,20 +87,34 @@ class LogsList {
 
   String id;
   String detail;
-  DateTime createdAt;
+  String createdAt;
   String createdBy;
 
   factory LogsList.fromMap(Map<String, dynamic> json) => LogsList(
         id: json["id"],
         detail: json["detail"],
-        createdAt: DateTime.parse(json["created_at"]),
+        createdAt: json["created_at"],
         createdBy: json["created_by"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "detail": detail,
-        "created_at": createdAt.toIso8601String(),
+        "created_at": createdAt,
+        "created_by": createdBy,
+      };
+
+  factory LogsList.fromJson(Map<String, dynamic> json) => LogsList(
+        id: json["id"],
+        detail: json["detail"],
+        createdAt: json["created_at"],
+        createdBy: json["created_by"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "detail": detail,
+        "created_at": createdAt,
         "created_by": createdBy,
       };
 }
@@ -154,21 +195,21 @@ class LogsCreateResponse {
 
   String id;
   String detail;
-  DateTime createdAt;
+  String createdAt;
   String createdBy;
 
   factory LogsCreateResponse.fromJson(Map<String, dynamic> json) =>
       LogsCreateResponse(
         id: json["id"],
         detail: json["detail"],
-        createdAt: DateTime.parse(json["created_at"]),
+        createdAt: json["created_at"],
         createdBy: json["created_by"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "detail": detail,
-        "created_at": createdAt.toIso8601String(),
+        "created_at": createdAt,
         "created_by": createdBy,
       };
 
@@ -176,14 +217,56 @@ class LogsCreateResponse {
       LogsCreateResponse(
         id: json["id"],
         detail: json["detail"],
-        createdAt: DateTime.parse(json["created_at"]),
+        createdAt: json["created_at"],
         createdBy: json["created_by"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "detail": detail,
-        "created_at": createdAt.toIso8601String(),
+        "created_at": createdAt,
+        "created_by": createdBy,
+      };
+}
+
+class LogsListRequest {
+  LogsListRequest({
+    required this.criteria,
+    required this.limit,
+    required this.offset,
+  });
+
+  LogsListRequestCriteria criteria;
+  int limit;
+  int offset;
+
+  factory LogsListRequest.fromJson(Map<String, dynamic> json) =>
+      LogsListRequest(
+        criteria: LogsListRequestCriteria.fromJson(json["criteria"]),
+        limit: json["limit"],
+        offset: json["offset"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "criteria": criteria.toJson(),
+        "limit": limit,
+        "offset": offset,
+      };
+}
+
+class LogsListRequestCriteria {
+  LogsListRequestCriteria({
+    required this.createdBy,
+  });
+
+  String createdBy;
+
+  factory LogsListRequestCriteria.fromJson(Map<String, dynamic> json) =>
+      LogsListRequestCriteria(
+        createdBy: json["created_by"],
+      );
+
+  Map<String, dynamic> toJson() => {
         "created_by": createdBy,
       };
 }
