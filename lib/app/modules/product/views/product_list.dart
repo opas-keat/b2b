@@ -29,7 +29,9 @@ class ProductListWidget extends StatelessWidget {
             builder: (ctx, index) {
               return InkWell(
                 hoverColor: Colors.grey.shade300,
-                onTap: () {},
+                onTap: () {
+                  
+                },
                 child: Padding(
                   padding: EdgeInsets.all(defaultPadding / 2),
                   child: Column(

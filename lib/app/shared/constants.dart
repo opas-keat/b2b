@@ -22,16 +22,25 @@ final Map<String, String> optionPaymentChannel = {
   '6': 'เครดิต 90 วัน',
 };
 
-const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/";
-const IMAGE_SIZE_ORIGINAL = "original";
-const BACKDROP_SIZE_W300 = "w300";
-const BACKDROP_SIZE_w780 = "w780";
-const BACKDROP_SIZE_w1280 = "w1280";
-const POSTER_SIZE_W92 = "w92";
-const POSTER_SIZE_W154 = "w154";
-const POSTER_SIZE_W185 = "w185";
-const POSTER_SIZE_W342 = "w342";
-const POSTER_SIZE_W500 = "w500";
-const POSTER_SIZE_W780 = "w780";
-const INVALID_EMAIL_OR_PASSWORD = 'อีเมลหรือรหัสผ่าน ไม่ถูกต้อง';
-const PRODUCT_NOT_FOUND = '';
+const logActionLogin = "เข้าสู่ระบบ";
+const logActionAddProduct = "เพิ่มสินค้า";
+const logActionEditProduct = "แก้ไขสินค้า";
+const logActionDelete = "ลบสินค้า";
+const logActionDisableDealer = "ปิดร้านค้า";
+const logActionEnableDealer = "เปิดร้านค้า";
+
+// const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/";
+// const IMAGE_SIZE_ORIGINAL = "original";
+// const BACKDROP_SIZE_W300 = "w300";
+// const BACKDROP_SIZE_w780 = "w780";
+// const BACKDROP_SIZE_w1280 = "w1280";
+// const POSTER_SIZE_W92 = "w92";
+// const POSTER_SIZE_W154 = "w154";
+// const POSTER_SIZE_W185 = "w185";
+// const POSTER_SIZE_W342 = "w342";
+// const POSTER_SIZE_W500 = "w500";
+// const POSTER_SIZE_W780 = "w780";
+// const INVALID_EMAIL_OR_PASSWORD = 'อีเมลหรือรหัสผ่าน ไม่ถูกต้อง';
+// const PRODUCT_NOT_FOUND = '';
+
+

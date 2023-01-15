@@ -98,7 +98,7 @@ class ProductController extends GetxController {
       if (result.hasException) {
         Log.loga(logTitle, 'listProducts:: ${result.exception}');
       }
-      Log.loga(logTitle, 'listProducts:: ${result.data!}');
+      // Log.loga(logTitle, 'listProducts:: ${result.data!}');
       productsResponseQuery.value = (result.data!['products'] as List)
           .map((e) => ProductsResponseQuery.fromMap(e))
           .toList();
