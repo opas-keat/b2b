@@ -30,7 +30,7 @@ class LoggingView extends StatelessWidget {
                 );
               }
               if (controller.logsList.value.isNotEmpty) {
-                List<LogsCreateResponse> logsList = controller.logsList.value;
+                List<LogsList> logsList = controller.logsList.value;
                 return ListView.builder(
                   itemCount: logsList.length,
                   shrinkWrap: true,

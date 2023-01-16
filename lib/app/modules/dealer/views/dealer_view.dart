@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
 
 import 'package:get/get.dart';
 
 import '../../../api/services/logs_service.dart';
 import '../../../data/graphql/graphql_dealer.dart';
+import '../../../data/graphql/graphql_logs.dart';
 import '../../../data/models/logs_service_model.dart';
 import '../../../shared/constants.dart';
 import '../../../data/dealer.dart';
@@ -126,15 +128,33 @@ class DealerView extends StatelessWidget {
                                                   "{\"dealerCode\": \"${dealers[index].dealerCode}\"}",
                                             });
                                             // create log
-                                            final logsCreate =
-                                                LogsCreateRequestModel(
-                                                    createdBy: nhostClient
-                                                        .auth.currentUser!.id,
-                                                    detail:
-                                                        'admin : $logActionEnableDealer : ${dealers[index].name}');
-                                            final resultCreateLog =
-                                                await LogsService()
-                                                    .createLogs(logsCreate);
+                                            // final logsCreate =
+                                            //     LogsCreateRequestModel(
+                                            //         createdBy: nhostClient
+                                            //             .auth.currentUser!.id,
+                                            //         detail:
+                                            //             'admin : $logActionEnableDealer : ${dealers[index].name}');
+                                            // final resultCreateLog =
+                                            //     await LogsService()
+                                            //         .createLogs(logsCreate);
+                                            // logs with nhost
+                                            final graphqlClient =
+                                                createNhostGraphQLClient(
+                                                    nhostClient);
+                                            var mutationResult =
+                                                await graphqlClient.mutate(
+                                              MutationOptions(
+                                                  document: createLogs,
+                                                  variables: {
+                                                    'logs': LogsCreateRequestModel(
+                                                        createdBy: nhostClient
+                                                            .auth
+                                                            .currentUser!
+                                                            .id,
+                                                        detail:
+                                                            'admin : $logActionEnableDealer : ${dealers[index].name}')
+                                                  }),
+                                            );
                                             Get.back();
                                           })
                                       : TextButton(
@@ -160,15 +180,33 @@ class DealerView extends StatelessWidget {
                                                   "{\"dealerCode\": \"${dealers[index].dealerCode}\"}",
                                             });
                                             // create log
-                                            final logsCreate =
-                                                LogsCreateRequestModel(
-                                                    createdBy: nhostClient
-                                                        .auth.currentUser!.id,
-                                                    detail:
-                                                        'admin : $logActionDisableDealer : ${dealers[index].name}');
-                                            final resultCreateLog =
-                                                await LogsService()
-                                                    .createLogs(logsCreate);
+                                            // final logsCreate =
+                                            //     LogsCreateRequestModel(
+                                            //         createdBy: nhostClient
+                                            //             .auth.currentUser!.id,
+                                            //         detail:
+                                            //             'admin : $logActionDisableDealer : ${dealers[index].name}');
+                                            // final resultCreateLog =
+                                            //     await LogsService()
+                                            //         .createLogs(logsCreate);
+                                            // logs with nhost
+                                            final graphqlClient =
+                                                createNhostGraphQLClient(
+                                                    nhostClient);
+                                            var mutationResult =
+                                                await graphqlClient.mutate(
+                                              MutationOptions(
+                                                  document: createLogs,
+                                                  variables: {
+                                                    'logs': LogsCreateRequestModel(
+                                                        createdBy: nhostClient
+                                                            .auth
+                                                            .currentUser!
+                                                            .id,
+                                                        detail:
+                                                            'admin : $logActionDisableDealer : ${dealers[index].name}')
+                                                  }),
+                                            );
                                             Get.back();
                                           }),
                                 );

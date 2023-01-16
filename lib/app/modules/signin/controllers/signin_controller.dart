@@ -7,6 +7,7 @@ import 'package:nhost_graphql_adapter/nhost_graphql_adapter.dart';
 import 'package:nhost_sdk/nhost_sdk.dart';
 
 import '../../../api/services/logs_service.dart';
+import '../../../data/graphql/graphql_logs.dart';
 import '../../../data/models/logs_service_model.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/utils/log_util.dart';
@@ -39,11 +40,23 @@ class SigninController extends GetxController {
       final authResponse = await nhostClient.auth
           .signInEmailPassword(email: email, password: password);
       if (authResponse.user != null) {
-        final logsCreate = LogsCreateRequestModel(
-            createdBy: authResponse.user!.id,
-            detail: 'admin : $logActionLogin');
-        Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
-        final resultCreateLog = await LogsService().createLogs(logsCreate);
+        // logs with postgres
+        // final logsCreate = LogsCreateRequestModel(
+        //     createdBy: authResponse.user!.id,
+        //     detail: 'admin : $logActionLogin');
+        // Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
+        // final resultCreateLog = await LogsService().createLogs(logsCreate);
+
+        // logs with nhost
+        final graphqlClient = createNhostGraphQLClient(nhostClient);
+        var mutationResult = await graphqlClient.mutate(
+          MutationOptions(document: createLogs, variables: {
+            'logs': LogsCreateRequestModel(
+                createdBy: authResponse.user!.id,
+                detail: 'admin : $logActionLogin')
+          }),
+        );
+        Log.loga(title, 'signInWithEmailPassword:: logs: ${mutationResult}');
         return true;
       }
       return false;

@@ -9,6 +9,7 @@ import '../../../api/api.dart';
 import '../../../api/api_end_points.dart';
 import '../../../api/api_utils.dart';
 import '../../../api/services/logs_service.dart';
+import '../../../data/graphql/graphql_logs.dart';
 import '../../../data/graphql/graphql_product.dart';
 import '../../../data/graphql/graphql_product_file.dart';
 import '../../../data/models/logs_service_model.dart';
@@ -262,12 +263,21 @@ class ProductController extends GetxController {
       offset.value = 0;
 
       // create log
-      final logsCreate = LogsCreateRequestModel(
-          createdBy: nhostClient.auth.currentUser!.id,
-          detail:
-              'admin : $logActionAddProduct : รหัสสินค้า ${productInsert.value.code}');
-      Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
-      final resultCreateLog = await LogsService().createLogs(logsCreate);
+      // final logsCreate = LogsCreateRequestModel(
+      //     createdBy: nhostClient.auth.currentUser!.id,
+      //     detail:
+      //         'admin : $logActionAddProduct : รหัสสินค้า ${productInsert.value.code}');
+      // Log.loga(title, 'signInWithEmailPassword:: ${logsCreate.toJson()}');
+      // final resultCreateLog = await LogsService().createLogs(logsCreate);
+      // logs with nhost
+      var mutationResult = await graphqlClient.mutate(
+        MutationOptions(document: createLogs, variables: {
+          'logs': LogsCreateRequestModel(
+              createdBy: nhostClient.auth.currentUser!.id,
+              detail:
+                  'admin : $logActionAddProduct : รหัสสินค้า ${productInsert.value.code}')
+        }),
+      );
       update();
       listProducts();
       setInitProduct();
