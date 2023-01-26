@@ -11,7 +11,7 @@ import 'app/shared/constants.dart';
 import 'app/shared/page_not_found.dart';
 
 Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   nhostClient = NhostClient(backendUrl: backendUrl);
   runApp(MyApp());
 }

@@ -11,7 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
-      - uses: bluefireteam/flutter-gh-pages@v7
-        with:
-          baseHref: /b2b/
-          webRenderer: html
+      - run: flutter build web --release --base-href /b2b/
+      - run: git config user.name github-actions
+      - run: git config user.email github-actions@github.com
+      - run: git --work-tree build/web add --all
+      - run: git commit -m "Automatic deployment by github-actions"
+      - run: git push origin HEAD:gh-pages --force
+      # - uses: bluefireteam/flutter-gh-pages@v7
+      #   with:
+      #     baseHref: /b2b/
+      #     webRenderer: html
