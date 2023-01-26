@@ -65,7 +65,7 @@ class ProductAddWidget extends StatelessWidget {
                           suffixIcon: IconButton(
                             icon: const Icon(Icons.search),
                             onPressed: () {
-                              controller.getProductByCode(
+                              controller.getProductByCodeFromSystemLink(
                                 _productCodeController.text,
                               );
                             },
@@ -116,6 +116,30 @@ class ProductAddWidget extends StatelessWidget {
                           'ค่าสึกหรอ',
                           controller.productInsert.value.treadWare.toString(),
                           1),
+                    ),
+                    GetBuilder<ProductController>(
+                      init: controller,
+                      builder: (_) => detailForm(
+                          'Load Index',
+                          controller.productInsert.value.loadIndex.toString(),
+                          1),
+                    ),
+                    GetBuilder<ProductController>(
+                      init: controller,
+                      builder: (_) => detailForm(
+                          'speed Index',
+                          controller.productInsert.value.speedIndex.toString(),
+                          1),
+                    ),
+                    GetBuilder<ProductController>(
+                      init: controller,
+                      builder: (_) => detailForm('dot(ปี)',
+                          controller.productInsert.value.year.toString(), 1),
+                    ),
+                    GetBuilder<ProductController>(
+                      init: controller,
+                      builder: (_) => detailForm('dot(สัปดาห์)',
+                          controller.productInsert.value.week.toString(), 1),
                     ),
                     GetBuilder<ProductController>(
                       init: controller,

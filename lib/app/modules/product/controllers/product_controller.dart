@@ -146,7 +146,7 @@ class ProductController extends GetxController {
     update();
   }
 
-  getProductByCode(String productCode) async {
+  getProductByCodeFromSystemLink(String productCode) async {
     Log.loga(logTitle, 'getProductByCode::' + productCode);
     // productCode = "99934BEXM6FD025P";
     Get.dialog(
@@ -180,6 +180,10 @@ class ProductController extends GetxController {
       productInsert.value.price = productResponseModel.data!.price;
       productInsert.value.dealerPrice1 =
           productResponseModel.data!.dealerPrice1;
+      productInsert.value.loadIndex = productResponseModel.data!.loadIndex;
+      productInsert.value.speedIndex = productResponseModel.data!.speedIndex;
+      productInsert.value.year = productResponseModel.data!.year;
+      productInsert.value.week = productResponseModel.data!.week;
       productInsert.value.createdBy = userId;
       update();
       Log.loga(

@@ -215,22 +215,31 @@ class Product {
   int? price;
   int? dealerPrice1;
   String? groupCode;
+  String? loadIndex;
+  String? speedIndex;
+  String? year;
+  String? week;
 
-  Product(
-      {this.id,
-      this.code,
-      this.name,
-      this.matSize,
-      this.color,
-      this.brand,
-      this.model,
-      this.width,
-      this.offset,
-      this.treadWare,
-      this.pitchCircleCode,
-      this.price,
-      this.dealerPrice1,
-      this.groupCode});
+  Product({
+    this.id,
+    this.code,
+    this.name,
+    this.matSize,
+    this.color,
+    this.brand,
+    this.model,
+    this.width,
+    this.offset,
+    this.treadWare,
+    this.pitchCircleCode,
+    this.price,
+    this.dealerPrice1,
+    this.groupCode,
+    this.loadIndex,
+    this.speedIndex,
+    this.year,
+    this.week,
+  });
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -247,6 +256,10 @@ class Product {
     price = json['price'];
     dealerPrice1 = json['dealer_price_1'];
     groupCode = json['group_code'];
+    loadIndex = json["load_index"];
+    speedIndex = json["speed_index"];
+    year = json["year"];
+    week = json["week"];
   }
 
   Map<String, dynamic> toJson() {
@@ -265,6 +278,10 @@ class Product {
     data['price'] = price;
     data['dealer_price_1'] = dealerPrice1;
     data['group_code'] = groupCode;
+    data['load_index'] = loadIndex;
+    data['speed_index'] = speedIndex;
+    data['year'] = year;
+    data['week'] = week;
     return data;
   }
 }
@@ -401,6 +418,10 @@ class ProductInsert {
   int? dealerPrice1;
   String? groupCode;
   String? createdBy;
+  String? loadIndex;
+  String? speedIndex;
+  String? year;
+  String? week;
 
   ProductInsert({
     this.linkId,
@@ -418,6 +439,10 @@ class ProductInsert {
     this.dealerPrice1,
     this.groupCode,
     this.createdBy,
+    this.loadIndex,
+    this.speedIndex,
+    this.year,
+    this.week,
   });
 
   factory ProductInsert.fromJson(Map<String, dynamic> json) => ProductInsert(
@@ -436,6 +461,10 @@ class ProductInsert {
         dealerPrice1: json['dealer_price_1'],
         groupCode: json['group_code'],
         createdBy: json["created_by"],
+        loadIndex: json["load_index"],
+        speedIndex: json["speed_index"],
+        year: json["year"],
+        week: json["week"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -454,6 +483,10 @@ class ProductInsert {
         'dealer_price_1': dealerPrice1,
         'group_code': groupCode,
         'created_by': createdBy,
+        "load_index": loadIndex,
+        "speed_index": speedIndex,
+        "year": year,
+        "week": week,
       };
 }
 
