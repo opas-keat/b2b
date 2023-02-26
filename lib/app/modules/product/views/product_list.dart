@@ -33,7 +33,7 @@ class ProductListWidget extends StatelessWidget {
                   
                 },
                 child: Padding(
-                  padding: EdgeInsets.all(defaultPadding / 2),
+                  padding: const EdgeInsets.all(defaultPadding / 2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -46,7 +46,7 @@ class ProductListWidget extends StatelessWidget {
                                 fit: BoxFit.cover,
                               ),
                             )
-                          : CircularProgressIndicator(),
+                          : const CircularProgressIndicator(),
                       Text(
                         items[index].name,
                         style: const TextStyle(

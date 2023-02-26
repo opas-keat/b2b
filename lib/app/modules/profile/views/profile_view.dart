@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../shared/constants.dart';
 import '../../../shared/custom_flat_button.dart';
@@ -9,8 +10,9 @@ import '../../../shared/custom_text.dart';
 import '../../../shared/validator.dart';
 import '../controllers/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
+class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
+  final controller = Get.put(ProfileController());
 
   final _formKey = GlobalKey<FormState>();
   final _textHistoryShow = TextEditingController(text: '7');
@@ -179,16 +181,69 @@ class ProfileView extends GetView<ProfileController> {
                               flex: 2,
                               child: SizedBox(height: defaultPadding),
                             ),
-                            Flexible(
-                              flex: 2,
-                              child: SizedBox(
-                                height: 200,
-                                child: Image.network(
-                                  'assets/images/undraw_Add_files_re_v09g.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                            InkWell(
+                              onTap: () async {
+                                final ImagePicker picker = ImagePicker();
+                                final XFile? pickedFile =
+                                    await picker.pickImage(
+                                  source: ImageSource.gallery,
+                                  maxHeight: 640,
+                                  maxWidth: 480,
+                                );
+                                if (pickedFile != null) {
+                                  controller.fileUpload.value = pickedFile;
+                                  controller.update();
+                                }
+                              },
+                              child: Obx(() => SizedBox(
+                                    height: 200,
+                                    child: controller.imageUrl.value.isNotEmpty
+                                        ? Image.network(
+                                            controller.imageUrl.value,
+                                            height: 200,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : (controller.fileUpload.value.path
+                                                .isNotEmpty)
+                                            ? Image.network(
+                                                controller
+                                                    .fileUpload.value.path,
+                                                height: 200,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Image.network(
+                                                'assets/images/undraw_Add_files_re_v09g.png',
+                                                fit: BoxFit.cover,
+                                              ),
+                                  )),
                             ),
+                            // Flexible(
+                            //   flex: 2,
+                            // child: SizedBox(
+                            //   height: 200,
+                            //   child: Image.network(
+                            //     'assets/images/undraw_Add_files_re_v09g.png',
+                            //     fit: BoxFit.cover,
+                            //   ),
+                            // ),
+                            // child: Obx(
+                            //   () => SizedBox(
+                            //     height: 200,
+                            //     child: (controller
+                            //             .fileUpload.value.path.isNotEmpty)
+                            //         ? Image.network(
+                            //             controller.fileUpload.value.path,
+                            //             height: 200,
+                            //             fit: BoxFit.cover,
+                            //           )
+                            //         : Image.network(
+                            //             'assets/images/undraw_Add_files_re_v09g.png',
+                            //             fit: BoxFit.cover,
+                            //           ),
+                            //   ),
+                            //   // ),
+                            //   // ),
+                            // ),
                             Flexible(
                               flex: 1,
                               child: Padding(
@@ -198,7 +253,7 @@ class ProfileView extends GetView<ProfileController> {
                                 child: CustomFlatButton(
                                   label: 'Update'.toUpperCase(),
                                   onPressed: () async {
-                                    if (_formKey.currentState!.validate()) {}
+                                    controller.updateArtwork();
                                   },
                                 ),
                               ),
